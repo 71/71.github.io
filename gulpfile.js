@@ -2,12 +2,10 @@ var gulp = require('gulp');
 var jade = require('jade');
 var stylus = require('stylus');
 var gutil = require('gulp-util');
+var babel = require("jade-babel");
 
 // Jade filters
-jade.filters.typescript = function (str) {
-    
-};
-
+jade.filters.babel = babel({});
 jade.filters.stylus = function (str) {
     var css;
     stylus.render(str, { }, function (err, _css) {
