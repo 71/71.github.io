@@ -7,7 +7,9 @@ var babel = require("jade-babel");
 // Jade filters
 jade.filters.babel = babel({
     presets: ['es2015'],
-    babelrc: false
+    babelrc: false,
+    compact: true,
+    comments: false
 });
 
 jade.filters.stylus = function (str) {
