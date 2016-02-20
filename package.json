@@ -18,7 +18,9 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-jade": "^1.1.0"
+    "gulp-jade": "^1.1.0",
+    "gulp-livereload": "^3.8.1",
+    "stylus": "^0.53.0"
   },
   "license": "MIT"
 }
