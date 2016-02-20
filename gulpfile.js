@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var jade = require('jade');
 var stylus = require('stylus');
+var gutil = require('gulp-util');
 
 // Jade filters
 jade.filters.typescript = function (str) {
@@ -20,7 +21,7 @@ var renderJade = function (filename, string) {
     var src = require('stream').Readable({ objectMode: true });
     src._read = function () {
         string = jade.renderFile(filename);
-        this.push(new gutil.File({ cwd: "", base: "", path: filename, contents: new Buffer(string) }));
+        this.push(new gutil.File({ cwd: "", base: "", path: "index.html", contents: new Buffer(string) }));
         this.push(null);
     };
     return src;
@@ -31,5 +32,5 @@ gulp.task('default', ['jade'], function () {
 });
 
 gulp.task('jade', function () {
-    return renderJade('src/app.jade').pipe(gulp.dest('build/index.html'));
+    return renderJade('src/app.jade').pipe(gulp.dest('build'));
 });
