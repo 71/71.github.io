@@ -2,10 +2,43 @@ doctype html
 
 html
   head
-    title Hello world!
+    title= title
+    
     style
       :stylus
         h1
           font-size 50px
-
+    
+    script
+      :babel
+      
+        // animate hero here
+        setInterval(() => {
+          console.log('change hero image');
+        }, 1500);
+        
   body
+    .hero
+      .header
+        h1= title
+      .intro
+        p= intro
+        
+    .me
+      .design
+        .experience
+          
+        .abilities
+        
+      .coding
+        .experience
+        
+        .abilities
+        
+    .madebyme
+      .nucleus
+      .albion
+      
+    .footer
+      .links
+      .contact
