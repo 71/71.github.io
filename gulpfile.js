@@ -2,7 +2,9 @@ var gulp = require('gulp');
 var jade = require('jade');
 var stylus = require('stylus');
 var gutil = require('gulp-util');
-var babel = require("jade-babel");
+var babel = require('jade-babel');
+
+const lang = 'en';
 
 // Jade filters
 jade.filters.babel = babel({
@@ -24,7 +26,9 @@ jade.filters.stylus = function (str) {
 var renderJade = function (filename, string) {
     var src = require('stream').Readable({ objectMode: true });
     src._read = function () {
-        string = jade.renderFile(filename);
+        string = jade.renderFile(filename, {
+            globals: require('src/' + lang + '.json')
+        });
         this.push(new gutil.File({ cwd: "", base: "", path: "index.html", contents: new Buffer(string) }));
         this.push(null);
     };
