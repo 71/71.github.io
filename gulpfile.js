@@ -27,7 +27,7 @@ var renderJade = function (filename, string) {
     var src = require('stream').Readable({ objectMode: true });
     src._read = function () {
         string = jade.renderFile(filename, {
-            globals: require('src/' + lang + '.json')
+            globals: require('./src/' + lang + '.json')
         });
         this.push(new gutil.File({ cwd: "", base: "", path: "index.html", contents: new Buffer(string) }));
         this.push(null);
