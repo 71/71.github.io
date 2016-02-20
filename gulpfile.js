@@ -5,7 +5,11 @@ var gutil = require('gulp-util');
 var babel = require("jade-babel");
 
 // Jade filters
-jade.filters.babel = babel({});
+jade.filters.babel = babel({
+    presets: ['es2015'],
+    babelrc: false
+});
+
 jade.filters.stylus = function (str) {
     var css;
     stylus.render(str, { }, function (err, _css) {
