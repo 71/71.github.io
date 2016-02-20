@@ -1,0 +1,24 @@
+{
+  "name": "www",
+  "version": "0.0.1",
+  "description": "Personal website",
+  "author": "Gregoire GEIS <s.aej@outlook.com>",
+  "scripts": {
+    "start": "node index.js",
+    "dev": ""
+  },
+  "main": "lib/foo.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aedotj/www"
+  },
+  "bugs": {
+    "url": "https://github.com/aedotj/www/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0"
+  },
+  "license": "MIT"
+}
