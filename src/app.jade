@@ -7,20 +7,21 @@ html
     style
       :stylus
         @import 'jeet'
-      
+        @media (max-width:500px)
+          .foo
+            color white
         body
           center()
-      
         h1
           font-size 50px
     
     script
       :babel
-      
         // animate hero here
         setInterval(() => {
           console.log('change hero image');
         }, 1500);
+
   body
     .hero
       .header

@@ -21,7 +21,7 @@
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "jade": "^1.11.0",
-    "jade-babel": "^5.0.0",
+    "babel-core": "^6.0.0",
     "jeet": "^6.1.2",
     "stylus": "^0.53.0"
   },
