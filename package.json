@@ -17,12 +17,14 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "babel-core": "^6.0.0",
     "babel-preset-es2015": "^6.5.0",
     "gulp": "^3.9.1",
-    "gulp-livereload": "^3.8.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-server-livereload": "^1.7.0",
     "jade": "^1.11.0",
-    "babel-core": "^6.0.0",
     "jeet": "^6.1.2",
+    "marked": "^0.3.5",
     "stylus": "^0.53.0"
   },
   "license": "MIT"
