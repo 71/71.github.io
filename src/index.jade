@@ -1,31 +1,21 @@
 doctype html
 
+include ./mixins.jade
 html(lang='en')
   head
     title= title
     if dev
         script(src='http://localhost:35729/livereload.js?snipver=1')
     
-    style
-      :stylus
-        @import 'jeet'
-        body
-            margin 0
-            center()
-        h1
-            font-size 50px
-    
-    script
-      :babel
-        // animate hero here
-        setInterval(() => {
-          console.log('change hero image');
-        }, 1500);
+    link(rel='stylesheet', href='app.css')
+    script(src='app.js')
 
   body
     .hero
       .header
         h1= title
+    
+    +skewedArea(0)
       .intro
         p= intro
         

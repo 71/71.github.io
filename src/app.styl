@@ -1,0 +1,27 @@
+@import 'jeet'
+@import 'mixins'
+
+body
+    margin 0
+
+.hero
+    $background-image('img/bg1.png', 100%)
+    color white
+    top: 0
+
+    .header
+        font-size: 2.1em
+        font-family: 'Open Sans', 'Segoe UI', sans-serif
+        margin: 50px 0 0 100px
+
+        h1
+            font-weight: lighter
+
+.skewed
+    &.n0
+        +$skewedEl(#222, -6deg, 700px, 400px)
+            :nth-child(2)
+                margin: 0 100px
+                color white
+                $normal-text()
+                text-align: right
