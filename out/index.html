@@ -6,19 +6,26 @@
     <link rel="stylesheet" href="app.css">
     <script src="app.js"></script>
   </head>
-  <body>
-    <div class="hero">
+  <body class="nojs">
+    <script>document.body.classList.remove('nojs');</script>
+    <svg class="strokes">
+      <circle cx="80%" cy="40%" r="50" stroke="white" fill="none" stroke-width="1" data-length='314.1592653589793' stroke-dasharray="179.41592653589794 134.7433388230814" stroke-dashoffset="183" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="100" stroke="white" fill="none" stroke-width="1" data-length='628.3185307179587' stroke-dasharray="357.8318530717959 270.4866776461628" stroke-dashoffset="33" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="200" stroke="white" fill="none" stroke-width="1" data-length='1256.6370614359173' stroke-dasharray="144.66370614359172 1111.9733552923256" stroke-dashoffset="385" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="300" stroke="white" fill="none" stroke-width="1" data-length='1884.9555921538758' stroke-dasharray="1567.4955592153876 317.4600329384882" stroke-dashoffset="430" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="500" stroke="white" fill="none" stroke-width="1" data-length='3141.592653589793' stroke-dasharray="2558.159265358979 583.4333882308138" stroke-dashoffset="1381" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="800" stroke="white" fill="none" stroke-width="1" data-length='5026.548245743669' stroke-dasharray="3830.654824574367 1195.8934211693022" stroke-dashoffset="4055" class="stroke"></circle>
+      <circle cx="80%" cy="40%" r="1200" stroke="white" fill="none" stroke-width="1" data-length='7539.822368615503' stroke-dasharray="5513.9822368615505 2025.8401317539528" stroke-dashoffset="1226" class="stroke"></circle>
+    </svg>
+    <section class="hero">
       <div class="header">
-        <h1>Welcome.</h1>
+        <h1><img class='logo' src='img/logo.png'/> Welcome.</h1>
       </div>
-    </div>
-    <div class="skewed n0">
-      <hr class="separator">
-      <div class="intro">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div class="introduction">
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
-    </div>
-    <div class="me">
+    </section>
+    <section class="me">
       <div class="design">
         <div class="experience"></div>
         <div class="abilities"></div>
@@ -27,14 +34,16 @@
         <div class="experience"></div>
         <div class="abilities"></div>
       </div>
-    </div>
-    <div class="madebyme">
+    </section>
+    <section class="madebyme">
       <div class="nucleus"></div>
       <div class="albion"></div>
-    </div>
-    <div class="footer">
+    </section>
+    <section class="footer">
       <div class="links"></div>
       <div class="contact"></div>
-    </div>
+      <div class="box"></div>
+    </section>
+    <section class="notice">Javascript is disabled ; your experience might be a bit worse than intended.</section>
   </body>
 </html>

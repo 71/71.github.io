@@ -17,7 +17,7 @@ var options = minimist(process.argv.slice(2), {
     boolean: ['dev', 'lr'],
     default: {
         lr: true,
-        dev: process.env.NODE_ENV == 'development',
+        dev: true || process.env.NODE_ENV == 'development',
         lang: 'en'
     }
 });
@@ -32,8 +32,7 @@ gulp.task('default', ['compile', 'watch'], function () {
     return
     gulp.src('./out')
         .pipe(glive({
-            livereload: options.lr,
-            open: options.lr
+            livereload: options.lr
         }));
 });
 
@@ -59,6 +58,6 @@ gulp.task('jade', function () {
 
 gulp.task('typescript', function () {
     return gulp.src('./src/*.ts')
-        .pipe(tsc({ outFile: 'app.js' }))
+        .pipe(tsc({ outFile: 'app.js', removeComments: true }))
         .pipe(gulp.dest('./out'));
 });

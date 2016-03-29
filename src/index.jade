@@ -1,6 +1,8 @@
+include ./mixins.jade
+- var logo = "<img class='logo' src='img/logo.png'/>"
+
 doctype html
 
-include ./mixins.jade
 html(lang='en')
   head
     title= title
@@ -10,30 +12,47 @@ html(lang='en')
     link(rel='stylesheet', href='app.css')
     script(src='app.js')
 
-  body
-    .hero
-      .header
-        h1= title
-    
-    +skewedArea(0)
-      .intro
-        p= intro
-        
-    .me
-      .design
-        .experience
+  body.nojs
+    script document.body.classList.remove('nojs');
+    svg.strokes
+        +circle(50)
+        +circle(100)
+        +circle(200)
+        +circle(300)
+        +circle(500)
+        +circle(800)
+        +circle(1100)
+    section.hero
+        .header
+            h1 !{logo} #{title}
+            
+        .introduction
+            p= intro
+            
+    section.me
+        .design
+            .experience
           
-        .abilities
+            .abilities
         
-      .coding
-        .experience
+        .coding
+            .experience
         
-        .abilities
+            .abilities
         
-    .madebyme
-      .nucleus
-      .albion
+    section.madebyme
+        .nucleus
+        
+        .albion
       
-    .footer
-      .links
-      .contact
+    section.footer
+        .links
+        
+        .contact
+            
+        .box
+    
+    if dev        
+        section.notice= notice
+    else
+        noscript.notice= notice

@@ -1,4 +1,5 @@
-mixin skewedArea(nbr)
-    .skewed(class='n'+nbr)
-        hr.separator
-        block
+mixin circle(radius)
+    - var length = radius * Math.PI * 2
+    - var offset = Math.floor(Math.random() * length)
+    - var stroke = (length / 10) + Math.floor(Math.random() * (length * (4 / 5)))
+    circle.stroke(cx='80%', cy='40%', r=radius, stroke='white', fill='none', stroke-width='1', data-length=length, stroke-dasharray=stroke+' '+(length-stroke), stroke-dashoffset=offset)
