@@ -28,10 +28,4 @@ window.onload = function () {
     }
     var header = document.getElementsByClassName('header')[0];
     var circles = document.getElementsByClassName('stroke');
-    for (var i = 0; i < circles.length; i++) {
-        var circle = circles[i];
-        var length_1 = parseFloat(circle.getAttribute('data-length'));
-        var strokelength = between(0, length_1);
-    }
-    ;
 };

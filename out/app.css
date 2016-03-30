@@ -26,6 +26,20 @@ body > section:after,
 html > section:after {
   clear: both;
 }
+h1,
+h2,
+h3 {
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  font-weight: lighter;
+  margin: 0;
+  color: #fff;
+}
+h1.title img,
+h2.title img {
+  width: 1em;
+  margin-bottom: -0.15em;
+  margin-right: 0.1em;
+}
 svg.strokes {
   margin: 0;
   z-index: 0;
@@ -33,11 +47,6 @@ svg.strokes {
   width: 100%;
   height: 200%;
   opacity: 0.7;
-}
-.logo {
-  width: 1em;
-  margin-bottom: -0.15em;
-  margin-right: 0.1em;
 }
 .hero {
   color: #fff;
@@ -52,9 +61,6 @@ svg.strokes {
 }
 .hero .header h1 {
   font-size: 6em;
-  font-family: 'Open Sans', 'Segoe UI', sans-serif;
-  font-weight: lighter;
-  margin: 0;
 }
 .hero .introduction {
   font-family: 'Georgia', serif;
@@ -67,6 +73,9 @@ svg.strokes {
   height: 150vh;
   width: 100%;
 }
+.me h2 {
+  font-size: 5em;
+}
 .madebyme {
   height: 80vh;
   width: 100%;
@@ -77,6 +86,41 @@ svg.strokes {
   width: 100%;
   z-index: 2;
   padding: 2em 0;
+}
+.footer h3 {
+  font-size: 1.6em;
+  margin: 0.2em 0 0 0.5em;
+}
+.footer ul {
+  padding-left: 1.5em;
+}
+.footer li {
+  list-style: none;
+  text-decoration: none;
+}
+.footer li a::before {
+  content: '>';
+  margin-right: 0.3em;
+  opacity: 0.8;
+  transition: all 0.2s ease-out;
+}
+.footer li a:hover::before {
+  margin-right: 0;
+  opacity: 1;
+}
+.footer li a,
+.footer li a:hover,
+.footer li a:visited {
+  color: #fff;
+  font-size: 1.2em;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  text-decoration: none;
+}
+.footer li a p,
+.footer li a:hover p,
+.footer li a:visited p {
+  text-decoration: underline;
+  display: inline;
 }
 .footer > div {
   height: 100%;
@@ -141,6 +185,12 @@ svg.strokes {
 }
 .footer .box:last-child {
   margin-right: 0%;
+}
+.footer .box p {
+  margin: 0.4em 0.6em;
+  color: #fff;
+  font-size: 1.2em;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
 }
 .notice {
   width: 100%;

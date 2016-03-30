@@ -1,3 +1,5 @@
+/// <reference path="./typings/svg-morpheus.d.ts" />
+
 window.onload = () => {
 
     // miscillaneous
@@ -29,14 +31,4 @@ window.onload = () => {
     // consts
     const header = document.getElementsByClassName('header')[0];
     const circles = document.getElementsByClassName('stroke');
-
-    for (let i = 0; i < circles.length; i++) {
-        let circle = circles[i] as SVGCircleElement;
-        let length = parseFloat(circle.getAttribute('data-length'));
-        let strokelength = between(0, length);
-
-        //circle.style.strokeDasharray = strokelength + ' ' + (length - strokelength);
-        //circle.style.strokeDashoffset = between(0, length).toString();
-    };
-
 };

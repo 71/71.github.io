@@ -18,7 +18,8 @@
     "exclude": [
         "node_modules",
         "typings/browser",
-        "typings/browser.d.ts"
+        "typings/browser.d.ts",
+        "src/typings/svg-morpheus.d.ts"
     ],
     "compileOnSave": false,
     "buildOnSave": false,
