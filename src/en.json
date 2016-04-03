@@ -1,16 +1,6 @@
 {
-    "title": "Hello world!",
-    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
-    "design": {
-        "experience": [
-
-        ],
-
-        "softwares": [
-
-        ]
-    },
+    "title": "Welcome.",
+    "intro": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 
     "programming": {
         "experience": [
@@ -22,17 +12,25 @@
         ]
     },
 
+    "design": {
+        "experience": [
+
+        ],
+
+        "softwares": [
+
+        ]
+    },
+
     "projects": {
 
     },
 
     "footer": {
-        "contactme": "Contact me: ",
-        "contactmelinks": [
+        "links": "Links:",
+        "contactme": "Contact me:",
+        "box": "Source code is available on <a href='https://github.com/dashji/www'>GitHub</a>.<br>Made with <3 in France, by Greg G."
+    },
 
-        ],
-        "links": [
-
-        ]
-    }
+    "notice": "Javascript is disabled ; your experience might be a bit worse than intended."
 }

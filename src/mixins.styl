@@ -1,0 +1,34 @@
+vendor($value)
+    for v,i in webkit moz ms o
+        add-property(s('-%s-%s', v, unquote(current-property[0])), $value)
+    $value
+
+$normal-text()
+    font-family: 'Georgia', serif
+    font-size: 1.3em
+
+$background-image($url, $h)
+    background-repeat: no-repeat
+    background-image: url($url)
+    background-position: center 0
+    position: absolute
+    height: $h
+    width: 100%
+
+$skewedEl($bg, $angle, $margin-top, $h, $z = 3)
+    &
+        {block}
+        margin-top: $margin-top
+
+        hr.separator
+            border: none
+            background: $bg
+            transform: vendor(skewY($angle))
+            z-index: $z
+            width: 100%
+            height: $h
+
+        :nth-child(2)
+            margin-top: (-1 * $h) + 100
+            z-index: $z
+            position: absolute

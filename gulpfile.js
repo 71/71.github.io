@@ -1,71 +1,63 @@
-var fs = require('fs');
-
-var gulp = require('gulp');
-var gjade = require('gulp-jade');
-var glr = require('gulp-server-livereload');
-var gutil = require('gulp-util');
-
-var babel = require('babel-core');
-var jade = require('jade');
-var stylus = require('stylus');
-var jeet = require('jeet');
-var marked = require('marked');
+// Core: Accord + Gulp (+ Utils) + Minimist
 var minimist = require('minimist');
+var fs = require('fs');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var glive = require('gulp-server-livereload');
+
+// Misc
+var jade = require('gulp-jade');
+var stylus = require('gulp-stylus');
+var tsc = require('gulp-typescript');
+var rename = require('gulp-rename');
+var jeet = require('jeet');
 
 var options = minimist(process.argv.slice(2), {
-    string: ['dev'],
-    boolean: ['lang', 'lr'],
+    string: ['lang'],
+    boolean: ['dev', 'lr'],
     default: {
         lr: true,
-        dev: process.env.NODE_ENV == 'development',
+        dev: true || process.env.NODE_ENV == 'development',
         lang: 'en'
     }
 });
 
-// Jade filters
-jade.filters.babel = function (str) {
-    return babel.transform(str, {
-        presets: ['es2015'],
-    	babelrc: false,
-    	compact: true,
-    	comments: false
-    }).code;
-};
-
-jade.filters.stylus = function (str) {
-    var css;
-    stylus(str)
-        .use(jeet())
-    	.render(function (err, _css) { css = _css });
-    return css;
-};
-
-jade.filters.marked = function (str) {
-    return marked(str);
-};
-
-var getLang = function () {
-    var obj = JSON.parse(fs.readFileSync('./src/' + options.lang + '.json', 'utf8')) || {};
+function getLocals () {
+    var obj = JSON.parse(fs.readFileSync('./src/' + options.lang + '.json'));
     obj.dev = options.dev;
     return obj;
 };
 
-// Misc functions
-gulp.task('default', ['watch', 'jade'], function () {
-    gulp.src('./build')
-        .pipe(glr({
-            livereload: options.lr,
-            open: options.lr,
-            defaultFile: 'app.html'
+gulp.task('default', ['compile', 'watch'], function () {
+    return
+    gulp.src('./out')
+        .pipe(glive({
+            livereload: options.lr
         }));
 });
 
-gulp.task('jade', function () {
-    return gulp.src('./src/*.jade')
-        .pipe(gjade({ jade: jade, locals: getLang() }))
-        .pipe(gulp.dest('./build'));
+gulp.task('watch', function () {
+    gulp.watch('./src/*.jade', ['jade']);
+    gulp.watch('./src/*.styl', ['stylus']);
+    gulp.watch('./src/*.ts', ['typescript']);
 });
 
-gulp.task('watch', function () {
-    gulp.watch('./src/*', ['jade']);
+gulp.task('compile', ['stylus', 'typescript', 'jade']);
+
+gulp.task('stylus', function () {
+    return gulp.src('./src/app.styl')
+        .pipe(stylus({ compress: !options.dev, use: jeet() }))
+        .pipe(gulp.dest('./out'));
+});
+
+gulp.task('jade', function () {
+    return gulp.src('./src/index.jade')
+        .pipe(jade({ pretty: options.dev, locals: getLocals() }))
+        .pipe(gulp.dest('./out'));
+});
+
+gulp.task('typescript', function () {
+    return gulp.src('./src/*.ts')
+        .pipe(tsc({ outFile: 'app.js', removeComments: true }))
+        .pipe(gulp.dest('./out'));
 });

@@ -1,0 +1,129 @@
+@import 'jeet'
+@import 'mixins'
+
+body, html
+    margin: 0
+    background: linear-gradient(#06061c, #06061c, #06061c, #0d212e, #18342f)
+
+    & > section
+        center(1600px)
+
+h1, h2, h3
+    font-family: 'Open Sans', 'Segoe UI', sans-serif
+    font-weight: lighter
+    margin: 0
+    color: white
+
+h1.title, h2.title
+    img
+        width: 1em
+        margin-bottom: -.15em
+        margin-right: .1em
+
+svg.strokes
+    margin: 0
+    z-index: 0
+    position: absolute
+    width: 100%
+    height: 200%
+    opacity: .7
+
+.hero
+    color: white
+    top: 0
+    left: 0
+    height: 100vh
+
+    .header
+        z-index: 1
+        width: auto
+        margin: 50px 0 0 0
+
+        h1
+            font-size: 6em
+
+    .introduction
+        font-family: 'Georgia', serif
+        max-width: 40em
+        font-size: 1.6em
+        font-style: italic
+        margin: 0
+
+.me
+    height: 150vh
+    width: 100%
+
+    h2
+        font-size: 5em
+
+.madebyme
+    height: 80vh
+    width: 100%
+
+.footer
+    bottom: 0
+    height: 40vh
+    width: 100%
+    z-index: 2
+    padding: 2em 0
+
+    h3
+        font-size: 1.6em
+        margin: .2em 0 0 .5em
+
+    ul
+        padding-left: 1.5em
+
+    li
+        list-style: none
+        text-decoration: none
+
+        a::before
+            content: '>'
+            margin-right: .3em
+            opacity: .8
+            transition: all .2s ease-out
+
+        a:hover::before
+            margin-right: 0
+            opacity: 1
+
+        a, a:hover, a:visited
+            color: white
+            font-size: 1.2em
+            font-family: 'Open Sans', 'Segoe UI', sans-serif
+            text-decoration: none
+
+            p
+                text-decoration: underline
+                display: inline
+
+
+
+    & > div
+        height: 100%
+        background-color: rgba(0,0,0,.4)
+
+    .links
+        col(1/4)
+
+    .contact
+        col(1/4)
+
+    .box
+        col(1/2)
+
+        p
+            margin: 0.4em 0.6em
+            color: white
+            font-size: 1.2em
+            font-family: 'Open Sans', 'Segoe UI', sans-serif
+
+.notice
+    width: 100%
+    padding: .5em 0
+    color: #fff
+    background-color: rgba(0,0,0,0.4)
+    text-align: center
+    font-family: monospace
+    margin-bottom: 2em

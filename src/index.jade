@@ -1,0 +1,75 @@
+include ./mixins.jade
+- var title_ico = "<img class='logo' src='img/logo.png'/>"
+- var design_ico = "<img class='logo' src='img/logo.png'/>"
+- var coding_ico = "<img class='logo' src='img/logo.png'/>"
+
+doctype html
+
+html(lang='en')
+  head
+    title= title
+    if dev
+        script(src='http://localhost:35729/livereload.js?snipver=1')
+    
+    link(rel='stylesheet', href='app.css')
+    script(src='app.js')
+
+  body.nojs
+    script document.body.classList.remove('nojs');
+    svg.strokes
+        +circle(50)
+        +circle(100)
+        +circle(200)
+        +circle(300)
+        +circle(500)
+        +circle(800)
+        +circle(1100)
+        
+    section.hero
+        .header
+            h1.title !{title_ico} #{title}
+            
+        .introduction
+            p= intro
+            
+    section.me
+        .coding
+            h2.title !{coding_ico} Development
+            .experience
+                ul: each val in programming.experience
+                    li= val
+            .abilities
+                   
+        .design
+            h2.title !{design_ico} Design
+            .experience
+                ul: each val in design.experience
+                    li= val
+          
+            .abilities
+        
+        
+    section.madebyme
+        .nucleus
+        
+        .albion
+      
+    section.footer
+        .links
+            h3= footer.links
+            ul
+                li: a(href='https://github.com/dashji'): p GitHub
+                li: a(href='https://twitter.com/aedotj'): p Twitter
+        
+        .contact
+            h3= footer.contactme
+            ul
+                li: a(href='mailto:s.aej@outlook.com'): p Mail
+            
+        .box
+            p!= footer.box
+    
+    if dev        
+        section.notice= notice
+    else
+        noscript.notice= notice
