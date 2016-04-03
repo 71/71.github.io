@@ -1,29 +1,59 @@
 {
-    "title": "Welcome.",
-    "intro": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "title": "Dashji - Welcome",
+    "main": "Hey, I'm Greg.",
+    "intro": "I'm a 16-year old student from France, currently in high school. I have been in love with development ever since I started doing it, and spend most of my free time coding all sort of stuff.",
 
-    "programming": {
-        "experience": [
+    "abilities": "Abilities:",
+    "examples": "Examples:",
 
+    "code": {
+        "title": "I can code.",
+        "intro": "I've started development three years ago, at 12 years old. I immediately fell in love with it, and have spent over two thousand hours coding since then.",
+
+        "abilities": [
+            "Advanced knowledge of C#, Javascript (ES3, ES6), CSS3, HTML5, and UWP programming.",
+            "Basic knowledge of SQL, Java, Python, C++, CoffeeScript, Vala, Ruby and Android programming.",
+            "Plans on learning C and Assembly in the upcoming months."
         ],
 
-        "languages": [
+        "examples": [
 
+        ]
+    },
+
+    "adapt": {
+        "title": "I can adapt.",
+        "intro": "Most of my softwares are cross-platform, thanks to Mono and .NET Core. I can also adapt to different needs when making websites: for example, this website...",
+
+        "examples": [
+            "Works on IE9+",
+            "Supports noscript",
+            "Supports mobiles, and some new features such as theme-color."
         ]
     },
 
     "design": {
-        "experience": [
+        "title": "I can design.",
+        "intro": "Before I started programming, I had a deep interest in graphic design. I've been learning since I'm 9 years old, perfecting my English skills at the same time.",
 
+        "abilities": [
+            "Advanced knowledge of After Effects, Cinema 4D and Photoshop.",
+            "Basic knowledge of Illustrator and Premiere Pro."
         ],
 
-        "softwares": [
+        "examples": [
 
         ]
     },
 
-    "projects": {
+    "speak": {
+        "title": "I can communicate.",
+        "intro": "I'm French and, despite having no help back home, went from the worst student in English to the best student at school in 3 years. That was many years ago. Now, my teachers let me read books instead of coming to class, knowing very well that their lessons will be useless.",
 
+        "abilities": [
+            "Advanced knowledge of technical terms and slang in both French and English.",
+            "I've read many books, from French classics like Camus's 'L'Étranger' and English classics such as Shakespeare's 'Hamlet', to modern novels like 'The Hunger Games' and 'The Witcher'."
+        ]
     },
 
     "footer": {

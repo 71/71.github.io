@@ -1,12 +1,18 @@
 @import 'jeet'
 @import 'mixins'
 
+$wide = '(min-width: 1650px)'
+$unwide = '(max-width: 1650px)'
+$portrait = '(orientation: portrait)'
+$landscape = '(orientation: landscape)'
+
 body, html
     margin: 0
     background: linear-gradient(#06061c, #06061c, #06061c, #0d212e, #18342f)
 
-    & > section
+    & > div
         center(1600px)
+        width: 90%
 
 h1, h2, h3
     font-family: 'Open Sans', 'Segoe UI', sans-serif
@@ -29,10 +35,12 @@ svg.strokes
     opacity: .7
 
 .hero
+    outline: none
     color: white
     top: 0
     left: 0
     height: 100vh
+    background-image: url(img/bg.svg)
 
     .header
         z-index: 1
@@ -49,16 +57,18 @@ svg.strokes
         font-style: italic
         margin: 0
 
-.me
-    height: 150vh
-    width: 100%
+.slides
+    margin-top: 50px
+    color: white
+    font-family: 'Open Sans', 'Segoe UI', sans-serif
+    font-size: 1.7em
+
+    & > section
+        min-height: 100vh
+        outline: none
 
     h2
-        font-size: 5em
-
-.madebyme
-    height: 80vh
-    width: 100%
+        font-size: 2.2em
 
 .footer
     bottom: 0
@@ -66,6 +76,7 @@ svg.strokes
     width: 100%
     z-index: 2
     padding: 2em 0
+    outline: none
 
     h3
         font-size: 1.6em
@@ -127,3 +138,43 @@ svg.strokes
     text-align: center
     font-family: monospace
     margin-bottom: 2em
+
+nav
+    text-align: center
+    position: fixed
+    height: 100%
+    width: 10vh
+    top: 40vh
+
+    @media $unwide
+        width: 50px
+
+    & > div
+        border-radius: 12px
+        border: 2px solid white
+        text-align: center
+        display: inline-block
+        cursor: pointer
+        margin-bottom: 1vh
+        overflow: hidden
+
+        &.small
+            width: 8px
+            height: 8px
+        &.big
+            width: 12px
+            height: 12px
+
+        & div
+            height: 100%
+            width: 100%
+            background-color: white
+            transform: scale(0)
+            transition: transform .4s ease-out
+
+        &.selected div
+            transform: scale(1)
+
+.nojs
+    & > nav
+        display: none

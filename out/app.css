@@ -3,8 +3,8 @@ html {
   margin: 0;
   background: linear-gradient(#06061c, #06061c, #06061c, #0d212e, #18342f);
 }
-body > section,
-html > section {
+body > div,
+html > div {
   *zoom: 1;
   width: auto;
   max-width: 1600px;
@@ -14,16 +14,17 @@ html > section {
   margin-left: auto;
   padding-left: 0;
   padding-right: 0;
+  width: 90%;
 }
-body > section:before,
-html > section:before,
-body > section:after,
-html > section:after {
+body > div:before,
+html > div:before,
+body > div:after,
+html > div:after {
   content: '';
   display: table;
 }
-body > section:after,
-html > section:after {
+body > div:after,
+html > div:after {
   clear: both;
 }
 h1,
@@ -49,10 +50,12 @@ svg.strokes {
   opacity: 0.7;
 }
 .hero {
+  outline: none;
   color: #fff;
   top: 0;
   left: 0;
   height: 100vh;
+  background-image: url("img/bg.svg");
 }
 .hero .header {
   z-index: 1;
@@ -69,16 +72,18 @@ svg.strokes {
   font-style: italic;
   margin: 0;
 }
-.me {
-  height: 150vh;
-  width: 100%;
+.slides {
+  margin-top: 50px;
+  color: #fff;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  font-size: 1.7em;
 }
-.me h2 {
-  font-size: 5em;
+.slides > section {
+  min-height: 100vh;
+  outline: none;
 }
-.madebyme {
-  height: 80vh;
-  width: 100%;
+.slides h2 {
+  font-size: 2.2em;
 }
 .footer {
   bottom: 0;
@@ -86,6 +91,7 @@ svg.strokes {
   width: 100%;
   z-index: 2;
   padding: 2em 0;
+  outline: none;
 }
 .footer h3 {
   font-size: 1.6em;
@@ -200,4 +206,46 @@ svg.strokes {
   text-align: center;
   font-family: monospace;
   margin-bottom: 2em;
+}
+nav {
+  text-align: center;
+  position: fixed;
+  height: 100%;
+  width: 10vh;
+  top: 40vh;
+}
+@media (max-width: 1650px) {
+  nav {
+    width: 50px;
+  }
+}
+nav > div {
+  border-radius: 12px;
+  border: 2px solid #fff;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 1vh;
+  overflow: hidden;
+}
+nav > div.small {
+  width: 8px;
+  height: 8px;
+}
+nav > div.big {
+  width: 12px;
+  height: 12px;
+}
+nav > div div {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  transform: scale(0);
+  transition: transform 0.4s ease-out;
+}
+nav > div.selected div {
+  transform: scale(1);
+}
+.nojs > nav {
+  display: none;
 }

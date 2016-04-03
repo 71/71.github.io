@@ -1,0 +1,14 @@
+doctype html
+
+html(lang=lang)
+    head
+        title= title
+        meta(name='theme-color', content='#030533')
+        meta(name='viewport', content='user-scalable=no')
+    
+        link(rel='stylesheet', href='app.css')
+        script(src='app.js')
+
+  body.nojs
+      script document.body.classList.remove('nojs');
+      block content
