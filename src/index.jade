@@ -1,60 +1,61 @@
-include ./mixins.jade
-- var title_ico = "<img class='logo' src='img/logo.png'/>"
-- var design_ico = "<img class='logo' src='img/logo.png'/>"
-- var coding_ico = "<img class='logo' src='img/logo.png'/>"
+extends layout.jade
 
-doctype html
-
-html(lang='en')
-  head
-    title= title
-    if dev
-        script(src='http://localhost:35729/livereload.js?snipver=1')
+block content
+    nav
     
-    link(rel='stylesheet', href='app.css')
-    script(src='app.js')
-
-  body.nojs
-    script document.body.classList.remove('nojs');
-    svg.strokes
-        +circle(50)
-        +circle(100)
-        +circle(200)
-        +circle(300)
-        +circle(500)
-        +circle(800)
-        +circle(1100)
-        
-    section.hero
+    .hero(tabindex='1')
         .header
-            h1.title !{title_ico} #{title}
+            h1.title #[img.logo(src='img/logo.png')] #{main}
             
         .introduction
             p= intro
             
-    section.me
-        .coding
-            h2.title !{coding_ico} Development
-            .experience
-                ul: each val in programming.experience
-                    li= val
+    .slides
+        section.coding(tabindex='2')
+            h2.title= code.title
+            p.descr= code.intro
+            
             .abilities
+                ul: each val in code.abilities
+                    li= val
+            
+            .examples
+                ul: each val in code.examples
+                    li= val
+            a.exbtn(href='#')= expand
+            a.shbtn(href='#')= shrink
+                
+        section.adapt(tabindex='3')
+            h2.title= adapt.title
+            p.descr= adapt.intro
+            
+            .examples
+                ul: each val in adapt.examples
+                    li= val
                    
-        .design
-            h2.title !{design_ico} Design
-            .experience
-                ul: each val in design.experience
-                    li= val
-          
+        section.design(tabindex='4')
+            h2.title= design.title
+            p.descr= design.intro
+                    
             .abilities
+                ul: each val in design.abilities
+                    li= val
+                    
+            .examples
+                ul: each val in design.examples
+                    li: img(src=val)
+            a.exbtn(href='#')= expand
+            a.shbtn(href='#')= shrink
+                
+        section.speak(tabindex='5')
+            h2.title= speak.title
+            p.descr= speak.intro
         
-        
-    section.madebyme
-        .nucleus
-        
-        .albion
+            .abilities
+                ul: each val in speak.abilities
+                    li= val
       
-    section.footer
+    .footer(tabindex='6')
         .links
             h3= footer.links
             ul
@@ -70,6 +71,6 @@ html(lang='en')
             p!= footer.box
     
     if dev        
-        section.notice= notice
+        .notice= notice
     else
         noscript.notice= notice
