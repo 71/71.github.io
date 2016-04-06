@@ -1,0 +1,10 @@
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="strokes">
+  <circle cx="80%" cy="70%" r="50" stroke="white" fill="none" stroke-width="1" data-length='314.1592653589793' stroke-dasharray="182.41592653589794 131.7433388230814" stroke-dashoffset="134" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="100" stroke="white" fill="none" stroke-width="1" data-length='628.3185307179587' stroke-dasharray="181.83185307179588 446.4866776461628" stroke-dashoffset="237" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="200" stroke="white" fill="none" stroke-width="1" data-length='1256.6370614359173' stroke-dasharray="1015.6637061435918 240.97335529232555" stroke-dashoffset="615" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="300" stroke="white" fill="none" stroke-width="1" data-length='1884.9555921538758' stroke-dasharray="889.4955592153876 995.4600329384882" stroke-dashoffset="1121" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="500" stroke="white" fill="none" stroke-width="1" data-length='3141.592653589793' stroke-dasharray="2241.159265358979 900.4333882308138" stroke-dashoffset="780" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="800" stroke="white" fill="none" stroke-width="1" data-length='5026.548245743669' stroke-dasharray="948.6548245743669 4077.893421169302" stroke-dashoffset="744" class="stroke"></circle>
+  <circle cx="80%" cy="70%" r="1100" stroke="white" fill="none" stroke-width="1" data-length='6911.503837897545' stroke-dasharray="3830.1503837897544 3081.3534541077906" stroke-dashoffset="5422" class="stroke"></circle>
+</svg>
