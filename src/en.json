@@ -5,6 +5,8 @@
 
     "abilities": "Abilities:",
     "examples": "Examples:",
+    "expand": "Expand >>",
+    "shrink": "Shrink <<",
 
     "code": {
         "title": "I can code.",
@@ -13,7 +15,8 @@
         "abilities": [
             "Advanced knowledge of C#, Javascript (ES3, ES6), CSS3, HTML5, and UWP programming.",
             "Basic knowledge of SQL, Java, Python, C++, CoffeeScript, Vala, Ruby and Android programming.",
-            "Plans on learning C and Assembly in the upcoming months."
+            "Plans on learning C and Assembly in the upcoming months.",
+            "Web frameworks: Vue, Angular, Backbone, jQuery."
         ],
 
         "examples": [
@@ -28,7 +31,8 @@
         "examples": [
             "Works on IE9+",
             "Supports noscript",
-            "Supports mobiles, and some new features such as theme-color."
+            "Supports mobiles, and some new features such as theme-color.",
+            "Has no dependency to jQuery or something of the sort."
         ]
     },
 
@@ -42,24 +46,28 @@
         ],
 
         "examples": [
-
+            "img/bg1.png",
+            "img/bg2.png",
+            "img/bg3.png"
         ]
     },
 
     "speak": {
         "title": "I can communicate.",
-        "intro": "I'm French and, despite having no help back home, went from the worst student in English to the best student at school in 3 years. That was many years ago. Now, my teachers let me read books instead of coming to class, knowing very well that their lessons will be useless.",
+        "intro": "I'm French and, despite having no help back home, have been the best of my class 4 years straight, ahead of native English speakers. Now, my teachers let me read books instead of coming to class, knowing very well that their lessons will have no use.",
 
         "abilities": [
             "Advanced knowledge of technical terms and slang in both French and English.",
-            "I've read many books, from French classics like Camus's 'L'Étranger' and English classics such as Shakespeare's 'Hamlet', to modern novels like 'The Hunger Games' and 'The Witcher'."
+            "I've read many books, from French classics like Camus's 'L'Étranger' and English classics such as Shakespeare's 'Hamlet', to modern novels like 'The Hunger Games' and 'The Witcher'.",
+            "Basic knowledge of German.",
+            "Currently learning Polish."
         ]
     },
 
     "footer": {
         "links": "Links:",
         "contactme": "Contact me:",
-        "box": "Source code is available on <a href='https://github.com/dashji/www'>GitHub</a>.<br>Made with <3 in France, by Greg G."
+        "box": "Source code is available on <a href='https://github.com/idotjee/idotjee.github.io' target='_blank'>GitHub</a>.<br>Made with <i>&hearts;</i> in Metz, France."
     },
 
     "notice": "Javascript is disabled ; your experience might be a bit worse than intended."

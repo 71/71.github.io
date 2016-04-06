@@ -22,6 +22,8 @@ block content
             .examples
                 ul: each val in code.examples
                     li= val
+            a.exbtn(href='#')= expand
+            a.shbtn(href='#')= shrink
                 
         section.adapt(tabindex='3')
             h2.title= adapt.title
@@ -41,7 +43,9 @@ block content
                     
             .examples
                 ul: each val in design.examples
-                    li= val
+                    li: img(src=val)
+            a.exbtn(href='#')= expand
+            a.shbtn(href='#')= shrink
                 
         section.speak(tabindex='5')
             h2.title= speak.title

@@ -6,7 +6,10 @@ $unwide = '(max-width: 1650px)'
 $portrait = '(orientation: portrait)'
 $landscape = '(orientation: landscape)'
 
-body, html
+$serif = 'Georgia', serif
+$sans-serif = 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
+
+body
     margin: 0
     background: linear-gradient(#06061c, #06061c, #06061c, #0d212e, #18342f)
 
@@ -15,7 +18,7 @@ body, html
         width: 90%
 
 h1, h2, h3
-    font-family: 'Open Sans', 'Segoe UI', sans-serif
+    font-family: $sans-serif
     font-weight: lighter
     margin: 0
     color: white
@@ -51,7 +54,7 @@ svg.strokes
             font-size: 6em
 
     .introduction
-        font-family: 'Georgia', serif
+        font-family: $serif
         max-width: 40em
         font-size: 1.6em
         font-style: italic
@@ -60,7 +63,7 @@ svg.strokes
 .slides
     margin-top: 50px
     color: white
-    font-family: 'Open Sans', 'Segoe UI', sans-serif
+    font-family: $sans-serif
     font-size: 1.7em
 
     & > section
@@ -70,13 +73,57 @@ svg.strokes
     h2
         font-size: 2.2em
 
+    .design, .coding
+        .examples
+            max-height: 50vh
+            overflow: hidden
+            transition: max-height 2s ease-in
+
+            img
+                width: 100%
+
+            ul
+                list-style: none
+                padding: 0
+
+        a, a:visited, a:hover
+            color: white
+            text-decoration: none
+            font-style: italic
+            font-family: $serif
+            font-size: .8em
+            opacity: .8
+
+        .exbtn
+            display: block
+        .shbtn
+            display: none
+            margin-top: -1.2em
+
+    .design.expanded, .coding.expanded
+        .examples
+            max-height: 300vh
+        .exbtn
+            display: none
+        .shbtn
+            display: block
+
 .footer
     bottom: 0
-    height: 40vh
+    height: 20vh
     width: 100%
     z-index: 2
     padding: 2em 0
     outline: none
+
+    i
+        color: red
+        font-size: 1.5em
+        font-style: normal
+        vertical-align: sub
+
+    a, a:visited
+        color: white
 
     h3
         font-size: 1.6em
@@ -102,7 +149,7 @@ svg.strokes
         a, a:hover, a:visited
             color: white
             font-size: 1.2em
-            font-family: 'Open Sans', 'Segoe UI', sans-serif
+            font-family: $sans-serif
             text-decoration: none
 
             p
@@ -128,7 +175,7 @@ svg.strokes
             margin: 0.4em 0.6em
             color: white
             font-size: 1.2em
-            font-family: 'Open Sans', 'Segoe UI', sans-serif
+            font-family: $sans-serif
 
 .notice
     width: 100%
@@ -145,6 +192,9 @@ nav
     height: 100%
     width: 10vh
     top: 40vh
+
+    .back
+        display: none
 
     @media $unwide
         width: 50px
@@ -177,4 +227,11 @@ nav
 
 .nojs
     & > nav
+        display: none
+
+    .design .examples, .coding .examples
+        max-height: 100vh
+        overflow: scroll
+
+    .exbtn
         display: none

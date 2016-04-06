@@ -34,6 +34,7 @@ gulp.task('default', ['compile', 'watch']);
 
 gulp.task('watch', function () {
     gulp.watch('./src/*.jade', ['jade']);
+    gulp.watch('./src/*.json', ['jade']);
     gulp.watch('./src/*.styl', ['stylus']);
     gulp.watch('./src/*.ts', ['typescript']);
 });

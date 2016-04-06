@@ -115,4 +115,26 @@ window.onload = function () {
             }
         }
     };
+    var designSection = document.querySelector('.design');
+    var codingSection = document.querySelector('.coding');
+    document.querySelector('.design .exbtn').addEventListener("click", function (e) {
+        designSection.classList.add('expanded');
+        e.preventDefault();
+        return false;
+    });
+    document.querySelector('.coding .exbtn').addEventListener("click", function (e) {
+        codingSection.classList.add('expanded');
+        e.preventDefault();
+        return false;
+    });
+    document.querySelector('.design .shbtn').addEventListener("click", function (e) {
+        designSection.classList.remove('expanded');
+        e.preventDefault();
+        return false;
+    });
+    document.querySelector('.coding .shbtn').addEventListener("click", function (e) {
+        codingSection.classList.remove('expanded');
+        e.preventDefault();
+        return false;
+    });
 };

@@ -1,6 +1,6 @@
 window.onload = () => {
 
-    // miscillaneous
+    // miscellaneous
     function getByClassName(str: string) : Element {
         return document.getElementsByClassName(str)[0];
     }
@@ -69,11 +69,10 @@ window.onload = () => {
         tick();
     }
 
-    // consts
+    // making navbar
     const nav = document.getElementsByTagName('nav')[0];
     const titles = document.querySelectorAll('h1.title, h2.title');
 
-    // making navbar
     for (let i = 0; i < titles.length; i++) {
         let title = titles[i];
         let child = document.createElement('div');
@@ -117,8 +116,10 @@ window.onload = () => {
         nav.appendChild(document.createElement('br'));
     };
 
+
     // watch scroll
     let currentlySelected = 0;
+
     window.onscroll = () => {
         for (let i = titles.length - 1; i > -1; i--) {
             let title = titles[i];
@@ -135,4 +136,32 @@ window.onload = () => {
             }
         }
     };
+
+    // watch hash
+    const designSection = document.querySelector('.design');
+    const codingSection = document.querySelector('.coding');
+
+    document.querySelector('.design .exbtn').addEventListener("click", (e) => {
+        designSection.classList.add('expanded');
+        e.preventDefault();
+        return false;
+    });
+
+    document.querySelector('.coding .exbtn').addEventListener("click", (e) => {
+        codingSection.classList.add('expanded');
+        e.preventDefault();
+        return false;
+    });
+
+    document.querySelector('.design .shbtn').addEventListener("click", (e) => {
+        designSection.classList.remove('expanded');
+        e.preventDefault();
+        return false;
+    });
+
+    document.querySelector('.coding .shbtn').addEventListener("click", (e) => {
+        codingSection.classList.remove('expanded');
+        e.preventDefault();
+        return false;
+    });
 };
