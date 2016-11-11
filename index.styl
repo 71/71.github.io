@@ -1,0 +1,226 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+// MAIN /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+landscape()
+    @media (min-aspect-ratio: 1/1)
+        {block}
+
+portrait()
+    @media (max-aspect-ratio: 1/1)
+        {block}
+
+$violet = #9c27b0
+$blue   = #03a9f4
+$yellow = #ffc107
+$green  = #4caf50
+
+
+body
+    margin: 0
+    width: 100%
+    min-height: 100%
+    background: white
+    text-align: center
+    font-family: 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
+
+.wrapper
+    width: 100%
+
+*
+    box-sizing: border-box
+    transition: outline-color .4s ease-out
+    outline: #D32F2F auto 0
+*:focus
+    outline: #FFA726 auto 2px
+
+p, h1, h2, h3, h4, h5, h6
+    text-align: justify
+    color: #333
+    font-weight: 400
+
+.nojs .jscritical
+    display: none
+
+section
+    width: 100%
+    min-height: 30vh
+    text-align: center
+    display: inline-block
+    overflow: hidden
+
+    & > *
+        max-width: 1400px
+        display: inline-block
+
+section.header
+    background-color: #111
+    height: 100vh
+
+    *
+        position: absolute
+
+    img
+        max-width: 80px
+        margin-top: 50vh
+        margin-bottom: 30vh
+        transform: translateY(-50%)
+
+    .lines
+        max-width: 1000vw
+        width: 100%
+        height: 100%
+        display: block
+
+    .arrow
+        width: 40px
+        height: 20px
+        position: absolute
+        bottom: 3%
+        transition: all .3s ease-in-out
+        opacity: .8
+
+        &:hover
+            opacity: 1
+            padding-bottom: 10px
+
+        & polyline
+            fill: none
+            stroke: #ddd
+            stroke-width: 1px
+
+    .lines *
+        stroke-width: 2px
+        stroke: white
+
+        &:nth-of-type(1)
+            stroke: $violet
+        &:nth-of-type(2)
+            stroke: $blue
+        &:nth-of-type(3)
+            stroke: $yellow
+        &:nth-of-type(4)
+            stroke: $green
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// INTRO ////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.intro
+    padding: 1.9em 3em
+    box-sizing: border-box
+
+    h2
+        font-weight: lighter
+        font-size: 2.8em
+        margin: 0.8em 0 0.4em 0
+        width: 100%
+
+    p
+        font-size: 2.1em
+        margin-top: 0
+        line-height: 1.4
+        margin: 0 0 1.9em 0
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// ME ///////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.me
+    background-color: #111
+    padding: 2em 0 4.2em 0
+    font-size: 1.25em
+
+    h3
+        font-size: 1.9em
+        font-weight: 300
+        margin: 1em 0 0 0
+        color: #fff
+        background-color: #333
+        padding: .1em .4em
+    h4
+        font-size: 1.35em
+        margin: .8em 0 0 0
+        color: #eee
+
+    .box
+        text-align: left
+        min-width: 300px
+        display: inline-table
+        width: 49%
+        margin: 0 .5%
+
+        & > .box
+            padding: 0 .5em
+            box-sizing: border-box
+    ul
+        padding: 0
+        margin: 0
+        display: inline-block
+        margin: .8em 0 0 0
+    li
+        list-style: none
+        line-height: 1.7
+        color: #fff
+
+        b
+            font-weight: 600
+
+        &::before
+            content: '-  '
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// PROJECTS /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.projects
+    & > div
+        width: 100%
+        max-width: none
+        display: block
+
+        +landscape()
+            min-height: 30vh
+        +portrait()
+            min-height: 100vh
+
+    .insider
+        background-color: $yellow
+
+    .albion
+        background-color: $blue
+
+    .rest
+        background-color: $green
+
+    .styx
+        background-color: $violet
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// CONTACT //////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.contactme
+    .conversation
+        padding: 2em 0
+        width: 100%
+        max-width: none
+        background: black
+        display: block
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// BLOG /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.keepreading
+    p
+        text-align: center
