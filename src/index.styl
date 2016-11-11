@@ -1,7 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////////////
-// MAIN /////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-
 landscape()
     @media (min-aspect-ratio: 1/1)
         {block}
@@ -16,6 +12,10 @@ $yellow = #ffc107
 $green  = #4caf50
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
+// MAIN /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
 body
     margin: 0
     width: 100%
@@ -27,12 +27,65 @@ body
 .wrapper
     width: 100%
 
+.map
+    position: absolute
+    *
+        position: absolute
+
 *
     box-sizing: border-box
     transition: outline-color .4s ease-out
     outline: #D32F2F auto 0
-*:focus
-    outline: #FFA726 auto 2px
+
+    &:focus
+        outline: #FFA726 auto 2px
+
+#menu
+    position: fixed
+    z-index: 99
+    color: white
+    overflow: hidden
+    padding: 1.4em 2.7em
+    display: none
+
+    &.shown
+        display: block
+
+    &.shown > *
+        opacity: 0
+        backface-visibility: hidden
+        animation: waveOpacity .8s forwards ease-out
+
+    &.shown::before
+        content: ''
+        position: absolute
+        z-index: -1
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background: #000
+        border-radius: 100%
+        transform: scale(0)
+        animation: ripple .8s forwards ease-out
+
+    .title
+        font-weight: 300
+        font-size: 1.3em
+    .subtitle
+        font-weight: 300
+        font-size: 1.1em
+        color: #ddd
+
+    @keyframes ripple
+        to
+            transform: scale(2)
+    @keyframes waveOpacity
+        to
+            opacity: 1
+
+    a
+        display: block
 
 p, h1, h2, h3, h4, h5, h6
     text-align: justify
@@ -52,6 +105,10 @@ section
     & > *
         max-width: 1400px
         display: inline-block
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// HEADER ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 
 section.header
     background-color: #111
@@ -82,7 +139,7 @@ section.header
 
         &:hover
             opacity: 1
-            padding-bottom: 10px
+            margin-bottom: 10px
 
         & polyline
             fill: none

@@ -13,9 +13,7 @@ html
     body.nojs
         script(type='text/javascript') document.body.classList.remove('nojs');
 
-        #menu
-
-        section.header
+        section.header(data-title='Header')
             img(src='logo.png', tabindex=index++)
 
             svg.lines
@@ -31,7 +29,7 @@ html
             svg.arrow
                 polyline(points='0,0 20,20 40,0')
 
-        section.intro
+        section.intro(data-title='Introduction')
             h2(tabindex=index++) Hey, I'm Greg.
             p.
                 I'm a 17-year-old student from France, currently finishing high school.
@@ -40,8 +38,8 @@ html
                 At 12 years old, I learned Javascript, HTML and CSS, and made a few websites. A year later, I started learning C#, and C++.
                 Since then, I've made dozens of libraries and softwares, some of them being Open Source. I've also had the chance to make UWP and Android apps, although I never released them.
 
-        section.me: .wrapper
-            .box
+        section.me(data-title='Informations'): .wrapper
+            .box(data-subtitle='Skills')
                 h3(tabindex=index++) Skills
                 .box
                     h4 Programming
@@ -61,7 +59,7 @@ html
                         li #[b English]: Fluent
                         li #[b German]: Intermediate
 
-            .box
+            .box(data-subtitle='Tools')
                 h3(tabindex='3') Tools
                 .box
                     h4 Programming
@@ -76,16 +74,16 @@ html
                         li #[b After Effects]
                         li #[b Excel]
 
-        section.projects
-            .insider(tabindex=index++)
+        section.projects(data-title='Projects')
+            .insider(tabindex=index++, data-subtitle='Insider')
 
-            .albion(tabindex=index++)
+            .albion(tabindex=index++, data-subtitle='Albion')
 
-            .rest(tabindex=index++)
+            .rest(tabindex=index++, data-subtitle='Rest')
 
-            .styx(tabindex=index++)
+            .styx(tabindex=index++, data-subtitle='Styx')
 
-        section.contactme
+        section.contactme(data-title='Contact')
             h1(tabindex=index++) Let's get in touch!
 
             .conversation.jscritical
@@ -95,8 +93,3 @@ html
                 li: a#mail(href='mailto:ijee@tuta.io?subject=Hello%20from%20a%20visitor,%20Greg', tabindex=index++) Send me an email
                 li: a#tweet(href='https://twitter.com/0x006A', tabindex=index++) Tweet to me
                 li: a#github(href='https://github.com/6A', tabindex=index++) Visit my GitHub profile
-
-        section.keepreading
-            h1(tabindex=index++) Keep reading
-            br
-            p Sorry, there's nothing here yet!

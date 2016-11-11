@@ -9,6 +9,12 @@ body {
 .wrapper {
   width: 100%;
 }
+.map {
+  position: absolute;
+}
+.map * {
+  position: absolute;
+}
 * {
   box-sizing: border-box;
   transition: outline-color 0.4s ease-out;
@@ -16,6 +22,87 @@ body {
 }
 *:focus {
   outline: #ffa726 auto 2px;
+}
+#menu {
+  position: fixed;
+  z-index: 99;
+  color: #fff;
+  overflow: hidden;
+  padding: 1.4em 2.7em;
+  display: none;
+}
+#menu.shown {
+  display: block;
+}
+#menu.shown > * {
+  opacity: 0;
+  backface-visibility: hidden;
+  animation: waveOpacity 0.8s forwards ease-out;
+}
+#menu.shown::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  border-radius: 100%;
+  transform: scale(0);
+  animation: ripple 0.8s forwards ease-out;
+}
+#menu .title {
+  font-weight: 300;
+  font-size: 1.3em;
+}
+#menu .subtitle {
+  font-weight: 300;
+  font-size: 1.1em;
+  color: #ddd;
+}
+#menu a {
+  display: block;
+}
+@-moz-keyframes ripple {
+  to {
+    transform: scale(2);
+  }
+}
+@-webkit-keyframes ripple {
+  to {
+    transform: scale(2);
+  }
+}
+@-o-keyframes ripple {
+  to {
+    transform: scale(2);
+  }
+}
+@keyframes ripple {
+  to {
+    transform: scale(2);
+  }
+}
+@-moz-keyframes waveOpacity {
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes waveOpacity {
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes waveOpacity {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes waveOpacity {
+  to {
+    opacity: 1;
+  }
 }
 p,
 h1,
@@ -71,7 +158,7 @@ section.header .arrow {
 }
 section.header .arrow:hover {
   opacity: 1;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 section.header .arrow polyline {
   fill: none;
