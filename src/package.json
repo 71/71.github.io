@@ -1,0 +1,31 @@
+{
+  "name": "6a.github.io",
+  "version": "1.0.0",
+  "description": "Generates a static webpage for 6a.github.io",
+  "main": "index.js",
+  "devDependencies": {
+    "browser-sync": "^2.17.5",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
+    "gulp-pug": "^3.1.0",
+    "gulp-stylus": "^2.6.0",
+    "jeet": "^7.0.0",
+    "jstransformer": "^1.0.0",
+    "jstransformer-highlight": "^1.0.1",
+    "jstransformer-marked": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6a/6a.github.io.git"
+  },
+  "scripts": {
+    "compile": "gulp compile",
+    "watch": "gulp watch"
+  },
+  "author": "6A",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/6a/6a.github.io/issues"
+  },
+  "homepage": "https://github.com/6a/6a.github.io#readme"
+}

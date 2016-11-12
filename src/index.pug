@@ -4,17 +4,18 @@ html
     - var index = 1
     head
         meta(charset='utf-8')
+        meta(name='viewport', content='maximum-scale=1, user-scalable=no')
         title Jee - Greg G.
 
+        link(rel='icon', href='img/ic.ico')
         link(rel='stylesheet', href='index.css')
-        link(rel='icon', href='ic.ico')
         script(src='index.js')
 
     body.nojs
         script(type='text/javascript') document.body.classList.remove('nojs');
 
         section.header(data-title='Header')
-            img(src='logo.png', tabindex=index++)
+            img(src='img/logo.png', tabindex=index++)
 
             svg.lines
                 defs: filter#shadow(x='0', y='0', width='200%', height='200%')
@@ -75,13 +76,16 @@ html
                         li #[b Excel]
 
         section.projects(data-title='Projects')
-            .insider(tabindex=index++, data-subtitle='Insider')
+            mixin project(name)
+                div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
+                    h3= name
+                    block
 
-            .albion(tabindex=index++, data-subtitle='Albion')
+            +project('Insider')
 
-            .rest(tabindex=index++, data-subtitle='Rest')
+            +project('Albion')
 
-            .styx(tabindex=index++, data-subtitle='Styx')
+            +project('Subscape')
 
         section.contactme(data-title='Contact')
             h1(tabindex=index++) Let's get in touch!

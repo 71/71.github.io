@@ -1,3 +1,5 @@
+@import 'node_modules/jeet/styl'
+
 landscape()
     @media (min-aspect-ratio: 1/1)
         {block}
@@ -27,11 +29,6 @@ body
 .wrapper
     width: 100%
 
-.map
-    position: absolute
-    *
-        position: absolute
-
 *
     box-sizing: border-box
     transition: outline-color .4s ease-out
@@ -46,28 +43,58 @@ body
     color: white
     overflow: hidden
     padding: 1.4em 2.7em
-    display: none
+    height: 100%
+    width: 100%
 
     &.shown
         display: block
+        visibility: visible
+
+    &:not(.shown)
+        transition: visibility .8s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        visibility: hidden
+
+    & > *
+        backface-visibility: hidden
+        transition: opacity .7s .1s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        opacity: 0
 
     &.shown > *
-        opacity: 0
-        backface-visibility: hidden
-        animation: waveOpacity .8s forwards ease-out
+        opacity: 1
 
-    &.shown::before
-        content: ''
+    & #menuclip
         position: absolute
         z-index: -1
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
         background: #000
         border-radius: 100%
+        opacity: 1
+
+        +landscape()
+            width: 100vw
+            height: 100vw
+            margin-top: -50vw
+            margin-left: -50vw
+        +portrait()
+            width: 100vh
+            height: 100vh
+            margin-top: -50vh
+            margin-left: -50vh
+
+    &:not(.shown) #menuclip
+        animation: ripplereverse .8s forwards cubic-bezier(1, 0.135, 0.15, 0.86)
+        transform: scale(2.2)
+
+        @keyframes ripplereverse
+            to
+                transform: scale(0)
+
+    &.shown #menuclip
+        animation: ripple .8s forwards cubic-bezier(0.785, 0.135, 0.15, 0.86)
         transform: scale(0)
-        animation: ripple .8s forwards ease-out
+
+        @keyframes ripple
+            to
+                transform: scale(2.2)
 
     .title
         font-weight: 300
@@ -77,10 +104,9 @@ body
         font-size: 1.1em
         color: #ddd
 
-    @keyframes ripple
-        to
-            transform: scale(2)
     @keyframes waveOpacity
+        from
+            opacity: 0
         to
             opacity: 1
 
@@ -136,6 +162,19 @@ section.header
         bottom: 3%
         transition: all .3s ease-in-out
         opacity: .8
+        animation: bounce 1s ease-in-out
+
+        @keyframes bounce
+            0%
+                margin-bottom: 0
+            25%
+                margin-bottom: 12px
+            50%
+                margin-bottom: 0
+            75%
+                margin-bottom: 12px
+            100%
+                margin-bottom: 0
 
         &:hover
             opacity: 1
@@ -253,11 +292,8 @@ section.projects
     .albion
         background-color: $blue
 
-    .rest
+    .subscape
         background-color: $green
-
-    .styx
-        background-color: $violet
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -271,13 +307,3 @@ section.contactme
         max-width: none
         background: black
         display: block
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
-// BLOG /////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-
-section.keepreading
-    p
-        text-align: center
