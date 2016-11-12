@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+
+  config.push.define "heroku" do |push|
+    push.app = "diesomniavincit"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo yum install libunwind libicu
+    curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=827529
+    sudo mkdir -p /opt/dotnet && sudo tar zxf dotnet.tar.gz -C /opt/dotnet
+    sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+  SHELL
+
+end

@@ -8,7 +8,6 @@ $ = document.querySelector
 $$ = document.querySelectorAll
 
 menu = null
-closeBtn = null
 
 now = new Date(Date.now())
 hour = now.getHours()
@@ -79,18 +78,14 @@ document.onclick = (e) ->
 
             menu.appendChild(child)
 
-        closeBtn = document.createElement('a')
-        closeBtn.id = 'close'
-
         document.body.prepend(menu)
-        document.body.prepend(closeBtn)
 
     if menu.classList.contains('shown')
         clip = menu.firstChild
         clip.style.left = e.x + 'px'
         clip.style.top = e.y + 'px'
         menu.classList.remove('shown')
-    else if all(e.target, (_) -> ['div', 'section', 'svg', 'body', 'html'].indexOf(_.tagName.toLowerCase()) isnt -1)
+    else if all(e.target, (_) -> ['div', 'section', 'svg', 'body', 'html'].indexOf(_.tagName.toLowerCase()) isnt -1 and !_.classList.contains('arrow'))
         menu.classList.add('shown')
         clip = menu.firstChild
         clip.style.left = e.x + 'px'
@@ -98,10 +93,59 @@ document.onclick = (e) ->
 
 
 ready = () ->
-    originalMailTo = document.getElementById('mail').href
+    messages = document.getElementById('messages')
+    message = document.getElementById('message')
+
+    originalMailTo = document.getElementById('email').href
 
     document.getElementById('message').onchange = (e) ->
-        document.getElementById('mail').href = originalMailTo + '&body=' + encodeURIComponent(e.target.value)
+        document.getElementById('email').href =
+            if e.target.value == ''
+                originalMailTo
+            else
+                originalMailTo + '&body=' + encodeURIComponent(e.target.value)
 
     document.getElementsByClassName('arrow')[0].onclick = (e) ->
         scrollTo(window.innerHeight, 10)
+
+    document.getElementById('message').oninput = (e) ->
+        document.getElementById('send').disabled = not /\w+/.test(e.target.value)
+
+    document.getElementById('userinput').onsubmit = (e) ->
+        e.preventDefault()
+
+        sent = document.createElement('div')
+        sent.className = 'sent'
+        sent.innerText = message.value
+        messages.appendChild(sent)
+
+        messages.appendChild(document.createElement('br'))
+
+        received = document.createElement('div')
+        received.className = 'received loading'
+        received.innerText = 'Loading...'
+        messages.appendChild(received)
+
+        messages.appendChild(document.createElement('br'))
+
+        try
+            xhr = new XMLHttpRequest()
+
+            xhr.open('POST', 'http://localhost:8080', yes)
+            xhr.onreadystatechange = () ->
+                if xhr.readyState is XMLHttpRequest.DONE
+                    received.classList.remove('loading')
+
+                    if xhr.status is 200
+                        received.innerHTML = xhr.responseText
+                    else
+                        received.classList.add('failed')
+                        received.innerHTML = if xhr.responseText != "" then "<p>#{xhr.responseText}</p>" else "<p>Error #{xhr.status} encountered when trying to talk to the bot.</p>"
+
+            xhr.send(message.value)
+
+        catch
+            received.classList.add('failed')
+            received.innerText = "Error encountered when trying to talk to the bot"
+
+        message.value = ''

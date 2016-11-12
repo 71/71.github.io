@@ -12,6 +12,7 @@ $violet = #9c27b0
 $blue   = #03a9f4
 $yellow = #ffc107
 $green  = #4caf50
+$pink   = #ff25da
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +116,6 @@ body
 
 p, h1, h2, h3, h4, h5, h6
     text-align: justify
-    color: #333
     font-weight: 400
 
 .nojs .jscritical
@@ -123,9 +123,10 @@ p, h1, h2, h3, h4, h5, h6
 
 section
     width: 100%
+    margin: 0
     min-height: 30vh
     text-align: center
-    display: inline-block
+    display: block
     overflow: hidden
 
     & > *
@@ -148,6 +149,7 @@ section.header
         margin-top: 50vh
         margin-bottom: 30vh
         transform: translateY(-50%)
+        z-index: 3
 
     .lines
         max-width: 1000vw
@@ -156,13 +158,12 @@ section.header
         display: block
 
     .arrow
-        width: 40px
-        height: 20px
         position: absolute
-        bottom: 3%
+        bottom: 0
         transition: all .3s ease-in-out
         opacity: .8
         animation: bounce 1s ease-in-out
+        cursor: pointer
 
         @keyframes bounce
             0%
@@ -205,17 +206,21 @@ section.header
 /////////////////////////////////////////////////////////////////////////////////////////
 
 section.intro
-    padding: 1.9em 3em
+    padding: 1em 3em
     box-sizing: border-box
+    font-size: 2.1em
+
+    +portrait()
+        font-size: 1.4em
 
     h2
         font-weight: lighter
-        font-size: 2.8em
+        font-size: 2.2em
         margin: 0.8em 0 0.4em 0
         width: 100%
 
     p
-        font-size: 2.1em
+        font-size: 1em
         margin-top: 0
         line-height: 1.4
         margin: 0 0 1.9em 0
@@ -279,12 +284,11 @@ section.projects
     & > div
         width: 100%
         max-width: none
-        display: block
 
         +landscape()
             min-height: 30vh
         +portrait()
-            min-height: 100vh
+            min-height: 50vh
 
     .insider
         background-color: $yellow
@@ -300,10 +304,87 @@ section.projects
 // CONTACT //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-section.contactme
+section.footer
+    background-color: #000
+    color: white
+
+    .icon
+        box-sizing: content-box
+        transition: transform .4s ease, opacity .4s ease
+        max-width: 32px
+        padding: .5em
+        margin: 1em .5em
+        opacity: .9
+
+        &:hover
+            transform: scale(1.2)
+            opacity: 1
+
     .conversation
-        padding: 2em 0
+        center()
+        border-top: #333 1px solid
         width: 100%
-        max-width: none
-        background: black
-        display: block
+        margin-top: 3em
+
+        #userinput
+            $inputheight = 35px
+
+            margin-top: -(1 + $inputheight / 2)
+            margin-left: 4%
+            padding: 0 1%
+            background: black
+            position: absolute
+
+            #message, #send
+                border: none
+                padding: 0 .8em
+                font: 1em lighter
+                font-family: 'Segoe UI', sans-serif
+                height: $inputheight
+                line-height: $inputheight
+                vertical-align: middle
+
+            #message
+                width: 14em
+                background: #222
+                padding-bottom: 1px
+                color: #eee
+
+                &:focus
+                    background: #eee
+                    color: #222
+
+            #send
+                font-weight: bold
+                background: $pink
+                color: white
+                margin-left: .3em
+                opacity: .9
+                transition: opacity .2s ease
+
+                &:disabled
+                    opacity: .5
+
+                &:not(:disabled):hover, &:not(:disabled):focus
+                    opacity: 1
+
+        #messages
+            margin: 10em 0
+            center(900px)
+
+            div
+                display: inline-block
+                background: grey
+                width: auto
+                padding: .8em
+
+            .sent
+                float: left
+                text-align: left
+
+            .received
+                float: right
+                text-align: right
+
+                .loading
+                    opacity: .8

@@ -1,5 +1,5 @@
 (function() {
-  var $, $$, all, any, closeBtn, hour, menu, now, ready, scrollTo;
+  var $, $$, all, any, hour, menu, now, ready, scrollTo;
 
   any = function(el, predicate) {
     return (el != null) && (predicate(el) || any(el.parentElement, predicate));
@@ -18,8 +18,6 @@
   $$ = document.querySelectorAll;
 
   menu = null;
-
-  closeBtn = null;
 
   now = new Date(Date.now());
 
@@ -90,10 +88,7 @@
         };
         menu.appendChild(child);
       }
-      closeBtn = document.createElement('a');
-      closeBtn.id = 'close';
       document.body.prepend(menu);
-      document.body.prepend(closeBtn);
     }
     if (menu.classList.contains('shown')) {
       clip = menu.firstChild;
@@ -101,7 +96,7 @@
       clip.style.top = e.y + 'px';
       return menu.classList.remove('shown');
     } else if (all(e.target, function(_) {
-      return ['div', 'section', 'svg', 'body', 'html'].indexOf(_.tagName.toLowerCase()) !== -1;
+      return ['div', 'section', 'svg', 'body', 'html'].indexOf(_.tagName.toLowerCase()) !== -1 && !_.classList.contains('arrow');
     })) {
       menu.classList.add('shown');
       clip = menu.firstChild;
@@ -111,13 +106,52 @@
   };
 
   ready = function() {
-    var originalMailTo;
-    originalMailTo = document.getElementById('mail').href;
+    var message, messages, originalMailTo;
+    messages = document.getElementById('messages');
+    message = document.getElementById('message');
+    originalMailTo = document.getElementById('email').href;
     document.getElementById('message').onchange = function(e) {
-      return document.getElementById('mail').href = originalMailTo + '&body=' + encodeURIComponent(e.target.value);
+      return document.getElementById('email').href = e.target.value === '' ? originalMailTo : originalMailTo + '&body=' + encodeURIComponent(e.target.value);
     };
-    return document.getElementsByClassName('arrow')[0].onclick = function(e) {
+    document.getElementsByClassName('arrow')[0].onclick = function(e) {
       return scrollTo(window.innerHeight, 10);
+    };
+    document.getElementById('message').oninput = function(e) {
+      return document.getElementById('send').disabled = !/\w+/.test(e.target.value);
+    };
+    return document.getElementById('userinput').onsubmit = function(e) {
+      var received, sent, xhr;
+      e.preventDefault();
+      sent = document.createElement('div');
+      sent.className = 'sent';
+      sent.innerText = message.value;
+      messages.appendChild(sent);
+      messages.appendChild(document.createElement('br'));
+      received = document.createElement('div');
+      received.className = 'received loading';
+      received.innerText = 'Loading...';
+      messages.appendChild(received);
+      messages.appendChild(document.createElement('br'));
+      try {
+        xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080', true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            received.classList.remove('loading');
+            if (xhr.status === 200) {
+              return received.innerHTML = xhr.responseText;
+            } else {
+              received.classList.add('failed');
+              return received.innerHTML = xhr.responseText !== "" ? "<p>" + xhr.responseText + "</p>" : "<p>Error " + xhr.status + " encountered when trying to talk to the bot.</p>";
+            }
+          }
+        };
+        xhr.send(message.value);
+      } catch (error) {
+        received.classList.add('failed');
+        received.innerText = "Error encountered when trying to talk to the bot";
+      }
+      return message.value = '';
     };
   };
 

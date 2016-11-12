@@ -1,10 +1,16 @@
 doctype html
 
-html
-    - var index = 1
+- var index = 1
+
+html(lang='en')
     head
         meta(charset='utf-8')
+        meta(name='theme-color', content='#111111')
+        meta(name='msapplication-navbutton-color', content='#111111')
+        meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
         meta(name='viewport', content='maximum-scale=1, user-scalable=no')
+        meta(name='author', content='Grégoire GEIS')
+
         title Jee - Greg G.
 
         link(rel='icon', href='img/ic.ico')
@@ -27,8 +33,8 @@ html
                 line(x1='60%', y1='80%', x2='80%', y2='50%', filter='url(#shadow)')
                 line(x1='60%', y1='40%', x2='80%', y2='10%', filter='url(#shadow)')
 
-            svg.arrow
-                polyline(points='0,0 20,20 40,0')
+            svg.arrow(style='width: 80px; height: 60px;')
+                polyline(points='20,20 40,40 60,20')
 
         section.intro(data-title='Introduction')
             h2(tabindex=index++) Hey, I'm Greg.
@@ -75,25 +81,27 @@ html
                         li #[b After Effects]
                         li #[b Excel]
 
-        section.projects(data-title='Projects')
+        section.projects(data-title='Projects', style='display:none')
             mixin project(name)
                 div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
                     h3= name
                     block
 
             +project('Insider')
-
             +project('Albion')
-
             +project('Subscape')
 
-        section.contactme(data-title='Contact')
-            h1(tabindex=index++) Let's get in touch!
+        section.footer(data-title='Contact', tabindex=index++)
+            mixin social(img, link, title)
+                a(id=img, href=link, target='_blank', title=title, tabindex=index++): img.icon(src='img/'+img+'.png')
+
+            +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
+            +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
+            +social('twitter', 'https://twitter.com/0x006A', 'Send me a Tweet')
 
             .conversation.jscritical
-                input#message(type='text', placeholder='Send a message to my bot', tabindex=index++)
+                form#userinput
+                    input#message(type='text', placeholder='Send a message to my bot', tabindex=index++)
+                    input#send(type='submit', value='SEND', disabled)
 
-            ul
-                li: a#mail(href='mailto:ijee@tuta.io?subject=Hello%20from%20a%20visitor,%20Greg', tabindex=index++) Send me an email
-                li: a#tweet(href='https://twitter.com/0x006A', tabindex=index++) Tweet to me
-                li: a#github(href='https://github.com/6A', tabindex=index++) Visit my GitHub profile
+                #messages
