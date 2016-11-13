@@ -131,18 +131,19 @@ ready = () ->
         try
             xhr = new XMLHttpRequest()
 
-            xhr.open('POST', 'http://localhost:8080', yes)
+            xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), yes)
             xhr.onreadystatechange = () ->
                 if xhr.readyState is XMLHttpRequest.DONE
+                    console.log xhr
                     received.classList.remove('loading')
 
                     if xhr.status is 200
                         received.innerHTML = xhr.responseText
                     else
                         received.classList.add('failed')
-                        received.innerHTML = if xhr.responseText != "" then "<p>#{xhr.responseText}</p>" else "<p>Error #{xhr.status} encountered when trying to talk to the bot.</p>"
+                        received.innerHTML = if xhr.responseText != "" then "#{xhr.responseText}" else "<p>Error #{xhr.status} encountered when trying to talk to the bot.</p>"
 
-            xhr.send(message.value)
+            xhr.send()
 
         catch
             received.classList.add('failed')

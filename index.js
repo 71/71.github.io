@@ -134,19 +134,20 @@
       messages.appendChild(document.createElement('br'));
       try {
         xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080', true);
+        xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), true);
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE) {
+            console.log(xhr);
             received.classList.remove('loading');
             if (xhr.status === 200) {
               return received.innerHTML = xhr.responseText;
             } else {
               received.classList.add('failed');
-              return received.innerHTML = xhr.responseText !== "" ? "<p>" + xhr.responseText + "</p>" : "<p>Error " + xhr.status + " encountered when trying to talk to the bot.</p>";
+              return received.innerHTML = xhr.responseText !== "" ? "" + xhr.responseText : "<p>Error " + xhr.status + " encountered when trying to talk to the bot.</p>";
             }
           }
         };
-        xhr.send(message.value);
+        xhr.send();
       } catch (error) {
         received.classList.add('failed');
         received.innerText = "Error encountered when trying to talk to the bot";
