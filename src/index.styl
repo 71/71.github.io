@@ -1,0 +1,467 @@
+@import 'node_modules/jeet/styl'
+
+landscape()
+    @media (min-aspect-ratio: 1/1)
+        {block}
+
+portrait()
+    @media (max-aspect-ratio: 1/1)
+        {block}
+
+mobile()
+    @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
+        {block}
+
+$violet = #9c27b0
+$blue   = #03a9f4
+$yellow = #ffc107
+$green  = #4caf50
+$pink   = #ff25da
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// MAIN /////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+body
+    margin: 0
+    width: 100%
+    min-height: 100%
+    background: white
+    text-align: center
+    font-family: 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
+
+    @media (max-width: 1000px)
+        font-size: 1.6em
+
+.wrapper
+    width: 100%
+
+a, a:visited
+    color: inherit
+
+*
+    box-sizing: border-box
+    transition: outline-color .4s ease-out
+    outline: #D32F2F auto 0
+
+    &:focus
+        outline: #FFA726 auto 2px
+
+#menu
+    position: fixed
+    z-index: 99
+    color: white
+    overflow: hidden
+    padding: 1.4em 2.7em
+    height: 100%
+    width: 100%
+
+    &.shown
+        display: block
+        visibility: visible
+
+    &:not(.shown)
+        transition: visibility .8s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        visibility: hidden
+
+    & > *
+        backface-visibility: hidden
+        transition: opacity .7s .1s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        opacity: 0
+
+    &.shown > *
+        opacity: 1
+
+    & #menuclip
+        position: absolute
+        z-index: -1
+        background: #000
+        border-radius: 100%
+        opacity: 1
+
+        +landscape()
+            width: 100vw
+            height: 100vw
+            margin-top: -50vw
+            margin-left: -50vw
+        +portrait()
+            width: 100vh
+            height: 100vh
+            margin-top: -50vh
+            margin-left: -50vh
+
+    &:not(.shown) #menuclip
+        animation: ripplereverse .8s forwards cubic-bezier(1, 0.135, 0.15, 0.86)
+        transform: scale(2.2)
+
+        @keyframes ripplereverse
+            to
+                transform: scale(0)
+
+    &.shown #menuclip
+        animation: ripple .8s forwards cubic-bezier(0.785, 0.135, 0.15, 0.86)
+        transform: scale(0)
+
+        @keyframes ripple
+            to
+                transform: scale(2.2)
+
+    a
+        display: inline-block
+        cursor: pointer
+    .title
+        font-weight: 300
+        font-size: 1.3em
+        margin-top: .5em
+    .subtitle
+        font-weight: 300
+        font-size: 1.1em
+        color: #ddd
+
+    @keyframes waveOpacity
+        from
+            opacity: 0
+        to
+            opacity: 1
+
+p, h1, h2, h3, h4, h5, h6
+    text-align: justify
+    font-weight: 400
+
+.nojs .jscritical
+    display: none
+
+section
+    width: 100%
+    margin: 0
+    min-height: 30vh
+    text-align: center
+    display: block
+    overflow: hidden
+
+    & > *
+        max-width: 1400px
+        display: inline-block
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// HEADER ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.header
+    background-color: #111
+    height: 100vh
+
+    *
+        position: absolute
+
+    img
+        max-width: 80px
+        margin-top: 50vh
+        margin-bottom: 30vh
+        transform: translateY(-50%)
+        z-index: 3
+
+    .lines
+        max-width: 1000vw
+        width: 100%
+        height: 100%
+        display: block
+
+    .arrow
+        position: absolute
+        bottom: 0
+        transition: all .3s ease-in-out
+        opacity: .8
+        animation: bounce 1s ease-in-out
+        cursor: pointer
+
+        @keyframes bounce
+            0%
+                margin-bottom: 0
+            25%
+                margin-bottom: 12px
+            50%
+                margin-bottom: 0
+            75%
+                margin-bottom: 12px
+            100%
+                margin-bottom: 0
+
+        &:hover
+            opacity: 1
+            margin-bottom: 10px
+
+        & polyline
+            fill: none
+            stroke: #ddd
+            stroke-width: 1px
+
+    .lines *
+        stroke-width: 2px
+        stroke: white
+
+        &:nth-of-type(1)
+            stroke: $violet
+        &:nth-of-type(2)
+            stroke: $blue
+        &:nth-of-type(3)
+            stroke: $yellow
+        &:nth-of-type(4)
+            stroke: $green
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// INTRO ////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.intro
+    padding: 1em 3em
+    box-sizing: border-box
+    font-size: 2.1em
+
+    +portrait()
+        font-size: 1.4em
+
+    h2
+        font-weight: lighter
+        font-size: 2.2em
+        margin: 0.8em 0 0.4em 0
+        width: 100%
+
+    p
+        font-size: 1em
+        margin-top: 0
+        line-height: 1.4
+        margin: 0 0 1.9em 0
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// ME ///////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.me
+    background-color: #111
+    padding: 2em 0 4.2em 0
+    font-size: 1.25em
+
+    h3
+        font-size: 1.9em
+        font-weight: 300
+        margin: 1em 0 0 0
+        color: #fff
+        background-color: #333
+        padding: .1em .4em
+    h4
+        font-size: 1.35em
+        margin: .8em 0 0 0
+        color: #eee
+
+    .box
+        text-align: left
+        min-width: 300px
+        display: inline-table
+        width: 49%
+        margin: 0 .5%
+
+        & > .box
+            padding: 0 .5em
+            box-sizing: border-box
+    ul
+        padding: 0
+        margin: 0
+        display: inline-block
+        margin: .8em 0 0 0
+    li
+        list-style: none
+        line-height: 1.7
+        color: #fff
+
+        b
+            font-weight: 600
+
+        &::before
+            content: '-  '
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// PROJECTS /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.projects
+    & > div
+        width: 100%
+        max-width: none
+
+        +landscape()
+            min-height: 30vh
+        +portrait()
+            min-height: 50vh
+
+    .insider
+        background-color: $yellow
+
+    .albion
+        background-color: $blue
+
+    .subscape
+        background-color: $green
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// CONTACT //////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+section.footer
+    background-color: #000
+    color: white
+    min-height: 0
+
+    @media (max-width: 1000px)
+        font-size: 1.5em
+
+    .icon
+        box-sizing: content-box
+        transition: transform .4s ease, opacity .4s ease
+        max-width: 32px
+        padding: .5em
+        margin: 1em .5em
+        opacity: .9
+
+        &:hover
+            transform: scale(1.2)
+            opacity: 1
+
+    .conversation
+        center()
+        border-top: #333 1px solid
+        width: 100%
+        margin-top: 3em
+
+        #userinput
+            $inputheight = 2em
+
+            margin-top: -1em
+            margin-left: 5%
+            padding: 0 1.2em
+            background: black
+            position: absolute
+
+            #message, #send
+                border: none
+                padding: 0 .8em
+                font: 1em lighter
+                font-family: 'Segoe UI', sans-serif
+                height: $inputheight
+                line-height: $inputheight
+                vertical-align: middle
+
+            #message
+                width: 14em
+                background: #222
+                padding-bottom: 1px
+                color: #eee
+
+                &:focus
+                    background: #eee
+                    color: #222
+
+            #send
+                font-weight: bold
+                background: $pink
+                color: white
+                margin-left: .3em
+                opacity: .9
+                transition: opacity .2s ease
+
+                &:disabled
+                    opacity: .5
+
+                &:not(:disabled):hover, &:not(:disabled):focus
+                    opacity: 1
+
+        #messages
+            margin: 5em 0 2em 0
+            max-height: 81vh
+            overflow-y: auto
+            overflow-x: hidden
+            center(900px)
+
+            $sentColor = #da49c1
+            $receivedColor = #636363
+
+            &::-webkit-scrollbar
+                width: 10px
+            &::-webkit-scrollbar-track
+                background: transparent
+            &::-webkit-scrollbar-thumb
+                background-color: #111
+                border-radius: 5px
+                border: 2px solid #000
+
+                &:hover
+                    border: 0px solid #000
+                &:active
+                    background-color: #222
+
+            div
+                display: inline-block
+                width: 100%
+                position: relative
+                margin-bottom: 1em
+                animation: fadeIn .5s ease
+
+                @keyframes fadeIn
+                    from
+                        opacity: 0
+                    to
+                        opacity: 1
+
+                p
+                    margin: 0
+                    padding: .8em
+                    max-width: 50%
+                    text-align: justify
+
+                &:before, &:after
+                    width: 0
+                    height: 0
+                    position: absolute
+                    display: block
+
+            .sent
+                margin-left: .5em
+
+                &:first-of-type
+                    margin-top: 1em
+
+                & p
+                    float: left
+                    background: $sentColor
+
+                &:before
+                    content: ''
+                    border-right: 1em solid transparent
+                    border-bottom: .5em solid $sentColor
+                    top: -.5em
+                    left: 0
+
+            .received
+                margin-left: -1em
+
+                & p
+                    float: right
+                    background: $receivedColor
+
+                &:after
+                    content: ''
+                    border-left: 1em solid transparent
+                    border-top: .5em solid $receivedColor
+                    bottom: -.5em
+                    right: 0
+
+                .loading
+                    opacity: .8
