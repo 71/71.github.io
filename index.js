@@ -87,6 +87,7 @@
           return scrollTo(this.getAttribute('data-offset'));
         };
         menu.appendChild(child);
+        menu.appendChild(document.createElement('br'));
       }
       document.body.prepend(menu);
     }
@@ -116,43 +117,49 @@
     document.getElementsByClassName('arrow')[0].onclick = function(e) {
       return scrollTo(window.innerHeight, 10);
     };
-    document.getElementById('message').oninput = function(e) {
+    message.oninput = function(e) {
       return document.getElementById('send').disabled = !/\w+/.test(e.target.value);
     };
     return document.getElementById('userinput').onsubmit = function(e) {
-      var received, sent, xhr;
+      var atEnd, received, sent, xhr;
       e.preventDefault();
+      if (!/\w+/.test(message.value)) {
+        return;
+      }
+      atEnd = document.body.offsetHeight - window.innerHeight - document.body.scrollTop === 0;
       sent = document.createElement('div');
       sent.className = 'sent';
-      sent.innerText = message.value;
+      sent.innerHTML = "<p>" + message.value + "</p>";
       messages.appendChild(sent);
-      messages.appendChild(document.createElement('br'));
       received = document.createElement('div');
       received.className = 'received loading';
-      received.innerText = 'Loading...';
+      received.innerHTML = '<p>Loading...</p>';
       messages.appendChild(received);
-      messages.appendChild(document.createElement('br'));
       try {
         xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), true);
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE) {
-            console.log(xhr);
             received.classList.remove('loading');
             if (xhr.status === 200) {
-              return received.innerHTML = xhr.responseText;
+              received.innerHTML = xhr.responseText;
             } else {
               received.classList.add('failed');
-              return received.innerHTML = xhr.responseText !== "" ? "" + xhr.responseText : "<p>Error " + xhr.status + " encountered when trying to talk to the bot.</p>";
+              received.innerHTML = xhr.responseText !== "" ? "<p>" + xhr.responseText + "</p>" : "<p>Error " + xhr.status + " encountered when trying to talk to the bot.</p>";
+            }
+            if (atEnd) {
+              messages.scrollTop = messages.offsetHeight;
+              return scrollTo(document.body.offsetHeight - window.innerHeight, 10);
             }
           }
         };
         xhr.send();
       } catch (error) {
         received.classList.add('failed');
-        received.innerText = "Error encountered when trying to talk to the bot";
+        received.innerHTML = "<p>Error encountered when trying to talk to the bot.</p>";
       }
-      return message.value = '';
+      message.value = '';
+      return document.getElementById('send').disabled = true;
     };
   };
 

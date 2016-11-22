@@ -77,6 +77,7 @@ document.onclick = (e) ->
                 scrollTo(@getAttribute('data-offset'))
 
             menu.appendChild(child)
+            menu.appendChild(document.createElement('br'))
 
         document.body.prepend(menu)
 
@@ -108,25 +109,26 @@ ready = () ->
     document.getElementsByClassName('arrow')[0].onclick = (e) ->
         scrollTo(window.innerHeight, 10)
 
-    document.getElementById('message').oninput = (e) ->
+    message.oninput = (e) ->
         document.getElementById('send').disabled = not /\w+/.test(e.target.value)
 
     document.getElementById('userinput').onsubmit = (e) ->
         e.preventDefault()
 
+        unless /\w+/.test(message.value)
+            return
+
+        atEnd = document.body.offsetHeight - window.innerHeight - document.body.scrollTop == 0
+
         sent = document.createElement('div')
         sent.className = 'sent'
-        sent.innerText = message.value
+        sent.innerHTML = "<p>#{message.value}</p>"
         messages.appendChild(sent)
-
-        messages.appendChild(document.createElement('br'))
 
         received = document.createElement('div')
         received.className = 'received loading'
-        received.innerText = 'Loading...'
+        received.innerHTML = '<p>Loading...</p>'
         messages.appendChild(received)
-
-        messages.appendChild(document.createElement('br'))
 
         try
             xhr = new XMLHttpRequest()
@@ -134,19 +136,23 @@ ready = () ->
             xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), yes)
             xhr.onreadystatechange = () ->
                 if xhr.readyState is XMLHttpRequest.DONE
-                    console.log xhr
                     received.classList.remove('loading')
 
                     if xhr.status is 200
                         received.innerHTML = xhr.responseText
                     else
                         received.classList.add('failed')
-                        received.innerHTML = if xhr.responseText != "" then "#{xhr.responseText}" else "<p>Error #{xhr.status} encountered when trying to talk to the bot.</p>"
+                        received.innerHTML = if xhr.responseText != "" then "<p>#{xhr.responseText}</p>" else "<p>Error #{xhr.status} encountered when trying to talk to the bot.</p>"
+
+                    if atEnd
+                        messages.scrollTop = messages.offsetHeight
+                        scrollTo(document.body.offsetHeight - window.innerHeight, 10)
 
             xhr.send()
 
         catch
             received.classList.add('failed')
-            received.innerText = "Error encountered when trying to talk to the bot"
+            received.innerHTML = "<p>Error encountered when trying to talk to the bot.</p>"
 
         message.value = ''
+        document.getElementById('send').disabled = true

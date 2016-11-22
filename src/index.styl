@@ -8,6 +8,10 @@ portrait()
     @media (max-aspect-ratio: 1/1)
         {block}
 
+mobile()
+    @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
+        {block}
+
 $violet = #9c27b0
 $blue   = #03a9f4
 $yellow = #ffc107
@@ -27,8 +31,14 @@ body
     text-align: center
     font-family: 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
 
+    @media (max-width: 1000px)
+        font-size: 1.6em
+
 .wrapper
     width: 100%
+
+a, a:visited
+    color: inherit
 
 *
     box-sizing: border-box
@@ -97,9 +107,13 @@ body
             to
                 transform: scale(2.2)
 
+    a
+        display: inline-block
+        cursor: pointer
     .title
         font-weight: 300
         font-size: 1.3em
+        margin-top: .5em
     .subtitle
         font-weight: 300
         font-size: 1.1em
@@ -110,9 +124,6 @@ body
             opacity: 0
         to
             opacity: 1
-
-    a
-        display: block
 
 p, h1, h2, h3, h4, h5, h6
     text-align: justify
@@ -307,6 +318,10 @@ section.projects
 section.footer
     background-color: #000
     color: white
+    min-height: 0
+
+    @media (max-width: 1000px)
+        font-size: 1.5em
 
     .icon
         box-sizing: content-box
@@ -327,11 +342,11 @@ section.footer
         margin-top: 3em
 
         #userinput
-            $inputheight = 35px
+            $inputheight = 2em
 
-            margin-top: -(1 + $inputheight / 2)
-            margin-left: 4%
-            padding: 0 1%
+            margin-top: -1em
+            margin-left: 5%
+            padding: 0 1.2em
             background: black
             position: absolute
 
@@ -369,22 +384,84 @@ section.footer
                     opacity: 1
 
         #messages
-            margin: 10em 0
+            margin: 5em 0 2em 0
+            max-height: 81vh
+            overflow-y: auto
+            overflow-x: hidden
             center(900px)
+
+            $sentColor = #da49c1
+            $receivedColor = #636363
+
+            &::-webkit-scrollbar
+                width: 10px
+            &::-webkit-scrollbar-track
+                background: transparent
+            &::-webkit-scrollbar-thumb
+                background-color: #111
+                border-radius: 5px
+                border: 2px solid #000
+
+                &:hover
+                    border: 0px solid #000
+                &:active
+                    background-color: #222
 
             div
                 display: inline-block
-                background: grey
-                width: auto
-                padding: .8em
+                width: 100%
+                position: relative
+                margin-bottom: 1em
+                animation: fadeIn .5s ease
+
+                @keyframes fadeIn
+                    from
+                        opacity: 0
+                    to
+                        opacity: 1
+
+                p
+                    margin: 0
+                    padding: .8em
+                    max-width: 50%
+                    text-align: justify
+
+                &:before, &:after
+                    width: 0
+                    height: 0
+                    position: absolute
+                    display: block
 
             .sent
-                float: left
-                text-align: left
+                margin-left: .5em
+
+                &:first-of-type
+                    margin-top: 1em
+
+                & p
+                    float: left
+                    background: $sentColor
+
+                &:before
+                    content: ''
+                    border-right: 1em solid transparent
+                    border-bottom: .5em solid $sentColor
+                    top: -.5em
+                    left: 0
 
             .received
-                float: right
-                text-align: right
+                margin-left: -1em
+
+                & p
+                    float: right
+                    background: $receivedColor
+
+                &:after
+                    content: ''
+                    border-left: 1em solid transparent
+                    border-top: .5em solid $receivedColor
+                    bottom: -.5em
+                    right: 0
 
                 .loading
                     opacity: .8
