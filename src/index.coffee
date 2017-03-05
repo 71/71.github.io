@@ -133,7 +133,7 @@ ready = () ->
         try
             xhr = new XMLHttpRequest()
 
-            xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), yes)
+            xhr.open('POST', 'https://jeebot.herokuapp.com/api/ask', yes)
             xhr.onreadystatechange = () ->
                 if xhr.readyState is XMLHttpRequest.DONE
                     received.classList.remove('loading')
@@ -148,7 +148,7 @@ ready = () ->
                         messages.scrollTop = messages.offsetHeight
                         scrollTo(document.body.offsetHeight - window.innerHeight, 10)
 
-            xhr.send()
+            xhr.send(message.value)
 
         catch
             received.classList.add('failed')

@@ -2,7 +2,7 @@
   "name": "6a.github.io",
   "version": "1.0.0",
   "description": "Generates a static webpage for 6a.github.io",
-  "main": "index.js",
+  "main": "index.coffee",
   "devDependencies": {
     "browser-sync": "^2.17.5",
     "gulp": "^3.9.1",

@@ -137,7 +137,7 @@
       messages.appendChild(received);
       try {
         xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://46.101.251.55:8080/api/ask?q=' + window.encodeURIComponent(message.value), true);
+        xhr.open('POST', 'https://jeebot.herokuapp.com/api/ask', true);
         xhr.onreadystatechange = function() {
           if (xhr.readyState === XMLHttpRequest.DONE) {
             received.classList.remove('loading');
@@ -153,7 +153,7 @@
             }
           }
         };
-        xhr.send();
+        xhr.send(message.value);
       } catch (error) {
         received.classList.add('failed');
         received.innerHTML = "<p>Error encountered when trying to talk to the bot.</p>";

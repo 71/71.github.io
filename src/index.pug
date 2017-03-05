@@ -11,7 +11,7 @@ html(lang='en')
         meta(name='viewport', content='maximum-scale=1, user-scalable=no')
         meta(name='author', content='Grégoire GEIS')
 
-        title Jee - Greg G.
+        title Jee - Grégoire Geis
 
         link(rel='icon', href='img/ic.ico')
         link(rel='stylesheet', href='index.css')
@@ -56,9 +56,10 @@ html(lang='en')
                         li #[b D]: Basic
                         li #[b C++]: Basic
                         li #[b Java]: Beginner
-                        li #[b Vala]: Beginner
+                        li #[b Lisp]: Beginner
                         li #[b SQL]: Beginner
                         li #[b C]: Beginner
+                        li #[b Rust]: Beginner
                 .box
                     h4 Speaking
                     ul
@@ -72,7 +73,7 @@ html(lang='en')
                     h4 Programming
                     ul
                         li #[b Visual Studio] (C#)
-                        li #[b Atom] / #[b VS Code] (Front-end)
+                        li #[b Atom] (Front-end)
                         li #[b Vim] (Everything else)
                 .box
                     h4 Other
@@ -82,7 +83,7 @@ html(lang='en')
                         li #[b After Effects]
                         li #[b Excel]
 
-        section.projects(data-title='Projects', style='display:none')
+        //section.projects(data-title='Projects', style='display:none')
             mixin project(name)
                 div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
                     h3= name
@@ -98,7 +99,7 @@ html(lang='en')
 
             +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
             +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
-            +social('twitter', 'https://twitter.com/0x006A', 'Send me a Tweet')
+            +social('twitter', 'https://twitter.com/71stbyte', 'Send me a Tweet')
 
             .conversation.jscritical
                 form#userinput
