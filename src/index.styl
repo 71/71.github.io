@@ -31,7 +31,7 @@ body
     text-align: center
     font-family: 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
 
-    @media (max-width: 1000px)
+    +mobile()
         font-size: 1.6em
 
 .wrapper
@@ -269,6 +269,9 @@ section.me
         & > .box
             padding: 0 .5em
             box-sizing: border-box
+
+            +mobile()
+                width: 100%
     ul
         padding: 0
         margin: 0
