@@ -1,16 +1,17 @@
 gulp    = require 'gulp'
 gutil   = require 'gulp-util'
+concat  = require 'gulp-concat'
 jeet    = require 'jeet'
 pug     = require 'gulp-pug'
 stylus  = require 'gulp-stylus'
-coffee  = require 'gulp-coffee'
+buble   = require 'gulp-buble'
 sync    = require 'browser-sync'
                   .create()
 
 args = process.argv.slice(2)
 
 gulp.task 'default', ['compile', 'watch']
-gulp.task 'compile', ['compile:pug', 'compile:stylus', 'compile:coffee']
+gulp.task 'compile', ['compile:pug', 'compile:stylus', 'compile:js']
 
 gulp.task 'compile:pug', ->
     gulp.src './index.pug'
@@ -24,9 +25,10 @@ gulp.task 'compile:stylus', ->
         .pipe gulp.dest('../')
         .pipe sync.stream()
 
-gulp.task 'compile:coffee', ->
-    gulp.src './index.coffee'
-        .pipe coffee()
+gulp.task 'compile:js', ->
+    gulp.src './*.js'
+        .pipe buble(transforms: { dangerousForOf: true, modules: false })
+        .pipe concat('app.js')
         .pipe gulp.dest('../')
         .pipe sync.stream()
 
@@ -37,6 +39,6 @@ gulp.task 'watch', ->
 
     sync.init(server: '..', online: shouldShare, logLevel: (if shouldBeVerbose then 'info' else 'silent'), open: shouldOpen)
 
-    gulp.watch './index.coffee', ['compile:coffee']
-    gulp.watch './index.styl',   ['compile:stylus']
-    gulp.watch './index.pug',    ['compile:pug']
+    gulp.watch './*.js',       ['compile:js']
+    gulp.watch './index.styl', ['compile:stylus']
+    gulp.watch './index.pug',  ['compile:pug']

@@ -3,107 +3,56 @@
 - var index = 1
 
 html(lang='en')
-    head
-        meta(charset='utf-8')
-        meta(name='theme-color', content='#111111')
-        meta(name='msapplication-navbutton-color', content='#111111')
-        meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
-        meta(name='viewport', content='maximum-scale=1, user-scalable=no')
-        meta(name='author', content='Grégoire GEIS')
+  head
+    meta(charset='utf-8')
+    meta(name='theme-color', content='#111111')
+    meta(name='msapplication-navbutton-color', content='#111111')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    meta(name='viewport', content='maximum-scale=1, user-scalable=no')
+    meta(name='author', content='Grégoire GEIS')
 
-        title Jee - Grégoire Geis
+    title Jee - Grégoire Geis
 
-        link(rel='icon', href='img/ic.ico')
-        link(rel='stylesheet', href='index.css')
-        script(src='index.js')
+    link(rel='icon', href='graphics/ic.ico')
+    link(rel='stylesheet', href='index.css')
+    script(src='app.js')
 
-    body.nojs
-        script(type='text/javascript') document.body.classList.remove('nojs');
+  body.disabledjs
+    script(type='text/javascript') document.body.classList.remove('disabledjs');
+    
+    section.header(data-title='Header')
+      .js
+        form#userinput
+          input#message(type='text', placeholder='Send a message to my bot', tabindex=index++)
+          input#send(type='submit', value='SEND', disabled)
 
-        section.header(data-title='Header')
-            img(src='img/logo.svg', tabindex=index++)
+        #messages
+        
+      .nojs
+        img(src='graphics/nojs.svg', tabindex=index++)
+        
+    section.blog(data-title='Blog')
+      h1 Blog
+      
+      .js
+        h2#lastposttitle Last post title
+        h4#lastpostdate Last post date
+        p#lastposttext Last post text
+    
+    section.projects(data-title='Projects')
+      mixin project(name)
+        div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
+          h3= name
+          block
 
-            svg.lines
-                defs: filter#shadow(x='0', y='0', width='200%', height='200%')
-                    feGaussianBlur(result='blurOut', in='offOut', stdDeviation='2')
-                    feBlend(in='SourceGraphic', in2='blurOut', mode='normal')
+      +project('Insider')
+      +project('Albion')
+      +project('Subscape')
 
-                line(x1='20%', y1='90%', x2='40%', y2='60%', filter='url(#shadow)')
-                line(x1='30%', y1='50%', x2='50%', y2='20%', filter='url(#shadow)')
-                line(x1='60%', y1='80%', x2='80%', y2='50%', filter='url(#shadow)')
-                line(x1='60%', y1='40%', x2='80%', y2='10%', filter='url(#shadow)')
+    section.footer(data-title='Contact', tabindex=index++)
+      mixin social(img, link, title)
+        a(id=img, href=link, target='_blank', title=title, tabindex=index++): img.icon(src='graphics/'+img+'.svg')
 
-            svg.arrow(style='width: 80px; height: 60px;')
-                polyline(points='20,20 40,40 60,20')
-
-        section.intro(data-title='Introduction')
-            h2(tabindex=index++) Hey, I'm Greg.
-            p.
-                I'm a 17-year-old student from France, currently finishing high school.
-                Ever since elementary school, I have been in love with computer science.
-                When I was 10 years old, I started playing with graphical softwares, such as Photoshop, After Effects, and Cinema 4D, and spent thousands of hours creating things.
-                At 12 years old, I learned Javascript, HTML and CSS, and made a few websites. A year later, I started learning C#, and C++.
-                Since then, I've made dozens of libraries and softwares, some of them being Open Source. I've also had the chance to make UWP and Android apps, although I never released them.
-
-        section.me(data-title='Informations'): .wrapper
-            .box(data-subtitle='Skills')
-                h3(tabindex=index++) Skills
-                .box
-                    h4 Programming
-                    ul
-                        li #[b .NET (C# / IL)]: Advanced
-                        li #[b Javascript]: Advanced
-                        li #[b D]: Basic
-                        li #[b C++]: Basic
-                        li #[b Java]: Beginner
-                        li #[b Lisp]: Beginner
-                        li #[b SQL]: Beginner
-                        li #[b C]: Beginner
-                        li #[b Rust]: Beginner
-                .box
-                    h4 Speaking
-                    ul
-                        li #[b French]: Native
-                        li #[b English]: Fluent
-                        li #[b German]: Intermediate
-
-            .box(data-subtitle='Tools')
-                h3(tabindex='3') Tools
-                .box
-                    h4 Programming
-                    ul
-                        li #[b Visual Studio] (C#)
-                        li #[b Atom] (Front-end)
-                        li #[b Vim] (Everything else)
-                .box
-                    h4 Other
-                    ul
-                        li #[b Affinity Designer]
-                        li #[b Photoshop]
-                        li #[b After Effects]
-                        li #[b Excel]
-
-        //-section.projects(data-title='Projects', style='display:none')
-            mixin project(name)
-                div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
-                    h3= name
-                    block
-
-            +project('Insider')
-            +project('Albion')
-            +project('Subscape')
-
-        section.footer(data-title='Contact', tabindex=index++)
-            mixin social(img, link, title)
-                a(id=img, href=link, target='_blank', title=title, tabindex=index++): img.icon(src='img/'+img+'.png')
-
-            +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
-            +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
-            +social('twitter', 'https://twitter.com/71stbyte', 'Send me a Tweet')
-
-            .conversation.jscritical
-                form#userinput
-                    input#message(type='text', placeholder='Send a message to my bot', tabindex=index++)
-                    input#send(type='submit', value='SEND', disabled)
-
-                #messages
+      +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
+      +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
+      +social('twitter', 'https://twitter.com/71stbyte', 'Send me a Tweet')
