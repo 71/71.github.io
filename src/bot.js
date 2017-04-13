@@ -1,6 +1,10 @@
+function cleanInput(input) {
+  return input.trim().replace(/[?.!]/g, '');
+}
+
 class Sentence {
   constructor(sentence, followupQuestions, handler) {
-    this.src = sentence;
+    this.src = cleanInput(sentence);
     this.handler = handler;
     this.followupQuestions = followupQuestions;
     this.indexes = [];
@@ -9,11 +13,14 @@ class Sentence {
     let isVar = sentence[0] === '{';
 
     for (let part of sentence.split(/{(.+?)}/ig)) {
+      if (part === '')
+        continue;
+
       if (isVar) {
         this.indexes.push(part);
-        this.rgxStr += '(.+?)';
+        rgxStr += '(.+?)';
       } else {
-        this.rgxStr += part;
+        rgxStr += part;
       }
 
       isVar = !isVar;
@@ -23,7 +30,7 @@ class Sentence {
   }
 
   parse(input) {
-    let match = this.rgx.exec(input);
+    let match = this.rgx.exec(cleanInput(input));
 
     if (match == null)
       return null;
@@ -61,8 +68,10 @@ class Bot {
   }
 
   register(sentence, followupQuestions, handler) {
-    if (handler == null)
+    if (handler == null) {
       handler = followupQuestions;
+      followupQuestions = [];
+    }
 
     if (typeof sentence === 'string') {
       this.sentences.push(new Sentence(sentence, followupQuestions, handler));

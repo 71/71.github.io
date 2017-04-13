@@ -1,0 +1,17 @@
+extends layout.pug
+
+append head
+  title Jee's Blog
+  
+  link(rel='stylesheet', href='/blog.css')
+    
+append body
+  +navheader('/')
+  
+  .wrapper
+    ul.header
+      each post in posts
+        li
+          a(href='/blog/'+post.name)
+            h2= post.title
+          h3= post.date.toDateString()

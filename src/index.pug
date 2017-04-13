@@ -1,58 +1,70 @@
-﻿doctype html
+extends layout.pug
 
-- var index = 1
+append head
+  title Jee - Grégoire Geis
+  
+  link(rel='stylesheet', href='/index.css')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Titillium+Web|Lato|Source+Sans+Pro')
+  script(src='/app.js')
 
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(name='theme-color', content='#111111')
-    meta(name='msapplication-navbutton-color', content='#111111')
-    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
-    meta(name='viewport', content='maximum-scale=1, user-scalable=no')
-    meta(name='author', content='Grégoire GEIS')
-
-    title Jee - Grégoire Geis
-
-    link(rel='icon', href='graphics/ic.ico')
-    link(rel='stylesheet', href='index.css')
-    script(src='app.js')
-
-  body.disabledjs
-    script(type='text/javascript') document.body.classList.remove('disabledjs');
-    
-    section.header(data-title='Header')
-      .js
-        form#userinput
-          input#message(type='text', placeholder='Send a message to my bot', tabindex=index++)
-          input#send(type='submit', value='SEND', disabled)
-
-        #messages
+append body   
+  - var index = 1
+  
+  section.header(data-title='Header')
+    .js.conversation
+      #messages
         
-      .nojs
-        img(src='graphics/nojs.svg', tabindex=index++)
+      form#userinput
+        input#message(type='text', placeholder='Type something...', autocomplete='off', tabindex=index++)
+        input#send(type='submit', value='SEND', disabled)
+          
+        ul#suggestions
+
+    .nojs
+      img(src='/graphics/nojs.svg', tabindex=index++)
+      .error
+        h1 It looks like your browser does not support Javascript.
+        h3 Some features won't be available.
         
-    section.blog(data-title='Blog')
-      h1 Blog
+    #bottom
       
-      .js
-        h2#lastposttitle Last post title
-        h4#lastpostdate Last post date
-        p#lastposttext Last post text
+  section.blog(data-title='Blog')
+    .card-wrapper
+      h3.meta: a(href='/blog/'+lastpost.name)
+        span.title!= lastpost.title.toUpperCase()
+        span.bullet •
+        span.date= lastpost.date.toDateString()
+      br
+      .content
+        .shadow: a(style='position: absolute; width: 100%; height: 100%', href='/blog/'+lastpost.name)
+        .post!= lastpost.text
+      br
+      h4: a(href='/blog')
+        | SEE BLOG
+        svg.arrow(style='width:14px; height:24px; padding:1px;')
+          polyline(points='0,0 10,10 0,20')
+  
+  section.projects(data-title='Projects')
+    svg.dash(viewbox='0 0 1000 1000', preserveAspectRatio='xMidYMax meet', version='1.1', xmlns='http://www.w3.org/2000/svg')
+      polyline(points='500,0 500,1000', stroke-dasharray='10,5')
+        
+    mixin project(name)
+      div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
+        h3= name
+        block
+
+    +project('Blur')
     
-    section.projects(data-title='Projects')
-      mixin project(name)
-        div(class=name.toLowerCase(), tabindex=index++, data-subtitle=name)
-          h3= name
-          block
 
-      +project('Insider')
-      +project('Albion')
-      +project('Subscape')
+  section.footer(data-title='Contact', tabindex=index++)
+    mixin social(img, link, title, ext)
+      a(id=img, href=link, target='_blank', rel='noopener noreferrer', title=title, tabindex=index++): img.icon&attributes(attributes)(src='graphics/'+img+'.'+(ext == null ? 'svg' : ext))
 
-    section.footer(data-title='Contact', tabindex=index++)
-      mixin social(img, link, title)
-        a(id=img, href=link, target='_blank', title=title, tabindex=index++): img.icon(src='graphics/'+img+'.svg')
-
-      +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
-      +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
-      +social('twitter', 'https://twitter.com/71stbyte', 'Send me a Tweet')
+    +social('email', 'mailto:ijee@tuta.io?subject=Hello,%20Greg', 'Send me an email')
+    +social('github', 'https://github.com/6A', 'Visit my GitHub profile')
+    img.logo(src='graphics/logo.svg')
+    +social('keybase', 'https://keybase.io/71', 'Visit my Keybase profile', 'png')
+    +social('twitter', 'https://twitter.com/71stbyte', 'Send me a Tweet')
+    br
+    
+    h3(style='margin-top: .5em; margin-bottom: 1.5em') Made with #[span(style='color: red') ❤] in #[a(href='https://www.google.com/maps/place/Metz', style='text-decoration: underline;') Metz, France].

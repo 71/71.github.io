@@ -1,0 +1,24 @@
+doctype html
+
+mixin navheader(target)
+  nav
+    a(href=target)
+      img.logo(src='/graphics/logo.svg')
+      br
+      .circle
+
+html(lang='en')
+  head
+    block head
+      meta(charset='utf-8')
+      meta(name='theme-color', content='#111111')
+      meta(name='msapplication-navbutton-color', content='#111111')
+      meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+      meta(name='viewport', content='maximum-scale=1, user-scalable=no')
+      meta(name='author', content='Grégoire GEIS')
+
+      link(rel='icon', href='/graphics/ic.ico')
+
+  body.disabledjs
+    block body
+      script(type='text/javascript') document.body.classList.remove('disabledjs');

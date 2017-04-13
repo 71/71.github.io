@@ -1,20 +1,3 @@
-// Set title
-const now  = new Date(Date.now());
-const hour = now.getHours();
-
-let title = 'Grégoire GEIS - ';
-
-if (hour > 16)
-  title += 'Good evening';
-else if (hour > 11)
-  title += 'Good afternoon';
-else if (hour > 4)
-  title += 'Good morning';
-else
-  title += 'Good night';
-
-document.title = title;
-
 // Set up bot
 const bot = new Bot();
 addInteractions(bot);
@@ -25,13 +8,17 @@ function isValid(input) {
 }
 
 function ready() {
-  const messages = document.getElementById('messages');
-  const message  = document.getElementById('message');
-  const email    = document.getElementById('email');
-  const form     = document.getElementById('userinput');
-  const send     = document.getElementById('send');
+  const suggestions = document.getElementById('suggestions');
+  const messages    = document.getElementById('messages');
+  const message     = document.getElementById('message');
+  const bottom      = document.getElementById('bottom');
+  const email       = document.getElementById('email');
+  const form        = document.getElementById('userinput');
+  const send        = document.getElementById('send');
 
   const originalMailTo = email.href;
+
+  let hasBeenIntroduced = false;
 
   message.onchange = (e) => {
     email.href = (e.target.value == '') ? originalMailTo : (originalMailTo + '&body=' + encodeURIComponent(e.target.value));
@@ -42,57 +29,64 @@ function ready() {
   };
 
   form.onsubmit = (e) => {
-    e.preventDefault();
+    if (e != null)
+      e.preventDefault();
 
     if (!isValid(message.value))
       return;
 
+    let reply = bot.ask(message.value);
     let atEnd = document.body.offsetHeight - window.innerHeight - document.body.scrollTop === 0;
 
     let sent = document.createElement('div');
-    let received = document.createElement('div');
 
     sent.className = 'sent';
     sent.innerHTML = `<p>${message.value}</p>`;
 
-    received.className = 'received loading';
-    received.innerHTML = '<p>Loading...</p>';
-
     messages.appendChild(sent);
-    messages.appendChild(received);
 
-    try {
-      let xhr = new XMLHttpRequest();
+    let answers = (typeof reply.answer === 'string') ? [ reply.answer ] : reply.answer;
 
-      xhr.open('POST', 'https://jeebot.herokuapp.com/api/ask', true);
+    for (let answer of answers) {
+      let received = document.createElement('div');
 
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          received.classList.remove('loading');
+      received.className = 'received';
+      received.innerHTML = answer;
 
-          if (xhr.status === 200) {
-            received.innerHTML = xhr.responseText;
-          } else {
-            received.classList.add('failed');
-            received.innerHTML = (xhr.responseText != "") ? `<p>${xhr.responseText}</p>` : `<p>Error ${xhr.status} encountered when trying to talk to the bot.</p>`;
-          }
-
-          if (atEnd) {
-            messages.scrollTop = messages.offsetHeight;
-            smoothScrollTo(document.body.offsetHeight - window.innerHeight, 10);
-          }
-        }
-      };
-
-      xhr.send(message.value);
-    } catch (e) {
-        received.classList.add('failed');
-        received.innerHTML = '<p>Error encountered when trying to talk to the bot.</p>';
+      messages.appendChild(received);
     }
 
     message.value = '';
     send.disabled = true;
+
+    while (suggestions.lastChild) {
+      suggestions.removeChild(suggestions.lastChild);
+    }
+
+    for (let followup of reply.followupQuestions) {
+      let suggestion = document.createElement('li');
+
+      suggestion.className = 'suggestion';
+      suggestion.innerHTML = followup;
+
+      suggestion.onclick = (e) => {
+        message.value = followup;
+        form.onsubmit();
+      };
+
+      suggestions.appendChild(suggestion);
+    }
+
+    if (hasBeenIntroduced)
+      smoothScrollTo(bottom.offsetTop - innerHeight, 100);
   };
+
+  // Start conversation
+  message.value = __isNewUser ? 'Introduce yourself' : 'Hello again';
+  form.onsubmit();
+
+  messages.firstChild.remove();
+  hasBeenIntroduced = true;
 }
 
 if (document.readyState === 'complete') {

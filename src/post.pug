@@ -1,0 +1,12 @@
+extends layout.pug
+
+append head
+  title #{title} - Jee's Blog
+  
+  link(rel='stylesheet', href='/blog.css')
+    
+append body
+  +navheader('/blog')
+        
+  .wrapper
+    .post!= text
