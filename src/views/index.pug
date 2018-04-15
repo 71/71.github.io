@@ -1,8 +1,5 @@
 extends layout.pug
 
-mixin a(l)
-  a(href=l, target='_blank', rel='noopener noreferrer')&attributes(attributes): block
-
 append head
   title Grégoire Geis - Home
   
@@ -13,38 +10,6 @@ append scripts
   script(src='/index.js')
 
 append body   
-  - var index = 1
-
-  mixin arrow(target)
-    .arrow-wrapper
-      br
-      a.arrow(href=target)
-        svg(style='width: 80px; height: 60px;')
-          polyline(points='20,20 40,40 60,20')
-
-  div#body(style='width:0;height:0;position:absolute;top:200vh')
-  
-  section#header(data-title='Header')
-    .hero
-      svg(viewBox='0 0 480 480', version='1.1')
-        path(d='M209.505,429.511c0,0 34.918,-117.879 102.813,-213.193c-1.305,50.921 -1.623,96.232 11.433,141.278c-25.46,7.834 -99.884,47.863 -114.246,71.915Z')
-        path(d='M159.714,466.23c0,0 -121.077,-83.313 -159.594,-368.603c44.207,-35.351 152.48,-66.701 268.267,-40.97c-22.849,6.528 -105.584,28.85 -163.687,70.631c-3.917,50.922 17.802,243.605 55.014,338.942Z')
-        path(d='M179.499,432.451c0,0 -35.73,-134.009 -25.284,-276.98c41.781,-35.254 152.689,-107.041 293.702,-155.351c-105.76,78.993 -212.927,248.921 -268.418,432.331Z')
-
-    mixin social(img, link, title, ext)
-      +a(link)(id=img, title=title, tabindex=index++)
-        img.icon&attributes(attributes)(src='/graphics/'+img+'.svg')
-
-    .social
-      +social('email',   'mailto:hello@gregoirege.is?subject=Hey,%20Greg', 'Send me an email')
-      +social('github',  'https://github.com/6A',                          'Visit my GitHub profile')
-      img.logo(src='/graphics/logo.svg')
-      +social('medium',  'https://medium.com/@geis',                       'Visit my Medium profile')
-      +social('keybase', 'https://keybase.io/71',                          'Visit my Keybase profile')
-
-    +arrow('#me')
-  
-
   section#me
     .intro
       h1 #[span#greeting Hey], there.
