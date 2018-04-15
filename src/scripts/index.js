@@ -1,7 +1,8 @@
 
 const greeting = document.getElementById('greeting')
-const now  = new Date(Date.now())
-const hour = now.getHours()
+const projects = document.getElementById('projects')
+
+const hour = new Date(Date.now()).getHours()
 
 if (hour > 16)
   greeting.innerText = 'Good evening'
@@ -13,7 +14,36 @@ else
   greeting.innerText = 'Good night'
 
 function ready() {
-  document.getElementById('arrow').onclick = () => smoothScrollTo(window.innerHeight, 10)
+  let h = 0
+
+  for (const arrow of document.getElementsByClassName('arrow')) {
+    const targetId = arrow.href.substring(arrow.href.indexOf('#') + 1)
+    const target   = document.getElementById(targetId)
+
+    arrow.onclick = () => {
+      smoothScrollTo(target.offsetTop, 10)
+      return false
+    }
+  }
+
+  for (const project of document.getElementsByClassName('project')) {
+    project.onpointerenter = () => {
+      h++
+      projects.style.backgroundColor = project.getAttribute('data-accent')
+    }
+    project.onpointerleave = () => {
+      if (--h === 0)
+        projects.style.backgroundColor = ''
+    }
+  }
+
+  if (fetch) {
+    const count = document.getElementById('projects-count')
+    
+    fetch("https://api.github.com/users/6A")
+      .then(res => res.json())
+      .then(res => count.innerText = 'over ' + res.public_repos)
+  }
 }
 
 if (document.readyState === 'complete') {

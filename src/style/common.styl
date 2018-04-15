@@ -9,7 +9,7 @@
 $black = black
 $sans-serif = 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
 
-$accent1 = #fdd835
+$accent1 = #f7d231
 $accent2 = #26c6da
 $accent3 = #2ab27b
 $accent4 = #e32072
@@ -20,17 +20,20 @@ $accent4 = #e32072
 /////////////////////////////////////////////////////////////////////////////////////////
 
 landscape()
-    @media (min-aspect-ratio: 1/1)
-        {block}
+  @media (min-aspect-ratio: 1/1)
+    {block}
 
 portrait()
-    @media (max-aspect-ratio: 1/1)
-        {block}
+  @media (max-aspect-ratio: 1/1)
+    {block}
 
 mobile()
-    @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
-        {block}
+  @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
+    {block}
 
+desktop()
+  @media (min-width: 1000px) and (min-aspect-ratio: 1/1)
+    {block}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ANIMATIONS ///////////////////////////////////////////////////////////////////////////
@@ -67,6 +70,7 @@ body
   background: white
   text-align: center
   font-family: $sans-serif
+  overflow-x: hidden
 
   +mobile()
     font-size: 1.6em

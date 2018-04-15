@@ -1,7 +1,8 @@
 
 var greeting = document.getElementById('greeting')
-var now  = new Date(Date.now())
-var hour = now.getHours()
+var projects = document.getElementById('projects')
+
+var hour = new Date(Date.now()).getHours()
 
 if (hour > 16)
   greeting.innerText = 'Good evening'
@@ -13,7 +14,44 @@ else
   greeting.innerText = 'Good night'
 
 function ready() {
-  document.getElementById('arrow').onclick = function () { return smoothScrollTo(window.innerHeight, 10); }
+  var h = 0
+
+  var loop = function () {
+    var arrow = list[i];
+
+    var targetId = arrow.href.substring(arrow.href.indexOf('#') + 1)
+    var target   = document.getElementById(targetId)
+
+    arrow.onclick = function () {
+      smoothScrollTo(target.offsetTop, 10)
+      return false
+    }
+  };
+
+  for (var i = 0, list = document.getElementsByClassName('arrow'); i < list.length; i += 1) loop();
+
+  var loop$1 = function () {
+    var project = list$1[i$1];
+
+    project.onpointerenter = function () {
+      h++
+      projects.style.backgroundColor = project.getAttribute('data-accent')
+    }
+    project.onpointerleave = function () {
+      if (--h === 0)
+        projects.style.backgroundColor = ''
+    }
+  };
+
+  for (var i$1 = 0, list$1 = document.getElementsByClassName('project'); i$1 < list$1.length; i$1 += 1) loop$1();
+
+  if (fetch) {
+    var count = document.getElementById('projects-count')
+    
+    fetch("https://api.github.com/users/6A")
+      .then(function (res) { return res.json(); })
+      .then(function (res) { return count.innerText = 'over ' + res.public_repos; })
+  }
 }
 
 if (document.readyState === 'complete') {
