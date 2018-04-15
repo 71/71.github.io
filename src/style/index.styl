@@ -1,7 +1,5 @@
 @import 'common.styl'
 
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web:600')
-
 p, h1, h2, h3, h4, h5, h6
   text-align: justify
   font-weight: 400
@@ -9,7 +7,7 @@ p, h1, h2, h3, h4, h5, h6
 section
   width: 100%
   margin: 0
-  min-height: 30vh
+  min-height: 100vh
   text-align: center
   display: block
   overflow: hidden
@@ -21,20 +19,6 @@ section
 /////////////////////////////////////////////////////////////////////////////////////////
 // HEADER ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-
-.opt
-  opacity: 0
-  transition: opacity .2s ease-out
-
-  &.icon
-    opacity: 0
-  &.icon:hover
-    opacity: 1!important
-
-.me
-  &:hover
-    opacity: 1
-
 
 section.header
   min-height: 100vh
@@ -70,13 +54,24 @@ section.header
       top: 0
       bottom: 0
       position: absolute
-      margin-top: -30vh
-      opacity: .9
+      fill: transparent
+
+    @media (min-height: 800px) and (min-aspect-ratio: 1)
+      svg
+        margin-top: -30vh
 
   .logo
     max-width: 64px
     margin: 1.2em
     z-index: 1
+    position: relative
+  
+  .social
+    width: 100%
+
+    a
+      display: inline-block
+      vertical-align: super
 
   .icon
       box-sizing: content-box
@@ -91,9 +86,34 @@ section.header
           transform: scale(1.2)
           opacity: 1
 
-  #top
+  #arrow
     position: absolute
-    bottom: 100vh
+    bottom: 0
+    transition: all .3s ease-in-out
+    opacity: .8
+    animation: bounce 1s ease-in-out
+    cursor: pointer
+
+    @keyframes bounce
+      0%
+        margin-bottom: 0
+      25%
+        margin-bottom: 12px
+      50%
+        margin-bottom: 0
+      75%
+        margin-bottom: 12px
+      100%
+        margin-bottom: 0
+
+    &:hover
+      opacity: 1
+      margin-bottom: 10px
+
+    & polyline
+      fill: none
+      stroke: #ddd
+      stroke-width: 1px
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ME ///////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +123,9 @@ section.me
   font-size: 1.3em
   text-align: center
   font-family: 'Lato', sans-serif
+
+  h1
+    font-weight: bolder
 
   > div
     width: 100%
@@ -150,3 +173,7 @@ section.me
     font-size: .8em
     line-height: 1.6
     color: #777
+
+    a:hover
+      color: black
+      transition: color .2s ease-in-out

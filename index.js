@@ -37,7 +37,7 @@ function smoothScrollTo(scrollTarget, speed) {
   var time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
 
   var ease = function (p) { return ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2); }
-  var tick = function ()  {
+  var tick = function ( ) {
     currentTime += 1 / 60
     p = currentTime / time
     t = ease(p)
