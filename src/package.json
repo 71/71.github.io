@@ -1,34 +1,27 @@
 {
   "name": "6a.github.io",
-  "version": "2.0.0",
+  "author": "Grégoire Geis <6A>",
+  "version": "3.0.0",
   "description": "Generates a static webpage for 6a.github.io",
   "devDependencies": {
     "axis": "^1.0.0",
     "browser-sync": "^2.17.5",
+    "coffee-script": "^1.12.6",
     "gulp": "^3.9.1",
     "gulp-buble": "^0.8.0",
-    "gulp-coffee": "^2.3.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-data": "^1.2.1",
-    "gulp-front-matter": "^1.3.0",
-    "gulp-marked": "^1.0.0",
     "gulp-pug": "^3.1.0",
-    "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.6.0",
-    "jeet": "^7.0.0",
-    "jstransformer": "^1.0.0",
-    "jstransformer-highlight": "^1.0.1",
-    "jstransformer-marked": "^1.0.1"
+    "jeet": "^7.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/6a/6a.github.io.git"
   },
   "scripts": {
-    "compile": "gulp compile",
-    "watch": "gulp watch"
+    "dev": "gulp compile && gulp watch",
+    "opendev": "gulp compile && gulp watch --open",
+    "build": "gulp compile"
   },
-  "author": "6A",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/6a/6a.github.io/issues"

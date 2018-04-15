@@ -9,6 +9,11 @@
 $black = black
 $sans-serif = 'Open Sans', 'Segoe UI', 'Roboto', sans-serif
 
+$accent1 = #fdd835
+$accent2 = #26c6da
+$accent3 = #2ab27b
+$accent4 = #e32072
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS ////////////////////////////////////////////////////////////////////////////
@@ -25,16 +30,6 @@ portrait()
 mobile()
     @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
         {block}
-
-placeholder()
-  &::-webkit-input-placeholder
-    {block}
-  &:-moz-placeholder
-    {block}
-  &::-moz-placeholder
-    {block}
-  &:-ms-input-placeholder
-    {block}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +51,15 @@ $slide-in-bottom = slide-in-bottom 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000)
 // COMMON ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
+.accent-1
+  color: $accent1
+.accent-2
+  color: $accent2
+.accent-3
+  color: $accent3
+.accent-4
+  color: $accent4
+
 body
   margin: 0
   width: 100%
@@ -63,17 +67,6 @@ body
   background: white
   text-align: center
   font-family: $sans-serif
-
-  .js, .nojs
-    width: 100%
-    height: 100%
-
-  &.disabledjs
-    .js
-      display: none
-  &:not(.disabledjs)
-    .nojs
-      display: none
 
   +mobile()
     font-size: 1.6em
@@ -92,36 +85,3 @@ a, a:visited
 
   &:focus
     outline: #FFA726 auto 2px
-
-.js
-  width: 100%
-  height: 100%
-
-
-.post
-  center()
-  text-align: justify
-
-  hr
-    margin: 2.2em 0
-
-  code
-    code()
-
-  pre
-    pre()
-
-    code
-      border: none
-
-  table
-    table()
-
-  blockquote
-    blockquote()
-
-    & *
-      font-size: 1em!important
-
-  p
-    paragraph()
