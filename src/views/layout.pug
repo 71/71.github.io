@@ -8,12 +8,12 @@ mixin a(l)
   else
     a(href=l)&attributes(attributes): block
 
-mixin arrow(target)
-  .arrow-wrapper
+mixin arrow(target, points = '20,20 40,40 60,20')
+  .arrow-wrapper&attributes(attributes)
     br
     a(href=target).arrow
       svg(style='width: 80px; height: 60px;')
-        polyline(points='20,20 40,40 60,20')
+        polyline(points=points)
 
 html(lang='en')
   // Oh hey there! 

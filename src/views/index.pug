@@ -81,7 +81,7 @@ append body
           | , some of them showcased below.
           br
           | However, my largest project (a dependently-typed, meta-programmed functional language with
-          | built-in JIT) has not been released yet.
+          | built-in JIT) has not been fully released yet.
 
     +arrow('#projects')
 
@@ -92,6 +92,9 @@ append body
         br
         block
       br
+
+    +project('styx-history', '#d4dae0', 'Styx')
+      h3 Dependently-typed, meta-programmed functional language with built-in JIT.
 
     +project('LessPass', '#ffeb3b')
       h3 UWP client for LessPass.
@@ -110,3 +113,5 @@ append body
 
     +project('Scry', '#673ab7')
       h3 Visual Studio extension that provides the ability to run C# scripts, giving them access to the current Roslyn workspace.
+
+    +arrow('#header', '20,20 40,0 60,20')(style = 'margin-top: -1em')
