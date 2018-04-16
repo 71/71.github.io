@@ -25,11 +25,11 @@ portrait()
     {block}
 
 mobile()
-  @media (max-width: 1000px) and (max-aspect-ratio: 1/1)
+  @media (max-width: 1000px), (max-aspect-ratio: 1)
     {block}
 
 desktop()
-  @media (min-width: 1000px) and (min-aspect-ratio: 1/1)
+  @media (min-width: 1000px), (min-aspect-ratio: 1)
     {block}
 
 
@@ -57,7 +57,7 @@ body
   overflow-x: hidden
 
   +mobile()
-    font-size: 1.6em
+    font-size: 1.5em
 
 .wrapper
   width: 100%
@@ -125,6 +125,9 @@ section
     stroke: #777
     stroke-width: 1px
 
+  +mobile()
+    transform: scale(2)
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // HEADER ///////////////////////////////////////////////////////////////////////////////
@@ -171,10 +174,14 @@ section#header
         margin-top: -30vh
 
   .logo
-    max-width: 64px
+    max-width: 128px
     margin: 1.2em
     z-index: 1
     position: relative
+    width: 64px
+
+    +mobile()
+      width: 128px
 
     +desktop()
       margin-bottom: 10px
@@ -194,6 +201,9 @@ section#header
       padding: .5em
       margin: 1em .5em
       opacity: .95
+
+      +mobile()
+        width: 52px
 
       &:hover
           transform: scale(1.2)
