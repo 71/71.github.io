@@ -46,12 +46,20 @@ html(lang='en')
         +a(link)(id=img, title=title, tabindex=index++)
           img.icon&attributes(attributes)(src='/graphics/'+img+'.svg')
 
-      .social
-        +social('email',   'mailto:hello@gregoirege.is?subject=Hey,%20Greg', 'Send me an email')
-        +social('github',  'https://github.com/6A',                          'Visit my GitHub profile')
+      .subsection: .social
+        +social('keybase',  'https://keybase.io/71',                          'View my Keybase profile')
+        +social('medium',   'https://medium.com/@geis',                       'View my Medium profile')
+        +social('github',   'https://github.com/6A',                          'View my GitHub profile')
         img.logo(src='/graphics/logo.svg')
-        +social('medium',  'https://medium.com/@geis',                       'Visit my Medium profile')
-        +social('keybase', 'https://keybase.io/71',                          'Visit my Keybase profile')
+        +social('email',    'mailto:hello@gregoirege.is?subject=Hey,%20Greg', 'Send me an email')
+        +social('so',       'https://stackoverflow.com/story/gregoiregeis',   'View my StackOverflow story')
+        +social('linkedin', 'https://www.linkedin.com/in/gregoiregeis',       'View my LinkeIn profile')
+      
+      .subsection: .summary
+        ul
+          li Student
+          li Developer
+          li Friend
 
       +arrow('#me')
 

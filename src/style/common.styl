@@ -87,15 +87,19 @@ section
   overflow: hidden
   cursor: default
 
+.subsection
+  display: block
+  text-align: inherit
+  max-width: none
+
   & > *
-    max-width: 1400px
+    max-width: 800px
     display: inline-block
     width: 100%
 
 .arrow-wrapper
   width: 100%!important
   max-width: none
-  margin-top: -10em
 
 .arrow
   transition: all .3s ease-in-out
@@ -141,6 +145,7 @@ section#header
   display: flex
   justify-content: center
   align-items: center
+  flex-direction: column
 
   @media (max-width: 1100px)
       font-size: 1.5em
@@ -192,6 +197,7 @@ section#header
     a
       display: inline-block
       vertical-align: super
+      transition: opacity .3s
 
   .icon
       box-sizing: content-box
@@ -200,14 +206,32 @@ section#header
       width: 24px
       padding: .5em
       margin: 1em .5em
-      opacity: .95
+      opacity: .8
 
       +mobile()
         width: 52px
+        padding: .5em .1em
 
       &:hover
           transform: scale(1.2)
-          opacity: 1
+          opacity: .9
+  
+  .summary
+    text-transform: uppercase
+    font-family: 'Nunito Light', sans-serif
+    letter-spacing: .5em
+    font-size: 1.6em
+    font-weight: lighter
+    opacity: .9
+    max-width: none
+
+    li
+      list-style: none
+    
+    +desktop()
+      li
+        display: inline
+        margin: 1em
 
   .arrow-wrapper
     bottom: 0

@@ -45,3 +45,6 @@ gulp.task 'watch', ->
     gulp.watch paths.js,    ['compile:js']
     gulp.watch paths.styl,  ['compile:stylus']
     gulp.watch paths.pug,   ['compile:pug']
+
+    gulp.watch './views/layout.pug',   ['compile:pug']
+    gulp.watch './style/common.styl',  ['compile:stylus']
