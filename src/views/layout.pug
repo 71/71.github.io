@@ -15,7 +15,17 @@ mixin arrow(target, points = '20,20 40,40 60,20')
       svg(style='width: 80px; height: 60px;')
         polyline(points=points)
 
-html(lang='en')
+
+mixin t(lang)
+  if language === lang
+    block
+
+mixin en()
+  +t('en'): block
+mixin fr()
+  +t('fr'): block
+
+html(lang=language)
   // Oh hey there! 
   // The source code of this website is available on GitHub, if you want to see. 
   // -> https://github.com/6A/6A.github.io/tree/master/src 
@@ -30,12 +40,15 @@ html(lang='en')
     meta(name='og:image', content='/graphics/banner.png')
 
     link(rel='icon', href='/graphics/fav.ico')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato|Nunito|Dosis')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato|Nunito|Dosis|Ubuntu+Mono')
 
     block head
 
   body
-    section#header(data-title='Header')
+    script.
+      document.documentElement.classList.add('js')
+
+    // section#header(data-title='Header', style='display: none')
       .hero
         svg(viewBox='0 0 480 480', version='1.1')
           path(d='M209.505,429.511c0,0 34.918,-117.879 102.813,-213.193c-1.305,50.921 -1.623,96.232 11.433,141.278c-25.46,7.834 -99.884,47.863 -114.246,71.915Z')
@@ -63,7 +76,14 @@ html(lang='en')
 
       +arrow('#me')
 
-    block body
+    .scrollbar
+      .thumb
+        .sections
+      .track
+
+    .content
+      block body
+
     block scripts
 
     script(src='/app.js')

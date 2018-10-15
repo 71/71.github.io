@@ -1,11 +1,11 @@
 {
   "name": "6a.github.io",
   "author": "Grégoire Geis <6A>",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Generates a static webpage for 6a.github.io",
   "devDependencies": {
     "axis": "^1.0.0",
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.7",
     "coffee-script": "^1.12.6",
     "gulp": "^3.9.1",
     "gulp-buble": "^0.8.0",
@@ -18,7 +18,7 @@
     "url": "git+https://github.com/6a/6a.github.io.git"
   },
   "scripts": {
-    "dev": "gulp compile && gulp watch",
+    "dev": "gulp compile && gulp watch --share",
     "opendev": "gulp compile && gulp watch --open",
     "build": "gulp compile"
   },

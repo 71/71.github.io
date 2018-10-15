@@ -1,1 +1,28 @@
-<!DOCTYPE html><html lang="en"><!-- Oh hey there! --><!-- The source code of this website is available on GitHub, if you want to see. --><!-- -> https://github.com/6A/6A.github.io/tree/master/src --><head><meta charset="utf-8"><meta name="theme-color" content="#111111"><meta name="msapplication-navbutton-color" content="#111111"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="maximum-scale=1, user-scalable=no"><meta name="author" content="Grégoire Geis"><meta name="og:image" content="/graphics/banner.png"><link rel="icon" href="/graphics/fav.ico"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Nunito|Dosis"><title>Grégoire Geis - 404</title><link rel="stylesheet" href="/404.css"></head><body><section id="header" data-title="Header"><div class="hero"><svg viewBox="0 0 480 480" version="1.1"><path d="M209.505,429.511c0,0 34.918,-117.879 102.813,-213.193c-1.305,50.921 -1.623,96.232 11.433,141.278c-25.46,7.834 -99.884,47.863 -114.246,71.915Z"></path><path d="M159.714,466.23c0,0 -121.077,-83.313 -159.594,-368.603c44.207,-35.351 152.48,-66.701 268.267,-40.97c-22.849,6.528 -105.584,28.85 -163.687,70.631c-3.917,50.922 17.802,243.605 55.014,338.942Z"></path><path d="M179.499,432.451c0,0 -35.73,-134.009 -25.284,-276.98c41.781,-35.254 152.689,-107.041 293.702,-155.351c-105.76,78.993 -212.927,248.921 -268.418,432.331Z"></path></svg></div><div class="subsection"><div class="social"><a href="https://keybase.io/71" target="_blank" rel="noopener noreferrer" id="keybase" title="View my Keybase profile" tabindex="0"><img class="icon" src="/graphics/keybase.svg"></a><a href="https://medium.com/@geis" target="_blank" rel="noopener noreferrer" id="medium" title="View my Medium profile" tabindex="1"><img class="icon" src="/graphics/medium.svg"></a><a href="https://github.com/6A" target="_blank" rel="noopener noreferrer" id="github" title="View my GitHub profile" tabindex="2"><img class="icon" src="/graphics/github.svg"></a><img class="logo" src="/graphics/logo.svg"><a href="mailto:hello@gregoirege.is?subject=Hey,%20Greg" id="email" title="Send me an email" tabindex="3"><img class="icon" src="/graphics/email.svg"></a><a href="https://stackoverflow.com/story/gregoiregeis" target="_blank" rel="noopener noreferrer" id="so" title="View my StackOverflow story" tabindex="4"><img class="icon" src="/graphics/so.svg"></a><a href="https://www.linkedin.com/in/gregoiregeis" target="_blank" rel="noopener noreferrer" id="linkedin" title="View my LinkeIn profile" tabindex="5"><img class="icon" src="/graphics/linkedin.svg"></a></div></div><div class="subsection"><div class="summary"><ul><li>Student</li><li>Developer</li><li>Friend</li></ul></div></div><div class="arrow-wrapper"><br><a class="arrow" href="#me"><svg style="width: 80px; height: 60px;"><polyline points="20,20 40,40 60,20"></polyline></svg></a></div></section><section id="me"><h1 id="big">4 0 4</h1><h2>It looks like the page you're trying to reach does not exist.</h2><h3>Wanna go back <a href="/">to the home page</a>?</h3></section><script src="/app.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><!-- Oh hey there! --><!-- The source code of this website is available on GitHub, if you want to see. --><!-- -> https://github.com/6A/6A.github.io/tree/master/src --><head><meta charset="utf-8"><meta name="theme-color" content="#111111"><meta name="msapplication-navbutton-color" content="#111111"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="maximum-scale=1, user-scalable=no"><meta name="author" content="Grégoire Geis"><meta name="og:image" content="/graphics/banner.png"><link rel="icon" href="/graphics/fav.ico"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Nunito|Dosis|Ubuntu+Mono"><title>Grégoire Geis - 404</title><link rel="stylesheet" href="/404.css"></head><body><script>document.documentElement.classList.add('js')
+</script><!-- section#header(data-title='Header', style='display: none').hero
+  svg(viewBox='0 0 480 480', version='1.1')
+    path(d='M209.505,429.511c0,0 34.918,-117.879 102.813,-213.193c-1.305,50.921 -1.623,96.232 11.433,141.278c-25.46,7.834 -99.884,47.863 -114.246,71.915Z')
+    path(d='M159.714,466.23c0,0 -121.077,-83.313 -159.594,-368.603c44.207,-35.351 152.48,-66.701 268.267,-40.97c-22.849,6.528 -105.584,28.85 -163.687,70.631c-3.917,50.922 17.802,243.605 55.014,338.942Z')
+    path(d='M179.499,432.451c0,0 -35.73,-134.009 -25.284,-276.98c41.781,-35.254 152.689,-107.041 293.702,-155.351c-105.76,78.993 -212.927,248.921 -268.418,432.331Z')
+
+mixin social(img, link, title, ext)
+  +a(link)(id=img, title=title, tabindex=index++)
+    img.icon&attributes(attributes)(src='/graphics/'+img+'.svg')
+
+.subsection: .social
+  +social('keybase',  'https://keybase.io/71',                          'View my Keybase profile')
+  +social('medium',   'https://medium.com/@geis',                       'View my Medium profile')
+  +social('github',   'https://github.com/6A',                          'View my GitHub profile')
+  img.logo(src='/graphics/logo.svg')
+  +social('email',    'mailto:hello@gregoirege.is?subject=Hey,%20Greg', 'Send me an email')
+  +social('so',       'https://stackoverflow.com/story/gregoiregeis',   'View my StackOverflow story')
+  +social('linkedin', 'https://www.linkedin.com/in/gregoiregeis',       'View my LinkeIn profile')
+
+.subsection: .summary
+  ul
+    li Student
+    li Developer
+    li Friend
+
++arrow('#me')
+--><div class="scrollbar"><div class="thumb"><div class="sections"></div></div><div class="track"></div></div><div class="content"><section id="me"><h1 id="big">4 0 4</h1><h2>It looks like the page you're trying to reach does not exist.</h2><h3>Wanna go back <a href="/">to the home page</a>?</h3></section></div><script src="/app.js"></script></body></html>
