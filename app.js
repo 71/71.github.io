@@ -1,5 +1,6 @@
 (function() {
-  var h = 0
+  'use strict'
+
 
   var loop = function () {
     var arrow = list[i];
@@ -22,9 +23,10 @@
     if (typeof speed !== 'number')
       speed = 2000
 
-    var currentScroll = window.scrollY
-    var currentTime   = 0
+    var currentScroll = content.scrollTop
     var time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
+
+    var currentTime     = 0
 
     var ease = function (p) { return ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2); }
     var tick = function ( ) {
@@ -34,9 +36,9 @@
 
       if (p < 1) {
         requestAnimationFrame(tick)
-        window.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
+        content.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
       } else {
-        window.scrollTo(0, scrollTarget)
+        content.scrollTo(0, scrollTarget)
       }
     }
 
@@ -70,6 +72,8 @@
   var parts = document.querySelectorAll('[data-title]')
 
   var ticking = false
+  var title   = ''
+  var transition = null
 
   function findCurrentPart() {
     for (var i = parts.length - 1; i >= 0; i--) {
@@ -84,8 +88,23 @@
     if (ticking) return
     
     window.requestAnimationFrame(function () {
+      var newTitle = findCurrentPart().getAttribute('data-title')
+
       thumb.style.top = (content.scrollTop / content.scrollHeight) * 100 + '%'
-      sections.textContent = findCurrentPart().getAttribute('data-title')
+
+      if (title != newTitle) {
+        if (transition) clearTimeout(transition)
+
+        sections.innerHTML = "<span class=\"first\">" + title + "</span><span>" + newTitle + "</span>"
+        sections.classList.add('transitioning')
+
+        title = newTitle
+
+        transition = setTimeout(function () {
+          sections.classList.remove('transitioning')
+          sections.innerHTML = "<span class=\"first\">" + newTitle + "</span><span></span>"
+        }, 300)
+      }
 
       ticking = false
     })
@@ -96,4 +115,5 @@
   content.addEventListener('scroll', function (e) { return updateScrollbar(); })
 
   updateScrollbar()
+
 })()

@@ -11,19 +11,6 @@ else if (hour > 4)
 else
   greeting.innerText = 'Good night'
 
-  
-const projects = document.getElementById('projects')
-
-for (const project of document.getElementsByClassName('project')) {
-  project.onpointerenter = () => {
-    h++
-    projects.style.backgroundColor = project.getAttribute('data-accent')
-  }
-  project.onpointerleave = () => {
-    if (--h === 0)
-      projects.style.backgroundColor = ''
-  }
-}
 
 if (fetch) {
   const count = document.getElementById('projects-count')

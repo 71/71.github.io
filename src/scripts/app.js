@@ -1,5 +1,6 @@
 (function() {
-  let h = 0
+  'use strict'
+
 
   for (const arrow of document.getElementsByClassName('arrow')) {
     const targetId = arrow.href.substring(arrow.href.indexOf('#') + 1)
@@ -18,9 +19,10 @@
     if (typeof speed !== 'number')
       speed = 2000
 
-    let currentScroll = window.scrollY
-    let currentTime   = 0
-    let time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
+    const currentScroll = content.scrollTop
+    const time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
+
+    let currentTime     = 0
 
     let ease = (p) => ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2)
     let tick = ( ) => {
@@ -30,9 +32,9 @@
 
       if (p < 1) {
         requestAnimationFrame(tick)
-        window.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
+        content.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
       } else {
-        window.scrollTo(0, scrollTarget)
+        content.scrollTo(0, scrollTarget)
       }
     }
 
@@ -66,6 +68,8 @@
   const parts = document.querySelectorAll('[data-title]')
 
   let ticking = false
+  let title   = ''
+  let transition = null
 
   function findCurrentPart() {
     for (let i = parts.length - 1; i >= 0; i--) {
@@ -80,8 +84,23 @@
     if (ticking) return
     
     window.requestAnimationFrame(() => {
+      const newTitle = findCurrentPart().getAttribute('data-title')
+
       thumb.style.top = (content.scrollTop / content.scrollHeight) * 100 + '%'
-      sections.textContent = findCurrentPart().getAttribute('data-title')
+
+      if (title != newTitle) {
+        if (transition) clearTimeout(transition)
+
+        sections.innerHTML = `<span class="first">${title}</span><span>${newTitle}</span>`
+        sections.classList.add('transitioning')
+
+        title = newTitle
+
+        transition = setTimeout(() => {
+          sections.classList.remove('transitioning')
+          sections.innerHTML = `<span class="first">${newTitle}</span><span></span>`
+        }, 300)
+      }
 
       ticking = false
     })
@@ -92,4 +111,5 @@
   content.addEventListener('scroll', e => updateScrollbar())
 
   updateScrollbar()
+
 })()
