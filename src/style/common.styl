@@ -1,6 +1,6 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// VARIABLES ////////////////////////////////////////////////////////////////////////////
+// VARIABLES & COLORS ///////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
 $black = black
@@ -11,6 +11,14 @@ $accent1 = #f7d231
 $accent2 = #26c6da
 $accent3 = #2ab27b
 $accent4 = #e32072
+
+body
+  --primary: #111
+  --secondary: #444
+
+body.dark
+  --primary: #eee
+  --secondary: #ccc
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +40,19 @@ mobile()
 desktop()
   @media (min-width: 1000px), (min-aspect-ratio: 1)
     {block}
+
+.hoverable
+  background: linear-gradient(to right, transparent 50%, color 50%)
+  background-size: 200%
+  background-position: 0 0
+  display: display
+  padding: .2em
+  transition: .5s ease-in-out
+
+  &:hover
+    background-position: -100% 0
+    box-shadow: rgba(0,0,0,.4) 20px
+    transform: scale(1.2)
 
 hoverable(color, display=inline-block)
   background: linear-gradient(to right, transparent 50%, color 50%)
@@ -131,11 +152,6 @@ section
   
   &:first-of-type
     box-shadow: none
-  
-  
-
-.dark
-  color: white
 
 h1
   font-size: 3em
