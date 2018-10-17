@@ -33,6 +33,16 @@ desktop()
   @media (min-width: 1000px), (min-aspect-ratio: 1)
     {block}
 
+hoverable(color, display=inline-block)
+  background: linear-gradient(to right, transparent 50%, color 50%)
+  background-size: 200%
+  background-position: 0 0
+  display: display
+  transition: .5s ease-in-out
+
+  &:hover
+    background-position: -100% 0
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // COMMON ///////////////////////////////////////////////////////////////////////////////
@@ -106,6 +116,8 @@ section
   display: block
   cursor: default
   box-shadow: inset rgba(0,0,0,.2) 0 10px 20px
+  position: relative
+  padding-bottom: 3em
 
   &.smaller
     min-height: 25vh
@@ -147,6 +159,8 @@ h1
   width: 100%!important
   max-width: none
   text-align: center
+  bottom: 0
+  position: absolute!important
 
 .arrow
   transition: all .3s ease-in-out
@@ -155,22 +169,23 @@ h1
   cursor: pointer
   width: auto
   display: inherit
+  bottom: 0
 
   @keyframes bounce
     0%
-      margin-bottom: 0
+      bottom: 0
     25%
-      margin-bottom: 12px
+      bottom: 12px
     50%
-      margin-bottom: 0
+      bottom: 0
     75%
-      margin-bottom: 12px
+      bottom: 12px
     100%
-      margin-bottom: 0
+      bottom: 0
 
   &:hover
     opacity: 1
-    margin-bottom: 10px
+    bottom: 10px
 
   & polyline
     fill: none
@@ -225,14 +240,15 @@ h1
   .sections
     color: var(--color)
     transform: rotate(-90deg)
+    transform-origin: left top
     text-transform: uppercase
     font-weight: 700
-    margin-left: -2em
-    margin-top: 3.7em
-    text-align: start
+    text-align: end
 
+    margin-left: -1.5em
+    margin-top: 9em
     height: 1.1em
-    width: 6em
+    width: 9em
 
     overflow-x: hidden
     overflow-y: visible

@@ -1,7 +1,6 @@
 (function() {
   'use strict'
 
-
   for (const arrow of document.getElementsByClassName('arrow')) {
     const targetId = arrow.href.substring(arrow.href.indexOf('#') + 1)
     const target   = document.getElementById(targetId)
@@ -27,8 +26,9 @@
     let ease = (p) => ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2)
     let tick = ( ) => {
       currentTime += 1 / 60
-      p = currentTime / time
-      t = ease(p)
+
+      const p = currentTime / time
+      const t = ease(p)
 
       if (p < 1) {
         requestAnimationFrame(tick)
@@ -75,7 +75,7 @@
     for (let i = parts.length - 1; i >= 0; i--) {
       const part = parts[i]
       
-      if (part.getBoundingClientRect().top <= 0)
+      if (part.getBoundingClientRect().top <= 100)
         return part
     }
   }
@@ -108,7 +108,27 @@
     ticking = true
   }
 
-  content.addEventListener('scroll', e => updateScrollbar())
+  let scrollStart = 0
+  let scrollThumbStart = 0
+
+  content.addEventListener('scroll', _ => updateScrollbar())
+
+  function updateScollPosition(e) {
+    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * thumb.clientHeight / 10)
+  }
+
+  thumb.addEventListener('mousedown', e => {
+    scrollStart = content.scrollTop
+    scrollThumbStart = e.clientY
+
+    content.style.pointerEvents = 'none'
+    window.addEventListener('mousemove', updateScollPosition)
+  })
+
+  window.addEventListener('mouseup', _ => {
+    content.style.pointerEvents = 'initial'
+    window.removeEventListener('mousemove', updateScollPosition)
+  })
 
   updateScrollbar()
 

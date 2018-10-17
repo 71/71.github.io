@@ -1,7 +1,6 @@
 (function() {
   'use strict'
 
-
   var loop = function () {
     var arrow = list[i];
 
@@ -31,8 +30,9 @@
     var ease = function (p) { return ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2); }
     var tick = function ( ) {
       currentTime += 1 / 60
-      p = currentTime / time
-      t = ease(p)
+
+      var p = currentTime / time
+      var t = ease(p)
 
       if (p < 1) {
         requestAnimationFrame(tick)
@@ -79,7 +79,7 @@
     for (var i = parts.length - 1; i >= 0; i--) {
       var part = parts[i]
       
-      if (part.getBoundingClientRect().top <= 0)
+      if (part.getBoundingClientRect().top <= 100)
         return part
     }
   }
@@ -112,7 +112,27 @@
     ticking = true
   }
 
-  content.addEventListener('scroll', function (e) { return updateScrollbar(); })
+  var scrollStart = 0
+  var scrollThumbStart = 0
+
+  content.addEventListener('scroll', function (_) { return updateScrollbar(); })
+
+  function updateScollPosition(e) {
+    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * thumb.clientHeight / 10)
+  }
+
+  thumb.addEventListener('mousedown', function (e) {
+    scrollStart = content.scrollTop
+    scrollThumbStart = e.clientY
+
+    content.style.pointerEvents = 'none'
+    window.addEventListener('mousemove', updateScollPosition)
+  })
+
+  window.addEventListener('mouseup', function (_) {
+    content.style.pointerEvents = 'initial'
+    window.removeEventListener('mousemove', updateScollPosition)
+  })
 
   updateScrollbar()
 
