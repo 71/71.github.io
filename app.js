@@ -13,9 +13,10 @@
     }
   };
 
-  for (var i = 0, list = document.getElementsByClassName('arrow'); i < list.length; i += 1) loop();
+  for (var i = 0, list = document.querySelectorAll('.arrow, a.smooth-scroll'); i < list.length; i += 1) loop();
 
   // Utils
+
   function smoothScrollTo(scrollTarget, speed) {
     if (typeof scrollTarget !== 'number')
       scrollTarget = 0
@@ -43,6 +44,21 @@
     }
 
     tick()
+  }
+
+
+  // Dark / light theme
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark')
+
+    localStorage.setItem('dark', document.body.classList.contains('dark'))
+  }
+
+  var isDarkThemeAtLoad = localStorage.getItem('dark')
+
+  if (isDarkThemeAtLoad == 'true') {
+    document.body.classList.add('dark')
   }
 
 
@@ -74,12 +90,13 @@
   var ticking = false
   var title   = ''
   var transition = null
+  var scrollbarRatio = 0
 
   function findCurrentPart() {
     for (var i = parts.length - 1; i >= 0; i--) {
       var part = parts[i]
       
-      if (part.getBoundingClientRect().top <= 100)
+      if (part.getBoundingClientRect().top <= 200)
         return part
     }
   }
@@ -88,7 +105,17 @@
     if (ticking) return
     
     window.requestAnimationFrame(function () {
-      var newTitle = findCurrentPart().getAttribute('data-title')
+      var newPart = findCurrentPart()
+      var newTitle = newPart.getAttribute('data-title')
+
+      for (var i = 0, list = document.getElementsByClassName('focused'); i < list.length; i += 1) {
+        var element = list[i];
+
+        element.classList.remove('focused')
+      }
+
+      newPart.classList.add('focused')
+
 
       thumb.style.top = (content.scrollTop / content.scrollHeight) * 100 + '%'
 
@@ -109,16 +136,17 @@
       ticking = false
     })
 
+    scrollbarRatio = (track.clientHeight / thumb.clientHeight) * (window.innerHeight / track.clientHeight)
     ticking = true
   }
 
-  var scrollStart = 0
+  var scrollStart      = 0
   var scrollThumbStart = 0
 
   content.addEventListener('scroll', function (_) { return updateScrollbar(); })
 
   function updateScollPosition(e) {
-    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * thumb.clientHeight / 10)
+    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * scrollbarRatio)
   }
 
   thumb.addEventListener('mousedown', function (e) {
@@ -132,6 +160,11 @@
   window.addEventListener('mouseup', function (_) {
     content.style.pointerEvents = 'initial'
     window.removeEventListener('mousemove', updateScollPosition)
+  })
+
+  window.addEventListener('mousedown', function (e) {
+    if (e.shiftKey)
+      toggleTheme()
   })
 
   updateScrollbar()

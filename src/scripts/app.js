@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  for (const arrow of document.getElementsByClassName('arrow')) {
+  for (const arrow of document.querySelectorAll('.arrow, a.smooth-scroll')) {
     const targetId = arrow.href.substring(arrow.href.indexOf('#') + 1)
     const target   = document.getElementById(targetId)
 
@@ -12,6 +12,7 @@
   }
 
   // Utils
+
   function smoothScrollTo(scrollTarget, speed) {
     if (typeof scrollTarget !== 'number')
       scrollTarget = 0
@@ -39,6 +40,21 @@
     }
 
     tick()
+  }
+
+
+  // Dark / light theme
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark')
+
+    localStorage.setItem('dark', document.body.classList.contains('dark'))
+  }
+
+  const isDarkThemeAtLoad = localStorage.getItem('dark')
+
+  if (isDarkThemeAtLoad == 'true') {
+    document.body.classList.add('dark')
   }
 
 
@@ -70,12 +86,13 @@
   let ticking = false
   let title   = ''
   let transition = null
+  let scrollbarRatio = 0
 
   function findCurrentPart() {
     for (let i = parts.length - 1; i >= 0; i--) {
       const part = parts[i]
       
-      if (part.getBoundingClientRect().top <= 100)
+      if (part.getBoundingClientRect().top <= 200)
         return part
     }
   }
@@ -84,7 +101,15 @@
     if (ticking) return
     
     window.requestAnimationFrame(() => {
-      const newTitle = findCurrentPart().getAttribute('data-title')
+      const newPart = findCurrentPart()
+      const newTitle = newPart.getAttribute('data-title')
+
+      for (const element of document.getElementsByClassName('focused')) {
+        element.classList.remove('focused')
+      }
+
+      newPart.classList.add('focused')
+
 
       thumb.style.top = (content.scrollTop / content.scrollHeight) * 100 + '%'
 
@@ -105,16 +130,17 @@
       ticking = false
     })
 
+    scrollbarRatio = (track.clientHeight / thumb.clientHeight) * (window.innerHeight / track.clientHeight)
     ticking = true
   }
 
-  let scrollStart = 0
+  let scrollStart      = 0
   let scrollThumbStart = 0
 
   content.addEventListener('scroll', _ => updateScrollbar())
 
   function updateScollPosition(e) {
-    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * thumb.clientHeight / 10)
+    content.scrollTo(0, scrollStart + (e.clientY - scrollThumbStart) * scrollbarRatio)
   }
 
   thumb.addEventListener('mousedown', e => {
@@ -128,6 +154,11 @@
   window.addEventListener('mouseup', _ => {
     content.style.pointerEvents = 'initial'
     window.removeEventListener('mousemove', updateScollPosition)
+  })
+
+  window.addEventListener('mousedown', e => {
+    if (e.shiftKey)
+      toggleTheme()
   })
 
   updateScrollbar()
