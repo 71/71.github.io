@@ -30,8 +30,14 @@ section#intro
   font-size: 1.2em
   font-family: 'Lato', sans-serif
 
+  +mobile()
+    padding: .5em
+
   .margin-top
     height: 8em
+
+    +mobile()
+      height: 1em
 
   h1
     theme(--color, #333, #888)
@@ -41,8 +47,10 @@ section#intro
     font-family: 'Lato'
     font-size: 7em
     font-weight: 900
-    margin-bottom: .4em
     text-transform: uppercase
+
+    +mobile()
+      font-size: 3em
 
     background: linear-gradient(to right, transparent 50%, var(--color) 50%)
     background-size: 200%
@@ -67,7 +75,12 @@ section#intro
 
     font-size: 1.2em
     text-align: end
-    margin-left: 40%
+
+    +desktop()
+      margin-left: 40%
+    +mobile()
+      font-size: .9em
+      margin-left: 10%
 
 
 #menu
@@ -77,6 +90,9 @@ section#intro
   min-height: 5em
   padding-bottom: 0
 
+  +mobile()
+    min-height: 0
+
   .section-content
     text-align: center
 
@@ -84,15 +100,25 @@ section#intro
     padding: 0
     display: inline-block
 
+    +mobile()
+      margin-top: .2em
+      margin-bottom: .4em
+
   li
     list-style: none
     display: inline-block
     margin: .3em .4em
 
+    +mobile()
+      margin: 0 .2em
+
   li a
     padding: .1em .2em
     font-family: $sans-serif
     font-size: 1.6em
+
+    +mobile()
+      font-size: .6em
 
     hoverable(var(--accent), .2s, elevate: false)
 
@@ -118,24 +144,41 @@ $text-shadow-thickness = 1px
                  var(--accent) (- $text-shadow-thickness) (- $text-shadow-thickness)
     transition: opacity .3s ease
 
+    +mobile()
+      font-size: 14em
+      margin: .1em
+      margin-top: -.1em
+
     &:hover
       opacity: 1
 
   &.smaller
     .language-name
       font-size: 20em
+
+      +mobile()
+        font-size: 10em
     
     .language-content
       margin-top: 18em
+
+      +mobile()
+        margin-top: 10em
 
     .language-description
       margin-left: 3em
       margin-top: -2em
       margin-bottom: 4em
 
+      +mobile()
+        margin-bottom: 0
+
   .language-content
     margin-left: 6em
     margin-top: 23em
+
+    +mobile()
+      margin: 12em 1em 0 1em
   
   .language-description
     color: var(--secondary)
@@ -146,6 +189,10 @@ $text-shadow-thickness = 1px
     margin-left: 10em
     margin-top: -1em
     margin-bottom: 4em
+
+    +mobile()
+      font-size: 1em
+      margin: 0 0 0 1em
 
   *
     position: relative
@@ -167,13 +214,22 @@ $text-shadow-thickness = 1px
     
     h4
       margin-top: -.8em
+
+#other
+  .language-name
+    +mobile()
+      font-size: 5em
+      margin: .2em
+
+  .other-language
+    display: inline-block
+    font-size: 1.4em
+    padding: .1em .2em
+
+    h2
+      margin: 0
     
-.other-language
-  display: inline-block
-  font-size: 1.4em
-  padding: .1em .2em
+    +mobile()
+      font-size: 1em
 
-  h2
-    margin: 0
-
-  hoverable(var(--accent), .25s)
+    hoverable(var(--accent), .25s)

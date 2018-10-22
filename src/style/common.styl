@@ -78,9 +78,6 @@ body
   text-align: center
   font-family: $sans-serif
 
-  +mobile()
-    font-size: 1.5em
-
 .js
   height: 100%
   width: 100%
@@ -203,9 +200,6 @@ h1
     stroke: #777
     stroke-width: 1px
 
-  +mobile()
-    transform: scale(2)
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // SCROLLBAR ////////////////////////////////////////////////////////////////////////////
@@ -227,6 +221,9 @@ h1
   +dark()
     --track-color: #777
     --thumb-color: #999
+  
+  +mobile()
+    display: none
 
   .track
     background: var(--track-color)
