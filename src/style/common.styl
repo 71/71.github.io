@@ -66,6 +66,10 @@ a, a:visited
   color: inherit
   text-decoration: none
 
+.underline
+  text-decoration: underline
+  text-decoration-color: currentColor
+
 *
   box-sizing: border-box
   transition: outline-color .4s ease-out
@@ -216,6 +220,8 @@ section#header
           transform: scale(1.2)
           opacity: .9
   
+
+  
   .summary
     text-transform: uppercase
     font-family: 'Nunito Light', sans-serif
@@ -225,13 +231,20 @@ section#header
     opacity: .9
     max-width: none
 
-    li
-      list-style: none
-    
-    +desktop()
-      li
-        display: inline
-        margin: 1em
+    animation: title-appear .7s ease-out
+    display: inline
+
+    background: linear-gradient(to right, transparent 50%, currentColor 50%)
+    background-size: 200%
+    background-position: 0 0
+
+    @keyframes title-appear
+      0%
+        background-position: 100% 0
+      20%
+        background-position: 100% 0
+      100%
+        background-position: 0 0
 
   .arrow-wrapper
     bottom: 0

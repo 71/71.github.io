@@ -28,7 +28,7 @@ for (const project of document.getElementsByClassName('project')) {
 if (fetch) {
   const count = document.getElementById('projects-count')
   
-  fetch("https://api.github.com/users/6A")
+  fetch("https://api.github.com/users/71")
     .then(res => res.json())
     .then(res => count.innerText = 'over ' + res.public_repos)
 }

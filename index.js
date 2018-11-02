@@ -32,7 +32,7 @@ for (var i = 0, list = document.getElementsByClassName('project'); i < list.leng
 if (fetch) {
   var count = document.getElementById('projects-count')
   
-  fetch("https://api.github.com/users/6A")
+  fetch("https://api.github.com/users/71")
     .then(function (res) { return res.json(); })
     .then(function (res) { return count.innerText = 'over ' + res.public_repos; })
 }

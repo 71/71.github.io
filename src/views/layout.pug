@@ -18,7 +18,7 @@ mixin arrow(target, points = '20,20 40,40 60,20')
 html(lang='en')
   // Oh hey there! 
   // The source code of this website is available on GitHub, if you want to see. 
-  // -> https://github.com/6A/6A.github.io/tree/master/src 
+  // -> https://github.com/71/71.github.io/tree/master/src 
   head
     meta(charset='utf-8')
     meta(name='theme-color', content='#111111')
@@ -49,17 +49,14 @@ html(lang='en')
       .subsection: .social
         +social('keybase',  'https://keybase.io/71',                          'View my Keybase profile')
         +social('medium',   'https://medium.com/@geis',                       'View my Medium profile')
-        +social('github',   'https://github.com/6A',                          'View my GitHub profile')
+        +social('github',   'https://github.com/71',                          'View my GitHub profile')
         img.logo(src='/graphics/logo.svg')
         +social('email',    'mailto:hello@gregoirege.is?subject=Hey,%20Greg', 'Send me an email')
         +social('so',       'https://stackoverflow.com/story/gregoiregeis',   'View my StackOverflow story')
         +social('linkedin', 'https://www.linkedin.com/in/gregoiregeis',       'View my LinkeIn profile')
-      
-      .subsection: .summary
-        ul
-          li Student
-          li Developer
-          li Friend
+
+      .subsection
+        .summary Grégoire Geis
 
       +arrow('#me')
 
