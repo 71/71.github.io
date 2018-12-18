@@ -1,8 +1,8 @@
 {
-  "name": "6a.github.io",
-  "author": "Grégoire Geis <6A>",
+  "name": "71.github.io",
+  "author": "Grégoire Geis <71>",
   "version": "3.0.0",
-  "description": "Generates a static webpage for 6a.github.io",
+  "description": "Generates a static webpage for 71.github.io / gregoirege.is.",
   "devDependencies": {
     "axis": "^1.0.0",
     "browser-sync": "^2.26.3",
@@ -11,11 +11,12 @@
     "gulp-buble": "^0.8.0",
     "gulp-pug": "^3.1.0",
     "gulp-stylus": "^2.6.0",
-    "jeet": "^7.0.0"
+    "jeet": "^7.0.0",
+    "natives": "^1.1.6"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/6a/6a.github.io.git"
+    "url": "git+https://github.com/71/71.github.io.git"
   },
   "scripts": {
     "dev": "gulp compile && gulp watch",
@@ -24,7 +25,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/6a/6a.github.io/issues"
+    "url": "https://github.com/71/71.github.io/issues"
   },
-  "homepage": "https://github.com/6a/6a.github.io#readme"
+  "homepage": "https://github.com/71/71.github.io#readme"
 }
