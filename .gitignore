@@ -1,6 +1,0 @@
-.git/
-.cache/
-.vscode/
-node_modules/
-dist/
-packages/

@@ -1,31 +1,14 @@
 {
   "name": "71.github.io",
-  "author": "Grégoire Geis <71>",
-  "version": "3.0.0",
-  "description": "Generates a static webpage for 71.github.io / gregoirege.is.",
-  "devDependencies": {
-    "axis": "^1.0.0",
-    "browser-sync": "^2.26.3",
-    "coffee-script": "^1.12.6",
-    "gulp": "^3.9.1",
-    "gulp-buble": "^0.8.0",
-    "gulp-pug": "^3.1.0",
-    "gulp-stylus": "^2.6.0",
-    "jeet": "^7.0.0",
-    "natives": "^1.1.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/71/71.github.io.git"
-  },
-  "scripts": {
-    "dev": "gulp compile && gulp watch",
-    "opendev": "gulp compile && gulp watch --open",
-    "build": "gulp compile"
-  },
+  "version": "1.0.0",
+  "main": "index.js",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/71/71.github.io/issues"
+  "scripts": {
+    "build": "coffee -r \"coffeescript/register\" -e \"require('./build.coffee').build()\""
   },
-  "homepage": "https://github.com/71/71.github.io#readme"
+  "devDependencies": {
+    "coffeescript": "^2.4.1",
+    "pug": "^2.0.3",
+    "stylus": "^0.54.5"
+  }
 }

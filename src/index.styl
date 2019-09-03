@@ -1,0 +1,304 @@
+
+// Basic page style
+
+$max-content-width = 1200px
+
+html
+  height: 100%
+
+body
+  height: 100%
+  width: 100%
+  margin: 0
+
+  overflow-y: scroll
+  scrollbar-width: none
+  -ms-overflow-style: none
+
+  &::-webkit-scrollbar
+    height: 0
+    width: 0
+
+  & > input
+    display: none
+
+a, a:visited
+  color: inherit
+
+
+// Language toggles
+
+.en, .fr, .ko
+  display: none
+
+#language-en:checked ~ main .en, #language-fr:checked ~ main .fr, #language-ko:checked ~ main .ko
+  display: unset
+
+
+// Theme toggle
+
+#change-theme ~ main
+  --background: white
+  --secondary-background: #f9f9f9
+  --primary: #252525
+  --secondary: #252525
+  --ternary: #d0d0d0
+
+  .light
+    display: unset
+  .dark
+    display: none
+
+  .name
+    --accent: #f03e3e
+  .work
+    --accent: #fcc419
+  .school
+    --accent: #4c6ef5
+  .speak
+    --accent: #51cf66
+
+#change-theme:checked ~ main
+  --background: black
+  --secondary-background: #0a0a0a
+  --primary: white
+  --secondary: white
+  --ternary: #616161
+
+  .light
+    display: none
+  .dark
+    display: unset
+
+  .name
+    --accent: #e03131
+  .work
+    --accent: #ffd43b
+  .school
+    --accent: #339af0
+  .speak
+    --accent: #69db7c
+
+
+// Page style
+
+main
+  min-height: 100%
+  width: 100%
+
+  display: flex
+  flex-direction: column
+
+  background: var(--background)
+
+  & > *
+    width: 100%
+    max-width: $max-content-width
+
+    margin-left: auto
+    margin-right: auto
+
+h3
+  font-family: 'Red Hat Display', 'Noto Sans KR', Roboto, Arial, sans-serif
+  font-size: 2.6em
+  letter-spacing: 0.012em
+  line-height: 1.25em
+  margin-left: 20px
+  margin-right: auto
+  z-index: 1
+
+  em
+    font-style: normal
+
+  em, a, label
+    color: var(--accent)!important
+
+header
+  height: 100vh
+  position: relative
+
+  align-items: center
+  display: flex
+  justify-content: center
+
+  color: var(--primary)
+
+  label
+    cursor: pointer
+
+  a
+    text-decoration: none
+
+  #icon
+    align-self: start
+    fill: var(--primary)
+    height: 36px
+    margin-top: 1em
+    position: absolute
+    stroke-width: 0
+    width: @height
+
+  #lines
+    position: absolute
+    height: 400px
+    width: 100%
+    overflow: overlay
+    pointer-events: none
+    z-index: 0
+
+  #intro
+    display: inline-block
+    max-width: 800px
+
+  ul
+    list-style: none
+    padding: 0
+
+    font-weight: lighter
+
+    li
+      display: inline-block
+      margin-right: 1em
+
+      .text
+        margin-bottom: -.2em
+
+      .links
+        color: var(--ternary)
+
+    svg
+      height: inherit
+      width: inherit
+
+      margin-bottom: var(--mt)
+
+    path
+      fill: var(--secondary)
+      stroke: none
+
+footer
+  max-width: none
+  text-align: center
+
+  background: var(--secondary-background)
+  color: var(--primary)
+
+  font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif
+
+  .content
+    display: inline-block
+    margin: 2em 1em
+
+
+// Timeline
+
+
+for category in ('education' 'experience' 'languages' 'life' 'programming' 'projects')
+  {join('', '#toggle-', category, ' ~ main .', category)}
+    display: none
+
+  {join('', '#toggle-', category, ':checked ~ main .', category)}
+    display: flex
+
+for category in ('education' #51cf66) ('experience' #ffd43b) ('languages' #fa5252) ('life' #868e96) ('programming' #339af0) ('projects' #364fc7)
+  {join('', '.', category[0])}
+    --accent: category[1]
+
+section.timeline
+  background: var(--background)
+  color: var(--primary)
+
+  display: flex
+  flex-direction: row
+
+  font-family: Nunito, Roboto, Arial, sans-serif
+
+  .years, .months, .events
+    margin-top: 7em
+    position: relative
+
+  .years
+    width: 110px
+    margin-left: 20px
+    top: -3px
+  .months
+    width: 60px
+  .events
+    width: 100%
+    top: -4px
+
+  h3
+    position: absolute
+    margin-top: 0
+
+  h4
+    margin: 0
+
+  .years h4
+    font-size: 2em
+    margin-top: -.35em
+
+  $dot-half-width = 12px
+  $dot-width = $dot-half-width * 2
+  $dot-margin = 3px
+  $dot-size = $dot-width + $dot-margin * 2
+  $unit = $dot-size
+
+  min-height: 100vh
+  height: "calc(11em + var(--timeline-length) * %s)" % $unit
+
+  .year, .month, .event
+    display: flex
+    position: absolute
+
+    margin-left: "calc(var(--bar) * %s)" % $dot-size
+    margin-top : "calc(var(--offset) * %s)" % $unit
+
+  .year
+    margin-bottom: 5px
+
+  .event
+    .title
+      margin-left: 4px
+      margin-top: 4px
+
+    .dot, .range
+      background: var(--accent)
+      border-radius: $dot-half-width
+      width: $dot-width
+      margin: $dot-margin
+
+    .dot
+      height: $dot-width
+
+    .range
+      height: "calc(var(--length) * %s - %s * 2)" % ($unit $dot-margin)
+
+
+  .descriptions
+    position: absolute
+    top: 0
+    width: 100%
+    padding-left: 550px
+    box-sizing: border-box
+
+  .description
+    position: absolute
+
+    margin-top: "calc(var(--offset) * %s)" % $unit
+    transform: translateX(-1em)
+    opacity: 0
+
+    font-family: 'Red Hat Display', 'Noto Sans KR', Roboto, Arial, sans-serif
+    font-size: 1.4em
+    letter-spacing: 0.012em
+    line-height: 1.25em
+    font-weight: bold
+
+    transition: all .15s ease-in-out
+
+  for i in (1..30)
+    .event:nth-of-type({i}):hover ~ .descriptions .description:nth-of-type({i})
+      display: inline-block
+      transform: none
+      opacity: 1

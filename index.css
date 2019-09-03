@@ -1,1 +1,471 @@
-.accent-1{color:#f7d231}.accent-2{color:#26c6da}.accent-3{color:#2ab27b}.accent-4{color:#e32072}body{margin:0;width:100%;min-height:100%;background:#fff;text-align:center;font-family:'Open Sans','Segoe UI','Roboto',sans-serif;overflow-x:hidden;}@media (max-width:1000px),(max-aspect-ratio:1){body{font-size:1.5em}}.wrapper{width:100%}a,a:visited{color:inherit;text-decoration:none}.underline{text-decoration:underline;text-decoration-color:currentColor}*{box-sizing:border-box;transition:outline-color .4s ease-out;outline:#d32f2f auto 0;}*:focus{outline:#ffa726 auto 2px}p,h1,h2,h3,h4,h5,h6{text-align:justify;font-weight:400}section{width:100%;margin:0;min-height:100vh;text-align:center;display:block;overflow:hidden;cursor:default}.subsection{display:block;text-align:inherit;max-width:none;}.subsection > *{max-width:800px;display:inline-block;width:100%}.arrow-wrapper{width:100% !important;max-width:none}.arrow{transition:all .3s ease-in-out;opacity:.8;animation:bounce 1s ease-in-out;cursor:pointer;width:auto;}.arrow:hover{opacity:1;margin-bottom:10px}.arrow polyline{fill:none;stroke:#777;stroke-width:1px}@media (max-width:1000px),(max-aspect-ratio:1){.arrow{transform:scale(2)}}@-moz-keyframes bounce{0%{margin-bottom:0}25%{margin-bottom:12px}50%{margin-bottom:0}75%{margin-bottom:12px}100%{margin-bottom:0}}@-webkit-keyframes bounce{0%{margin-bottom:0}25%{margin-bottom:12px}50%{margin-bottom:0}75%{margin-bottom:12px}100%{margin-bottom:0}}@-o-keyframes bounce{0%{margin-bottom:0}25%{margin-bottom:12px}50%{margin-bottom:0}75%{margin-bottom:12px}100%{margin-bottom:0}}@keyframes bounce{0%{margin-bottom:0}25%{margin-bottom:12px}50%{margin-bottom:0}75%{margin-bottom:12px}100%{margin-bottom:0}}section#header{min-height:100vh;background:#000;color:#fff;font-family:Lato,'Open Sans','Segoe UI','Roboto',sans-serif;display:flex;justify-content:center;align-items:center;flex-direction:column;}@media (max-width:1100px){section#header{font-size:1.5em}}section#header .hero{position:absolute;width:100%;height:100%;z-index:0;overflow:hidden;max-width:none;max-height:none;}section#header .hero svg{width:100vmax;height:100vmax;stroke:#dc143c;stroke-width:.25;stroke-dasharray:3 1;transform:rotate3d(1,1,1,20deg);transform-origin:center;left:0;right:0;top:0;bottom:0;position:absolute;fill:transparent}@media (min-height:800px) and (min-aspect-ratio:1){section#header .hero svg{margin-top:-30vh}}section#header .logo{max-width:128px;margin:1.2em;z-index:1;position:relative;width:64px;}@media (max-width:1000px),(max-aspect-ratio:1){section#header .logo{width:128px}}@media (min-width:1000px),(min-aspect-ratio:1){section#header .logo{margin-bottom:10px}}section#header .social{width:100%;}section#header .social a{display:inline-block;vertical-align:super;transition:opacity .3s}section#header .icon{box-sizing:content-box;transition:transform .4s ease,opacity .4s ease;max-width:48px;width:24px;padding:.5em;margin:1em .5em;opacity:.8;}@media (max-width:1000px),(max-aspect-ratio:1){section#header .icon{width:52px;padding:.5em .1em}}section#header .icon:hover{transform:scale(1.2);opacity:.9}section#header .summary{text-transform:uppercase;font-family:Nunito,'Open Sans','Segoe UI','Roboto',sans-serif;letter-spacing:.5em;font-size:1.6em;font-weight:lighter;opacity:.9;max-width:none;animation:title-appear .6s ease-out;display:inline;background:linear-gradient(to right,transparent 50%,currentColor 50%);background-size:200%;background-position:0 0;}@-moz-keyframes title-appear{0%{background-position:100% 0}20%{background-position:100% 0}100%{background-position:0 0}}@-webkit-keyframes title-appear{0%{background-position:100% 0}20%{background-position:100% 0}100%{background-position:0 0}}@-o-keyframes title-appear{0%{background-position:100% 0}20%{background-position:100% 0}100%{background-position:0 0}}@keyframes title-appear{0%{background-position:100% 0}20%{background-position:100% 0}100%{background-position:0 0}}section#header .arrow-wrapper{bottom:0;position:absolute;left:0;}section#header .arrow-wrapper .arrow{display:inline-block}section#header .arrow-wrapper polyline{stroke:#ddd}section#me{font-size:1.2em;text-align:center;font-family:Lato,'Open Sans','Segoe UI','Roboto',sans-serif;}section#me h1{font-weight:bolder}section#me > div{width:100%}section#me .intro{text-align:justify;font-size:1.6em;padding:0 1em;margin-bottom:1em;}section#me .intro p{color:#444;font-weight:100}section#me .skills{padding:0 1em}section#me .box{vertical-align:top;display:inline-block;text-align:left;width:100%;padding:0 .7em}section#me h3{text-transform:uppercase;font-size:.9em;font-weight:900;font-family:Nunito,'Open Sans','Segoe UI','Roboto',sans-serif}section#me h4{font-size:1.8em;margin-top:0;color:#555;font-family:Dosis,'Open Sans','Segoe UI','Roboto',sans-serif;}section#me h4 b:hover{color:#000;transition:color .2s ease-in-out}section#me ul{padding:0}section#me li{list-style:none;font-size:.8em;line-height:1.6;color:#777;}section#me li a:hover{color:#222;transition:color .2s ease-in-out}section#projects{transition:background .1s ease-in-out;background:#eee;}section#projects .project{text-align:center;font-family:Nunito,'Open Sans','Segoe UI','Roboto',sans-serif;font-weight:lighter;padding:2em;display:inline-block;opacity:.5;transition:opacity .2s ease-in-out;width:auto;}section#projects .project h3{display:inline}section#projects .project h2{display:inline-block;transition:all .1s ease-in-out;letter-spacing:.5em;font-size:3em;text-transform:uppercase;margin:0;margin-left:.25em}section#projects .project:hover{opacity:1;}section#projects .project:hover h2{transform:translate(.05em,-.05em);text-shadow:rgba(0,0,0,0.5) -.15em .15em 8px}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+body > input {
+  display: none;
+}
+a,
+a:visited {
+  color: inherit;
+}
+.en,
+.fr,
+.ko {
+  display: none;
+}
+#language-en:checked ~ main .en,
+#language-fr:checked ~ main .fr,
+#language-ko:checked ~ main .ko {
+  display: unset;
+}
+#change-theme ~ main {
+  --background: #fff;
+  --secondary-background: #f9f9f9;
+  --primary: #252525;
+  --secondary: #252525;
+  --ternary: #d0d0d0;
+}
+#change-theme ~ main .light {
+  display: unset;
+}
+#change-theme ~ main .dark {
+  display: none;
+}
+#change-theme ~ main .name {
+  --accent: #f03e3e;
+}
+#change-theme ~ main .work {
+  --accent: #fcc419;
+}
+#change-theme ~ main .school {
+  --accent: #4c6ef5;
+}
+#change-theme ~ main .speak {
+  --accent: #51cf66;
+}
+#change-theme:checked ~ main {
+  --background: #000;
+  --secondary-background: #0a0a0a;
+  --primary: #fff;
+  --secondary: #fff;
+  --ternary: #616161;
+}
+#change-theme:checked ~ main .light {
+  display: none;
+}
+#change-theme:checked ~ main .dark {
+  display: unset;
+}
+#change-theme:checked ~ main .name {
+  --accent: #e03131;
+}
+#change-theme:checked ~ main .work {
+  --accent: #ffd43b;
+}
+#change-theme:checked ~ main .school {
+  --accent: #339af0;
+}
+#change-theme:checked ~ main .speak {
+  --accent: #69db7c;
+}
+main {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+main > * {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+h3 {
+  font-family: 'Red Hat Display', 'Noto Sans KR', Roboto, Arial, sans-serif;
+  font-size: 2.6em;
+  letter-spacing: 0.012em;
+  line-height: 1.25em;
+  margin-left: 20px;
+  margin-right: auto;
+  z-index: 1;
+}
+h3 em {
+  font-style: normal;
+}
+h3 em,
+h3 a,
+h3 label {
+  color: var(--accent) !important;
+}
+header {
+  height: 100vh;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: var(--primary);
+}
+header label {
+  cursor: pointer;
+}
+header a {
+  text-decoration: none;
+}
+header #icon {
+  align-self: start;
+  fill: var(--primary);
+  height: 36px;
+  margin-top: 1em;
+  position: absolute;
+  stroke-width: 0;
+  width: 36px;
+}
+header #lines {
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  overflow: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+header #intro {
+  display: inline-block;
+  max-width: 800px;
+}
+header ul {
+  list-style: none;
+  padding: 0;
+  font-weight: lighter;
+}
+header ul li {
+  display: inline-block;
+  margin-right: 1em;
+}
+header ul li .text {
+  margin-bottom: -0.2em;
+}
+header ul li .links {
+  color: var(--ternary);
+}
+header ul svg {
+  height: inherit;
+  width: inherit;
+  margin-bottom: var(--mt);
+}
+header ul path {
+  fill: var(--secondary);
+  stroke: none;
+}
+footer {
+  max-width: none;
+  text-align: center;
+  background: var(--secondary-background);
+  color: var(--primary);
+  font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif;
+}
+footer .content {
+  display: inline-block;
+  margin: 2em 1em;
+}
+#toggle-education ~ main .education {
+  display: none;
+}
+#toggle-education:checked ~ main .education {
+  display: flex;
+}
+#toggle-experience ~ main .experience {
+  display: none;
+}
+#toggle-experience:checked ~ main .experience {
+  display: flex;
+}
+#toggle-languages ~ main .languages {
+  display: none;
+}
+#toggle-languages:checked ~ main .languages {
+  display: flex;
+}
+#toggle-life ~ main .life {
+  display: none;
+}
+#toggle-life:checked ~ main .life {
+  display: flex;
+}
+#toggle-programming ~ main .programming {
+  display: none;
+}
+#toggle-programming:checked ~ main .programming {
+  display: flex;
+}
+#toggle-projects ~ main .projects {
+  display: none;
+}
+#toggle-projects:checked ~ main .projects {
+  display: flex;
+}
+.education {
+  --accent: #51cf66;
+}
+.experience {
+  --accent: #ffd43b;
+}
+.languages {
+  --accent: #fa5252;
+}
+.life {
+  --accent: #868e96;
+}
+.programming {
+  --accent: #339af0;
+}
+.projects {
+  --accent: #364fc7;
+}
+section.timeline {
+  background: var(--background);
+  color: var(--primary);
+  display: flex;
+  flex-direction: row;
+  font-family: Nunito, Roboto, Arial, sans-serif;
+  min-height: 100vh;
+  height: calc(11em + var(--timeline-length) * 30px);
+}
+section.timeline .years,
+section.timeline .months,
+section.timeline .events {
+  margin-top: 7em;
+  position: relative;
+}
+section.timeline .years {
+  width: 110px;
+  margin-left: 20px;
+  top: -3px;
+}
+section.timeline .months {
+  width: 60px;
+}
+section.timeline .events {
+  width: 100%;
+  top: -4px;
+}
+section.timeline h3 {
+  position: absolute;
+  margin-top: 0;
+}
+section.timeline h4 {
+  margin: 0;
+}
+section.timeline .years h4 {
+  font-size: 2em;
+  margin-top: -0.35em;
+}
+section.timeline .year,
+section.timeline .month,
+section.timeline .event {
+  display: flex;
+  position: absolute;
+  margin-left: calc(var(--bar) * 30px);
+  margin-top: calc(var(--offset) * 30px);
+}
+section.timeline .year {
+  margin-bottom: 5px;
+}
+section.timeline .event .title {
+  margin-left: 4px;
+  margin-top: 4px;
+}
+section.timeline .event .dot,
+section.timeline .event .range {
+  background: var(--accent);
+  border-radius: 12px;
+  width: 24px;
+  margin: 3px;
+}
+section.timeline .event .dot {
+  height: 24px;
+}
+section.timeline .event .range {
+  height: calc(var(--length) * 30px - 3px * 2);
+}
+section.timeline .descriptions {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding-left: 550px;
+  box-sizing: border-box;
+}
+section.timeline .description {
+  position: absolute;
+  margin-top: calc(var(--offset) * 30px);
+  transform: translateX(-1em);
+  opacity: 0;
+  font-family: 'Red Hat Display', 'Noto Sans KR', Roboto, Arial, sans-serif;
+  font-size: 1.4em;
+  letter-spacing: 0.012em;
+  line-height: 1.25em;
+  font-weight: bold;
+  transition: all 0.15s ease-in-out;
+}
+section.timeline .event:nth-of-type(1):hover ~ .descriptions .description:nth-of-type(1) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(2):hover ~ .descriptions .description:nth-of-type(2) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(3):hover ~ .descriptions .description:nth-of-type(3) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(4):hover ~ .descriptions .description:nth-of-type(4) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(5):hover ~ .descriptions .description:nth-of-type(5) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(6):hover ~ .descriptions .description:nth-of-type(6) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(7):hover ~ .descriptions .description:nth-of-type(7) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(8):hover ~ .descriptions .description:nth-of-type(8) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(9):hover ~ .descriptions .description:nth-of-type(9) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(10):hover ~ .descriptions .description:nth-of-type(10) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(11):hover ~ .descriptions .description:nth-of-type(11) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(12):hover ~ .descriptions .description:nth-of-type(12) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(13):hover ~ .descriptions .description:nth-of-type(13) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(14):hover ~ .descriptions .description:nth-of-type(14) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(15):hover ~ .descriptions .description:nth-of-type(15) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(16):hover ~ .descriptions .description:nth-of-type(16) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(17):hover ~ .descriptions .description:nth-of-type(17) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(18):hover ~ .descriptions .description:nth-of-type(18) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(19):hover ~ .descriptions .description:nth-of-type(19) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(20):hover ~ .descriptions .description:nth-of-type(20) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(21):hover ~ .descriptions .description:nth-of-type(21) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(22):hover ~ .descriptions .description:nth-of-type(22) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(23):hover ~ .descriptions .description:nth-of-type(23) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(24):hover ~ .descriptions .description:nth-of-type(24) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(25):hover ~ .descriptions .description:nth-of-type(25) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(26):hover ~ .descriptions .description:nth-of-type(26) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(27):hover ~ .descriptions .description:nth-of-type(27) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(28):hover ~ .descriptions .description:nth-of-type(28) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(29):hover ~ .descriptions .description:nth-of-type(29) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
+section.timeline .event:nth-of-type(30):hover ~ .descriptions .description:nth-of-type(30) {
+  display: inline-block;
+  transform: none;
+  opacity: 1;
+}
