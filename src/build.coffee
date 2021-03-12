@@ -9,6 +9,9 @@ link = (link, text) ->
 plink = (project, text) ->
   link("https://github.com/71/#{project}", text)
 
+en_fr_ko = (en, fr, ko) ->
+  ("<span class=#{lang}>#{text}</span>" for lang, text of { en, fr, ko } when text?).join("")
+
 
 categories = [
   'education'
@@ -20,38 +23,42 @@ categories = [
 ]
 
 eventsSources =
-  life: '''
-    - 1999-10-21: Born in France.
-  '''
+  life: """
+    - 1999-10-21: #{en_fr_ko("Born in France", "Né en France", "프랑스에서 태어났습니다")}.
+  """
 
-  languages: '''
-    - 2001-01: French, native.
-    - 2007-09: German, elementary.
-    - 2010-09: English, fluent.
-    - 2018-07: Korean, lower intermediate.
-  '''
+  languages: """
+    - 2001-01: #{en_fr_ko("French", "Français", "프랑스어")}, #{en_fr_ko("native", "natif", "원어민")}.
+    - 2007-09: #{en_fr_ko("German", "Allemand", "독일어")}, #{en_fr_ko("elementary", "élémentaire", "초급")}.
+    - 2010-09: #{en_fr_ko("English", "Anglais", "영어")}, #{en_fr_ko("fluent", "courant", "능숙")}.
+    - 2018-07: #{en_fr_ko("Korean", "Coréen", "한국어")}, #{en_fr_ko("lower intermediate", "intermédiaire inférieur", "중급")}.
+    - 2019-11: #{en_fr_ko("Japanese", "Japonais", "일본어")}, #{en_fr_ko("elementary", "élémentaire", "초급")}.
+  """
 
-  education: '''
-    - 2014-09-01 to 2017-07-01: Lycée George de la Tour, Metz, France.
-    - 2017-09-01 to 2022-07-01: [EPITA](https://www.epita.fr), Paris Area, France.
-    - 2019-03-02 to 2019-06-23: [Sejong University](http://www.sejong.ac.kr), Seoul, Republic of Korea.
-  '''
+  education: """
+    - 2014-09-01 to 2017-07-01: Lycée George de la Tour, Metz, #{en_fr_ko("France", "France", "프랑스")}.
+    - 2017-09-01 to 2022-07-01: [EPITA](https://www.epita.fr), #{en_fr_ko("Paris Area", "région parisienne", "파리 지역")}, #{en_fr_ko("France", "France", "프랑스")}.
+    - 2019-03-02 to 2019-06-23: [#{en_fr_ko("Sejong University", "Sejong University", "세종대학교")}](http://www.sejong.ac.kr), #{en_fr_ko("Seoul, Republic of Korea", "Séoul, République de Corée", "서울, 대한민국")}.
+  """
 
-  experience: '''
-    - 2018-06-14 to 2018-08-23: Internship at [LRDE](https://www.lrde.epita.fr),
+  experience: """
+    - 2018-06-14 to 2018-08-23: #{en_fr_ko("Internship at the ", "Stage au ")}[LRDE](https://www.lrde.epita.fr)<span class=ko>에서 인턴십</span>,
         Created a pattern-based LTL formula rewriting engine for Spot. 5,000 lines added.
-    - 2019-01-07 to 2019-02-28: Internship at [IRIF](https://www.irif.fr),
+    - 2019-01-07 to 2019-02-28: #{en_fr_ko("Internship at ", "Stage à l'")}[IRIF](https://www.irif.fr)<span class=ko>에서 인턴십</span>,
         Implementation of a type checker for a toy programming language with type inference,
         with the help of the Inferno OCaml library, which had to be extended for the toy language
         to support polymorphic recursion.
-    - 2019-09-02 to 2022-09-02: Apprenticeship at [Google France](https://about.google),.
-  '''
+    - 2019-09-02 to 2022-09-02: #{en_fr_ko("Apprenticeship at ", "Apprentissage à ")}[Google France](https://about.google)<span class=ko>에서 견습</span>,.
+  """
 
   programming: '''
     - 2012-11: [HTML](repos:html), [CSS](repos:css), [JavaScript](repos:javascript), Batch.
     - 2013-05: [C#](repos:csharp).
+    - 2016-08: [Rust](repos:rust).
     - 2017-09: OCaml.
     - 2017-11: Haskell, [F#](repos:fsharp).
+    - 2018-06: C, C++, Java.
+    - 2019-10: [Go](repos:go).
   '''
 
   projects: '''
@@ -63,6 +70,7 @@ eventsSources =
     - 2018-07-26: Fast.Fody, F#, Fast and easy modifications of .NET assemblies.
     - 2018-10-12: lesspass.kt, Kotlin, LessPass client for Android.
     - 2019-04-04: Dance, TypeScript, Kakoune keybindings for VS Code.
+    - 2020-04-10: stadiacontroller, Go, Full support for the Google Stadia controller on Windows.
   '''
 
 
@@ -90,7 +98,7 @@ o = (type, regex, map) ->
 do ->
   o 'life'       , /^- ([\d-]+): (.+)$/gm                          , ([ _, date, title ]) -> { title }
 
-  o 'languages'  , /^- ([\d-]+): (.+?), (.+)\.$/gm                 , ([ _, date, title, proficiency ]) -> { title: "#{title} (#{proficiency}).", descr: "Started learning #{title}" }
+  o 'languages'  , /^- ([\d-]+): (.+?), (.+)\.$/gm                 , ([ _, date, title, proficiency ]) -> { title: "#{title} (#{proficiency})." }
 
   o 'education'  , /^- ([\d-]+) to ([\d-]+): (.+)$/gm              , ([ _, start, end, title ]) -> { start, end, title, bar: 0 }
 
@@ -122,7 +130,7 @@ exports.build = ->
   offset = 0
   skipped = false
 
-  for yr in [1999..2020]
+  for yr in [1999..2021]
     skipYear = true
     year = { year: yr, fr: ''+yr, en: ''+yr, ko: ''+yr, offset, months: [] }
 
@@ -157,14 +165,11 @@ exports.build = ->
         offset += 1
 
       if skipMonth
-        continue
-      #   if timeline.months.length > 0 and timeline.months[timeline.months.length - 1].skip
-      #     timeline.months[timeline.months.length - 1].skip += 1
-
-      #     continue
-      #   else
-      #     month = { offset, skip: 1 }
-      #     offset += 1
+        if timeline.months.length > 0 and timeline.months[timeline.months.length - 1].skip
+          continue
+        else
+          month = { offset, skip: 1 }
+          offset += 1
       else
         skipYear = false
 
@@ -181,6 +186,9 @@ exports.build = ->
     #     offset += 1
     #     year = { offset, skip: 1 }
     #     offset += 1
+
+    if year.months[year.months.length - 1].skip
+      offset -= 1
 
     timeline.years.push(year)
     offset += 1
