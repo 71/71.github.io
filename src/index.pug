@@ -106,9 +106,9 @@ html
               .links
                 +social('email'   , 'mailto:hello@gregoirege.is?subject=Hello,%20Greg'      , 'Send me an email', 32, 4).en
                 +social('email'   , 'mailto:hello@gregoirege.is?subject=Bonjour,%20Grégoire', 'Envoyez-moi un email', 32, 4).fr
-                +social('email'   , 'mailto:hello@gregoirege.is?subject=그렉 씨 안녕하세요'    , 'Send me an email', 32, 4)(style='margin-left: 3px;').ko
+                +social('email'   , 'mailto:hello@gregoirege.is?subject=그렉 씨 안녕하세요'    , '이메일을 보내세요', 32, 4)(style='margin-left: 3px;').ko
                 |  · 
-                +social('linkedin', 'https://www.linkedin.com/in/gregoiregeis', 'LinkedIn', 26).en
+                +profile('linkedin', 'https://www.linkedin.com/in/gregoiregeis', 'LinkedIn', 26)
 
             li
               .text
@@ -116,9 +116,9 @@ html
                 span.fr Voyez ce que j'ai fait.
                 span.ko 제가 만든 것 좀 봐주세요.
               .links
-                +social('github'    , 'https://github.com/71'       , 'GitHub'    , 32, 4)
+                +profile('github'    , 'https://github.com/71'       , 'GitHub'    , 32, 4)
                 |  · 
-                +social('observable', 'https://observablehq.com/@71', 'Observable', 28, 2)
+                +profile('observable', 'https://observablehq.com/@71', 'Observable', 28, 2)
 
       section.timeline#timeline(style=`--timeline-length: ${timeline.length}`)
         h3.en Here is a #[span(style='font-weight: 100') (short)] summary of my life.
@@ -178,38 +178,29 @@ html
 
 
       script.
-        const links = document.querySelectorAll('.name a')
-
-        for (const link of links) {
+        for (const link of document.querySelectorAll('.name a')) {
           link.addEventListener('click', () => {
-            smoothScrollTo(document.getElementById('timeline').offsetTop - 30, 10)
+            const scrollTarget = document.getElementById('timeline').offsetTop - 30,
+                  speed = 10
+            let currentScroll = window.scrollY,
+                currentTime   = 0,
+                time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
+
+            let ease = (p) => ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2)
+            let tick = ( ) => {
+              currentTime += 1 / 60
+              p = currentTime / time
+              t = ease(p)
+
+              if (p < 1) {
+                requestAnimationFrame(tick)
+                window.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
+              } else {
+                window.scrollTo(0, scrollTarget)
+              }
+            }
+
+            tick()
             return false
           })
-        }
-
-        function smoothScrollTo(scrollTarget, speed) {
-          if (typeof scrollTarget !== 'number')
-            scrollTarget = 0
-          if (typeof speed !== 'number')
-            speed = 2000
-
-          let currentScroll = window.scrollY
-          let currentTime   = 0
-          let time          = Math.max(.1, Math.min(Math.abs(currentScroll - scrollTarget) / speed, .8))
-
-          let ease = (p) => ((p /= .5) < 1) ? .5 * Math.pow(p, 5) : .5 * (Math.pow((p - 2), 5) + 2)
-          let tick = ( ) => {
-            currentTime += 1 / 60
-            p = currentTime / time
-            t = ease(p)
-
-            if (p < 1) {
-              requestAnimationFrame(tick)
-              window.scrollTo(0, currentScroll + ((scrollTarget - currentScroll) * t))
-            } else {
-              window.scrollTo(0, scrollTarget)
-            }
-          }
-
-          tick()
         }
