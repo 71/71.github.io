@@ -113,6 +113,9 @@ h3
   em, a, label
     color: var(--accent)!important
 
+main
+  overflow: hidden
+
 header
   height: 100vh
   position: relative
@@ -128,6 +131,16 @@ header
 
   a
     text-decoration: none
+
+  #bg-icon
+    position: absolute
+    fill: none
+    stroke: var(--primary)
+    stroke-width: 1px
+    opacity: .12
+    width: 100vmax
+    height: auto
+    margin-right: -50vw
 
   #icon
     align-self: start
@@ -175,130 +188,3 @@ header
     path
       fill: var(--secondary)
       stroke: none
-
-footer
-  max-width: none
-  text-align: center
-
-  background: var(--secondary-background)
-  color: var(--primary)
-
-  font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif
-
-  .content
-    display: inline-block
-    margin: 2em 1em
-
-
-// Timeline
-
-
-for category in ('education' 'experience' 'languages' 'life' 'programming' 'projects')
-  {join('', '#toggle-', category, ' ~ main .', category)}
-    display: none
-
-  {join('', '#toggle-', category, ':checked ~ main .', category)}
-    display: flex
-
-for category in ('education' #51cf66) ('experience' #ffd43b) ('languages' #fa5252) ('life' #868e96) ('programming' #339af0) ('projects' #364fc7)
-  {join('', '.', category[0])}
-    --accent: category[1]
-
-section.timeline
-  background: var(--background)
-  color: var(--primary)
-
-  display: flex
-  flex-direction: row
-
-  font-family: Nunito, Roboto, Arial, sans-serif
-
-  .years, .months, .events
-    margin-top: 7em
-    position: relative
-
-  .years
-    width: 110px
-    margin-left: 20px
-    top: -3px
-  .months
-    width: 60px
-  .events
-    width: 100%
-    top: -4px
-
-  h3
-    position: absolute
-    margin-top: 0
-
-  h4
-    margin: 0
-
-  .years h4
-    font-size: 2em
-    margin-top: -.35em
-
-  $dot-half-width = 12px
-  $dot-width = $dot-half-width * 2
-  $dot-margin = 3px
-  $dot-size = $dot-width + $dot-margin * 2
-  $unit = $dot-size
-
-  min-height: 100vh
-  height: "calc(11em + var(--timeline-length) * %s)" % $unit
-
-  .year, .month, .event
-    display: flex
-    position: absolute
-
-    margin-left: "calc(var(--bar) * %s)" % $dot-size
-    margin-top : "calc(var(--offset) * %s)" % $unit
-
-  .year
-    margin-bottom: 5px
-
-  .event
-    .title
-      margin-left: 4px
-      margin-top: 4px
-
-    .dot, .range
-      background: var(--accent)
-      border-radius: $dot-half-width
-      width: $dot-width
-      margin: $dot-margin
-
-    .dot
-      height: $dot-width
-
-    .range
-      height: "calc(var(--length) * %s - %s * 2)" % ($unit $dot-margin)
-
-
-  .descriptions
-    position: absolute
-    top: 0
-    width: 100%
-    padding-left: 550px
-    box-sizing: border-box
-
-  .description
-    position: absolute
-
-    margin-top: "calc(var(--offset) * %s)" % $unit
-    transform: translateX(-1em)
-    opacity: 0
-
-    font-family: 'Red Hat Display', 'Noto Sans KR', Roboto, Arial, sans-serif
-    font-size: 1.4em
-    letter-spacing: 0.012em
-    line-height: 1.25em
-    font-weight: bold
-
-    transition: all .15s ease-in-out
-
-  for i in (1..30)
-    .event:nth-of-type({i}):hover ~ .descriptions .description:nth-of-type({i})
-      display: inline-block
-      transform: none
-      opacity: 1
