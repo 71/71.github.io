@@ -10,7 +10,7 @@
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
     "coffeescript": "^2.4.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "stylus": "^0.54.5"
   }
 }
