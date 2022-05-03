@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "ISC",
   "scripts": {
-    "build": "coffee -r \"coffeescript/register\" -e \"require('./build.coffee').build()\""
+    "build": "coffee -r \"coffeescript/register\" -e \"require('./build.coffee').build()\"",
+    "start": "chokidar * -c \"yarn build\""
   },
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
     "coffeescript": "^2.4.1",
     "pug": "^2.0.3",
     "stylus": "^0.54.5"
