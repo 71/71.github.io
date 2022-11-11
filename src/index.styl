@@ -51,9 +51,9 @@ a, a:visited
 
   .name
     --accent: #f03e3e
-  .work
+  .me
     --accent: #fcc419
-  .school
+  .skills
     --accent: #4c6ef5
   .speak
     --accent: #51cf66
@@ -72,9 +72,9 @@ a, a:visited
 
   .name
     --accent: #e03131
-  .work
+  .me
     --accent: #ffd43b
-  .school
+  .skills
     --accent: #339af0
   .speak
     --accent: #69db7c
@@ -110,8 +110,11 @@ h3
   em
     font-style: normal
 
-  em, a, label
+  em, label
     color: var(--accent)!important
+
+  a
+    text-decoration: underline var(--accent)
 
 main
   overflow: hidden
@@ -128,9 +131,6 @@ header
 
   label
     cursor: pointer
-
-  a
-    text-decoration: none
 
   #bg-icon
     position: absolute

@@ -46,10 +46,10 @@ a:visited {
 #change-theme ~ main .name {
   --accent: #f03e3e;
 }
-#change-theme ~ main .work {
+#change-theme ~ main .me {
   --accent: #fcc419;
 }
-#change-theme ~ main .school {
+#change-theme ~ main .skills {
   --accent: #4c6ef5;
 }
 #change-theme ~ main .speak {
@@ -71,10 +71,10 @@ a:visited {
 #change-theme:checked ~ main .name {
   --accent: #e03131;
 }
-#change-theme:checked ~ main .work {
+#change-theme:checked ~ main .me {
   --accent: #ffd43b;
 }
-#change-theme:checked ~ main .school {
+#change-theme:checked ~ main .skills {
   --accent: #339af0;
 }
 #change-theme:checked ~ main .speak {
@@ -106,9 +106,11 @@ h3 em {
   font-style: normal;
 }
 h3 em,
-h3 a,
 h3 label {
   color: var(--accent) !important;
+}
+h3 a {
+  text-decoration: underline var(--accent);
 }
 main {
   overflow: hidden;
@@ -123,9 +125,6 @@ header {
 }
 header label {
   cursor: pointer;
-}
-header a {
-  text-decoration: none;
 }
 header #bg-icon {
   position: absolute;
